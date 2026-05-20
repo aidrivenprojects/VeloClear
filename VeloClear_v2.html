@@ -10,7 +10,8 @@
 <meta name="theme-color" content="#0A0618">
 <meta name="description" content="VeloClear — Deliver with clarity. Learn from everything. The delivery intelligence platform for everyone.">
 <title>VeloClear — Track. Trace. Learn.</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{--indigo:#4F46E5;--indigo-l:#6366F1;--indigo-d:#3730A3;--indigo-bg:#EEF2FF;--purple:#7C3AED;--purple-bg:#F5F3FF;--emerald:#10B981;--emerald-bg:#ECFDF5;--emerald-d:#059669;--amber:#F59E0B;--amber-bg:#FFFBEB;--amber-d:#D97706;--red:#EF4444;--red-bg:#FEF2F2;--red-d:#DC2626;--sky:#0EA5E9;--sky-bg:#F0F9FF;--ink:#0F172A;--ink-2:#1E293B;--ink-3:#334155;--muted:#64748B;--muted-l:#94A3B8;--muted-ll:#CBD5E1;--surface:#FFFFFF;--bg:#F8FAFF;--bg-2:#F1F5F9;--border:#E2E8F0;--border-l:#F1F5F9;--shadow-sm:0 1px 3px rgba(15,23,42,.06),0 1px 2px rgba(15,23,42,.04);--shadow:0 4px 12px rgba(15,23,42,.08);--shadow-lg:0 20px 40px rgba(15,23,42,.12);--shadow-indigo:0 8px 24px rgba(79,70,229,.25);
   --teal:#00D4AA;--teal-l:#33DDB8;--teal-d:#00A882;--teal-bg:rgba(0,212,170,.1);--teal-bdr:rgba(0,212,170,.25);--shadow-teal:0 8px 24px rgba(0,212,170,.25);--accent:#00D4AA;--r-sm:8px;--r:12px;--r-lg:16px;--r-xl:24px;--transition:.2s cubic-bezier(.4,0,.2,1);}
@@ -861,7 +862,7 @@ table.data-table{width:100%;border-collapse:collapse;font-size:11.5px;}
 <button class="ham" id="ham-btn" onclick="toggleSidebar()" title="Menu">☰</button>
 <div class="overlay-bg" id="overlay-bg" onclick="toggleSidebar()"></div>
 <aside class="sidebar" id="sidebar">
-  <div class="sidebar-logo" style="display:flex;align-items:center;gap:10px;padding:16px 14px 14px;border-bottom:1px solid rgba(255,255,255,.08);">
+  <div class="sidebar-logo" style="display:flex;align-items:center;gap:10px;padding:16px 14px 14px;border-bottom:1px solid rgba(255,255,255,.08);cursor:pointer;" onclick="window.location.href='index.html'" title="Back to home">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none" style="width:32px;height:32px;flex-shrink:0"><defs><linearGradient id="mg32a" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#4F46E5"/><stop offset="100%" stop-color="#00D4AA"/></linearGradient></defs><rect width="32" height="32" rx="7" fill="url(#mg32a)"/><polygon points="5,7 10,7 16,22 14.5,25 13,25" fill="white"/><polygon points="13,25 16,22 27,7 25.5,7" fill="white" opacity="0.88"/><polygon points="12.5,24 16,18 19.5,24 16,26" fill="#00D4AA" opacity="0.85"/></svg>
     <div>
       <div style="font-family:Syne,sans-serif;font-size:14px;font-weight:800;letter-spacing:-.04em;line-height:1.15;"><span style="color:#fff">Velo</span><span style="color:#00D4AA">Clear</span></div>
@@ -908,6 +909,11 @@ table.data-table{width:100%;border-collapse:collapse;font-size:11.5px;}
   <div class="nav-item" onclick="go('people')" data-label="People & Capacity"><div class="ni-icon">👥</div>People &amp; Capacity</div>
   <div class="nav-item" onclick="go('evm')" data-label="Portfolio EVM"><div class="ni-icon">📊</div>Portfolio EVM</div>
 
+  <div style="padding:10px 14px 6px;border-top:1px solid rgba(255,255,255,.06);">
+    <a href="index.html" style="display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:8px;color:rgba(255,255,255,.35);font-size:11px;font-weight:600;text-decoration:none;transition:all .2s;letter-spacing:.02em;" onmouseover="this.style.color='#00D4AA';this.style.background='rgba(0,212,170,.08)'" onmouseout="this.style.color='rgba(255,255,255,.35)';this.style.background='transparent'">
+      <span style="font-size:14px;">←</span> Back to home
+    </a>
+  </div>
   <div class="sb-footer">
     <div class="proj-sel" onclick="showM('m-projects')">
       <div class="ps-label">Active Project</div>
@@ -922,6 +928,7 @@ table.data-table{width:100%;border-collapse:collapse;font-size:11.5px;}
     <span class="topbar-title" id="tb-title">Portfolio Dashboard</span>
     <span class="topbar-sub" id="tb-sub">· Auto-updating · All metrics calculated from your inputs</span>
     <div class="topbar-actions">
+      <a href="index.html" style="display:inline-flex;align-items:center;gap:5px;padding:6px 12px;border-radius:8px;font-size:11px;font-weight:600;color:rgba(255,255,255,.4);text-decoration:none;border:1px solid rgba(255,255,255,.08);transition:all .2s;font-family:inherit;" onmouseover="this.style.color='#00D4AA';this.style.borderColor='rgba(0,212,170,.3)'" onmouseout="this.style.color='rgba(255,255,255,.4)';this.style.borderColor='rgba(255,255,255,.08)'">← Home</a>
       <button class="btn btn-ghost btn-sm" onclick="go('learning')">📚 Learnings</button>
       <button class="btn btn-ghost btn-sm" onclick="go('import')">⬆️ Import</button>
       <button class="btn btn-secondary btn-sm" onclick="go('reports');setTimeout(()=>genReport('steering'),100)">📄 Steering Pack</button>
@@ -3139,7 +3146,7 @@ function initPhase7() {
 
 
 
-<script>
+
 // PHASE 8 DATA
 
 // ══════════════════════════════════════════════════════════════
@@ -5807,6 +5814,7 @@ window.addEventListener('appinstalled', () => {
 
 </script>
 
+<script>
 window.onload = () => {
   autoRAG(); updateBadges();
   initPhase7();
