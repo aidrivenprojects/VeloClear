@@ -162,12 +162,7 @@ a { text-decoration:none; color:inherit; }
 }
 @media(max-width:860px){.entry-headline h1{font-size:32px;}}
 @media(max-width:560px){.entry-headline h1{font-size:26px;}}
-.entry-headline h1 em {
-  font-style:normal;
-  background:var(--grad-brand);
-  -webkit-background-clip:text; -webkit-text-fill-color:transparent;
-  background-clip:text;
-}
+.entry-headline h1 em { font-style:normal; color:#00D4AA; }
 .entry-sub {
   font-size:clamp(12px,1.5vw,15px);
   color:var(--text-3); line-height:1.55;
@@ -331,15 +326,7 @@ a { text-decoration:none; color:inherit; }
 @media(max-width:1100px){.hero-h1{font-size:44px;}}
 @media(max-width:860px){.hero-h1{font-size:36px;}}
 @media(max-width:560px){.hero-h1{font-size:28px;}}
-.hero-h1 .grad {
-  background:var(--grad-brand);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-  background-clip:text;
-  display:inline;
-  -webkit-font-smoothing:antialiased;
-  background-size:100% 100%;
-}
+.hero-h1 .grad { color:#00D4AA; display:inline; }
 .hero-lead {
   font-size:17px; color:var(--text-2);
   line-height:1.65; max-width:560px; margin:0 auto 30px;
@@ -377,12 +364,7 @@ a { text-decoration:none; color:inherit; }
   animation:fade-up .5s .3s var(--ease) both;
 }
 .proof-item { text-align:center; }
-.proof-num {
-  font-family:'Syne',sans-serif; font-size:28px; font-weight:800;
-  background:linear-gradient(135deg,#4F46E5,#00D4AA);
-  -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
-  display:inline-block;
-}
+.proof-num { font-family:'Syne',sans-serif; font-size:28px; font-weight:800; color:#00D4AA; display:inline-block; }
 .proof-label { font-size:11px; color:var(--text-3); margin-top:2px; line-height:1.4; max-width:100px; }
 .proof-sep { width:1px; background:var(--border); height:40px; align-self:center; }
 
@@ -402,13 +384,7 @@ a { text-decoration:none; color:inherit; }
 }
 @media(max-width:860px){.section-h2{font-size:28px;}}
 @media(max-width:560px){.section-h2{font-size:22px;}}
-.section-h2 .grad {
-  background:var(--grad-brand);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-  background-clip:text;
-  display:inline;
-}
+.section-h2 .grad { color:#00D4AA; display:inline; }
 .section-lead {
   font-size:16px; color:var(--text-2);
   line-height:1.75; max-width:580px; font-weight:300;
@@ -578,13 +554,7 @@ a { text-decoration:none; color:inherit; }
 }
 .stat-block:last-child { border-right:none; }
 .stat-block:hover { background:rgba(255,255,255,.06); }
-.stat-num {
-  font-family:'Syne',sans-serif; font-size:40px; font-weight:800;
-  background:var(--grad-brand);
-  -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
-  line-height:1; margin-bottom:6px;
-  display:inline-block; width:auto;
-}
+.stat-num { font-family:'Syne',sans-serif; font-size:40px; font-weight:800; color:#00D4AA; line-height:1; margin-bottom:6px; display:inline-block; }
 .stat-label { font-size:12px; color:var(--text-3); line-height:1.5; }
 
 /* ── FINAL CTA ── */
@@ -716,8 +686,8 @@ footer {
     <div class="entry-orb eo3"></div>
   </div>
 
-  <div class="entry-logo" style="display:flex;align-items:center;gap:12px;margin-bottom:clamp(20px,4vh,48px);position:relative;z-index:1;animation:fade-down .5s var(--ease) both;">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" fill="none" style="width:40px;height:40px;flex-shrink:0"><defs><linearGradient id="mg40" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#4F46E5"/><stop offset="100%" stop-color="#00D4AA"/></linearGradient></defs><rect width="40" height="40" rx="9" fill="url(#mg40)"/><polygon points="6,9 13,9 20,28 18,31 16,31" fill="white"/><polygon points="16,31 20,28 34,9 32,9" fill="white" opacity="0.88"/><polygon points="15.5,30 20,22 24.5,30 20,32.5" fill="#00D4AA" opacity="0.85"/></svg>
+  <div class="entry-logo" style="display:flex;align-items:center;gap:12px;margin-bottom:clamp(20px,4vh,48px);position:relative;z-index:1;animation:fade-down .5s var(--ease) both;width:auto;align-self:center;">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" fill="none" style="width:40px;height:40px;min-width:40px;max-width:40px;flex-shrink:0;display:block;overflow:visible;"><defs><linearGradient id="mg40" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#4F46E5"/><stop offset="100%" stop-color="#00D4AA"/></linearGradient></defs><rect width="40" height="40" rx="9" fill="url(#mg40)"/><polygon points="6,9 13,9 20,28 18,31 16,31" fill="white"/><polygon points="16,31 20,28 34,9 32,9" fill="white" opacity="0.88"/><polygon points="15.5,30 20,22 24.5,30 20,32.5" fill="#00D4AA" opacity="0.85"/></svg>
     <div>
       <div style="font-family:Syne,sans-serif;font-size:20px;font-weight:800;letter-spacing:-.04em;line-height:1.1;"><span style="color:#fff">Velo</span><span style="color:#00D4AA">Clear</span></div>
       <div style="font-family:DM Sans,sans-serif;font-size:9px;font-weight:500;color:rgba(255,255,255,.35);letter-spacing:.06em;text-transform:uppercase;margin-top:2px">Track · Trace · Learn</div>
@@ -725,7 +695,7 @@ footer {
   </div>
 
   <div class="entry-headline">
-    <h1>What is your biggest<br><em style="background:linear-gradient(135deg,#4F46E5,#00D4AA);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:inline;font-style:normal;">challenge right now?</em></h1>
+    <h1>What is your biggest<br><em style="color:#00D4AA;font-style:normal;display:inline;">challenge right now?</em></h1>
   </div>
   <p class="entry-sub">Tell us what matters most — we will show you exactly how VeloClear helps.</p>
 
@@ -790,8 +760,8 @@ footer {
 
   <!-- NAV -->
   <nav class="nav" id="main-nav">
-    <div class="nav-logo" onclick="resetToGate()" style="display:flex;align-items:center;gap:9px;cursor:pointer;text-decoration:none;">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none" style="width:32px;height:32px;flex-shrink:0"><defs><linearGradient id="mg32" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#4F46E5"/><stop offset="100%" stop-color="#00D4AA"/></linearGradient></defs><rect width="32" height="32" rx="7" fill="url(#mg32)"/><polygon points="5,7 10,7 16,22 14.5,25 13,25" fill="white"/><polygon points="13,25 16,22 27,7 25.5,7" fill="white" opacity="0.88"/><polygon points="12.5,24 16,18 19.5,24 16,26" fill="#00D4AA" opacity="0.85"/></svg>
+    <div class="nav-logo" onclick="resetToGate()" style="display:inline-flex;align-items:center;gap:9px;cursor:pointer;text-decoration:none;flex-shrink:0;">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none" style="width:32px;height:32px;min-width:32px;max-width:32px;flex-shrink:0;display:block;overflow:visible;"><defs><linearGradient id="mg32" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#4F46E5"/><stop offset="100%" stop-color="#00D4AA"/></linearGradient></defs><rect width="32" height="32" rx="7" fill="url(#mg32)"/><polygon points="5,7 10,7 16,22 14.5,25 13,25" fill="white"/><polygon points="13,25 16,22 27,7 25.5,7" fill="white" opacity="0.88"/><polygon points="12.5,24 16,18 19.5,24 16,26" fill="#00D4AA" opacity="0.85"/></svg>
       <div>
         <div style="font-family:Syne,sans-serif;font-size:15px;font-weight:800;letter-spacing:-.04em;line-height:1.1;"><span style="color:#fff">Velo</span><span style="color:#00D4AA">Clear</span></div>
         <div style="font-family:DM Sans,sans-serif;font-size:8px;font-weight:500;color:rgba(255,255,255,.3);letter-spacing:.06em;text-transform:uppercase;margin-top:1px">Track · Trace · Learn</div>
@@ -929,7 +899,7 @@ footer {
     <section class="cta-section">
       <div class="cta-glow"></div>
       <div class="cta-inner">
-        <h2 class="cta-h2 reveal">Your first project.<br><span style="background:var(--grad-brand);-webkit-background-clip:text;-webkit-text-fill-color:transparent;display:inline;background-clip:text;">Done right.</span></h2>
+        <h2 class="cta-h2 reveal">Your first project.<br><span style="color:#00D4AA;display:inline;">Done right.</span></h2>
         <p class="cta-sub reveal reveal-d1">34 questions. 20 minutes. A complete project foundation — risks, governance, stakeholders, escalation protocol. Guided every step of the way.</p>
         <div class="cta-btns reveal reveal-d2">
           <a class="btn-hero-primary" href="VeloClear_v2.html" style="font-size:15px;padding:15px 32px;">🎯 Start my first project — free</a>
@@ -1048,7 +1018,7 @@ footer {
     <section class="cta-section">
       <div class="cta-glow"></div>
       <div class="cta-inner">
-        <h2 class="cta-h2 reveal">The answer to "why did this slip"<br><span style="background:var(--grad-brand);-webkit-background-clip:text;-webkit-text-fill-color:transparent;display:inline;background-clip:text;">in under 30 seconds.</span></h2>
+        <h2 class="cta-h2 reveal">The answer to "why did this slip"<br><span style="color:#00D4AA;display:inline;">in under 30 seconds.</span></h2>
         <p class="cta-sub reveal reveal-d1">Connect your tools. Run the Impact Trace. Show anyone — client, sponsor, steering committee — the complete chain from blocker to learning.</p>
         <div class="cta-btns reveal reveal-d2">
           <a class="btn-hero-primary" href="VeloClear_v2.html" style="font-size:15px;padding:15px 32px;">🔍 Open VeloClear — free</a>
@@ -1153,7 +1123,7 @@ footer {
     <section class="cta-section">
       <div class="cta-glow"></div>
       <div class="cta-inner">
-        <h2 class="cta-h2 reveal">One view.<br><span style="background:var(--grad-brand);-webkit-background-clip:text;-webkit-text-fill-color:transparent;display:inline;background-clip:text;">Every project.</span></h2>
+        <h2 class="cta-h2 reveal">One view.<br><span style="color:#00D4AA;display:inline;">Every project.</span></h2>
         <p class="cta-sub reveal reveal-d1">The Programme Timeline, Sprint Intelligence, People &amp; Capacity, and Portfolio EVM — all connected, all live, all in one place.</p>
         <div class="cta-btns reveal reveal-d2">
           <a class="btn-hero-primary" href="VeloClear_v2.html" style="font-size:15px;padding:15px 32px;">🗓️ Open VeloClear — free</a>
@@ -1257,7 +1227,7 @@ footer {
     <section class="cta-section">
       <div class="cta-glow"></div>
       <div class="cta-inner">
-        <h2 class="cta-h2 reveal">Your organisation.<br><span style="background:var(--grad-brand);-webkit-background-clip:text;-webkit-text-fill-color:transparent;display:inline;background-clip:text;">Smarter every sprint.</span></h2>
+        <h2 class="cta-h2 reveal">Your organisation.<br><span style="color:#00D4AA;display:inline;">Smarter every sprint.</span></h2>
         <p class="cta-sub reveal reveal-d1">The Learning Library, Impact Trace, Project Templates, and configurable governance — all in one platform that adapts to your organisation's structure and methodology.</p>
         <div class="cta-btns reveal reveal-d2">
           <a class="btn-hero-primary" href="VeloClear_v2.html" style="font-size:15px;padding:15px 32px;">📚 Open VeloClear — free</a>
@@ -1332,7 +1302,7 @@ footer {
     <section class="cta-section">
       <div class="cta-glow"></div>
       <div class="cta-inner">
-        <h2 class="cta-h2 reveal">Three actions.<br><span style="background:var(--grad-brand);-webkit-background-clip:text;-webkit-text-fill-color:transparent;display:inline;background-clip:text;">Everything else handled.</span></h2>
+        <h2 class="cta-h2 reveal">Three actions.<br><span style="color:#00D4AA;display:inline;">Everything else handled.</span></h2>
         <p class="cta-sub reveal reveal-d1">Move your cards. Log blockers. Add retro items. VeloClear handles the governance, the reports, and the escalations — without involving you.</p>
         <div class="cta-btns reveal reveal-d2">
           <a class="btn-hero-primary" href="VeloClear_v2.html" style="font-size:15px;padding:15px 32px;">🏃 Open my sprint board</a>
@@ -1349,7 +1319,7 @@ footer {
   <footer>
     <div class="footer-inner">
       <div class="footer-brand" style="display:flex;align-items:center;gap:10px;">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none" style="width:32px;height:32px;flex-shrink:0"><defs><linearGradient id="mg32" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#4F46E5"/><stop offset="100%" stop-color="#00D4AA"/></linearGradient></defs><rect width="32" height="32" rx="7" fill="url(#mg32)"/><polygon points="5,7 10,7 16,22 14.5,25 13,25" fill="white"/><polygon points="13,25 16,22 27,7 25.5,7" fill="white" opacity="0.88"/><polygon points="12.5,24 16,18 19.5,24 16,26" fill="#00D4AA" opacity="0.85"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none" style="width:32px;height:32px;min-width:32px;max-width:32px;flex-shrink:0;display:block;overflow:visible;"><defs><linearGradient id="mg32" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#4F46E5"/><stop offset="100%" stop-color="#00D4AA"/></linearGradient></defs><rect width="32" height="32" rx="7" fill="url(#mg32)"/><polygon points="5,7 10,7 16,22 14.5,25 13,25" fill="white"/><polygon points="13,25 16,22 27,7 25.5,7" fill="white" opacity="0.88"/><polygon points="12.5,24 16,18 19.5,24 16,26" fill="#00D4AA" opacity="0.85"/></svg>
         <div>
           <div style="font-family:Syne,sans-serif;font-size:14px;font-weight:800;letter-spacing:-.03em;"><span style="color:#fff">Velo</span><span style="color:#00D4AA">Clear</span></div>
           <div style="font-size:10px;color:rgba(255,255,255,.3);margin-top:1px;">Track every project. Trace every delay. Learn from everything.</div>
@@ -1372,7 +1342,7 @@ footer {
 <div id="demo-modal">
   <div class="demo-card">
     <button class="demo-close" onclick="closeDemo()">✕</button>
-    <div style="margin-bottom:16px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none" style="width:48px;height:48px;flex-shrink:0"><defs><linearGradient id="mg48" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#4F46E5"/><stop offset="100%" stop-color="#00D4AA"/></linearGradient></defs><rect width="48" height="48" rx="11" fill="url(#mg48)"/><polygon points="7,10 15,10 23.5,33 21.5,37 19.5,37" fill="white"/><polygon points="19.5,37 23.5,33 41,10 39,10" fill="white" opacity="0.88"/><polygon points="19,36 24,26 29,36 24,39" fill="#00D4AA" opacity="0.85"/></svg></div>
+    <div style="margin-bottom:16px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none" style="width:48px;height:48px;min-width:48px;max-width:48px;flex-shrink:0;display:block;overflow:visible;"><defs><linearGradient id="mg48" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#4F46E5"/><stop offset="100%" stop-color="#00D4AA"/></linearGradient></defs><rect width="48" height="48" rx="11" fill="url(#mg48)"/><polygon points="7,10 15,10 23.5,33 21.5,37 19.5,37" fill="white"/><polygon points="19.5,37 23.5,33 41,10 39,10" fill="white" opacity="0.88"/><polygon points="19,36 24,26 29,36 24,39" fill="#00D4AA" opacity="0.85"/></svg></div>
     <h3 class="demo-h">Live Demo — Apex Mobile Platform</h3>
     <p class="demo-p">A real project in progress. Sprint 3 active, one risk trigger has fired, the delay is fully traced, the learning has been captured and verified. Click anything — it all works.</p>
     <div class="demo-info">
