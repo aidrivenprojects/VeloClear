@@ -3228,6 +3228,31 @@ DB.projects = [
     epicIds:['E008','E009'],
     tags:['Training','GDM','Multi-location']
   }
+,
+  {id:'P004',name:'Pinnacle Data Migration',client:'Pinnacle Finance Group',
+  pm:'TM001',sponsor:'TM002',status:'Closed',phase:'Closed',
+  start:'2023-08-01',end:'2023-11-30',
+  bac:2500000,ev:2625000,pv:2500000,ac:2500000,
+  ragOverall:'green',
+  team:['TM001','TM002','TM006','TM008','TM009','TM016','TM018'],
+  priority:'High',
+  description:'Full data migration of 12 years of financial records to cloud. Zero downtime. SEBI compliance mandatory.',
+  currentSprint:'S8',completedSprints:8,totalSprints:8,
+  epicIds:['E010','E011','E012'],tags:['Data Migration','Cloud','Compliance'],
+  closedDate:'2023-11-30',deliveryStatus:'on-time',
+  deliveryNotes:'Delivered on exact planned date. CPI 1.05 — 5% under budget. Zero data loss. All 4 compliance checkpoints cleared.'},
+  {id:'P005',name:'Orion Digital Platform',client:'Orion Global Services',
+  pm:'TM001',sponsor:'TM002',status:'Closed',phase:'Closed',
+  start:'2023-03-01',end:'2023-08-31',
+  bac:4000000,ev:3800000,pv:4000000,ac:3900000,
+  ragOverall:'amber',
+  team:['TM001','TM002','TM003','TM004','TM005','TM008','TM009','TM015','TM017','TM019'],
+  priority:'High',
+  description:'End-to-end digital platform — customer portal, internal dashboard, API gateway. 6-month programme.',
+  currentSprint:'S12',completedSprints:12,totalSprints:12,
+  epicIds:['E013','E014','E015','E016'],tags:['Digital','Platform','API'],
+  closedDate:'2023-09-05',deliveryStatus:'late',daysLate:5,
+  deliveryNotes:'Delivered 5 days late. Two delays traced — 12 combined days slipped, recovered to 5. CPI 0.97.'}
 ];
 
 // ── DELAY ATTRIBUTION STORE ────────────────────────────────────
@@ -3316,6 +3341,66 @@ DB.delayTrace = [
     recurrenceResult:'prevented',
     recurrenceNote:'Sprint 2 planning included environment verification gate. No LMS issues in S2.'
   }
+,
+  {id:'DT003',projectId:'P004',sprintId:'S4',sprintName:'Sprint 4 — Migration Engine',
+   storyTitle:'Legacy schema mapping — financial instruments',owner:'TM018',
+   pointsAffected:0,daysSlipped:0,
+   blockerId:'D003',blockerType:'Technical',
+   blockerDesc:'847 undocumented columns discovered in legacy schema mid-sprint',
+   linkedRiskId:'R004',riskTrigger:'Data profiling reveals >5% unmapped fields',
+   triggerFired:true,triggerFiredDate:'2023-09-18',
+   linkedIssueId:'I003',issueCreatedBy:'TM001',issueCreatedDate:'2023-09-18',
+   escalationStages:[
+     {stage:1,date:'2023-09-18',owner:'TM018',action:'Activated contingency tool within 1 hour of discovery.',outcome:'90% of unmapped columns automated in 4 hours. Zero sprint impact.'},
+     {stage:2,date:'2023-09-18',owner:'TM001',action:'Sponsor informed. No further escalation required.',outcome:'Sprint delivered on time. Mitigation plan worked as designed.'}
+   ],
+   resolution:'Contingency schema mapping tool (built in Sprint 2 specifically for this risk) handled 90% automatically. Sprint delivered on time.',
+   resolvedBy:'TM018',resolvedDate:'2023-09-19',
+   actualImpact:'ZERO days slipped. Risk trigger fired and was contained by pre-built mitigation. This is why we write mitigation plans before we need them.',
+   retroSprint:'S4',retroAction:'Document contingency tool as reusable asset. Add to all data migration project templates.',
+   retroOwner:'TM001',retroDueDate:'2023-10-02',
+   recurrenceCheck:'S5',recurrenceResult:'prevented',
+   recurrenceNote:'Tool used proactively in S5-S8. Zero schema issues in remaining 4 sprints.'},
+  {id:'DT004',projectId:'P005',sprintId:'S7',sprintName:'Sprint 7 — API Gateway Production',
+   storyTitle:'Payment gateway API — production endpoint',owner:'TM004',
+   pointsAffected:13,daysSlipped:3,
+   blockerId:'D004',blockerType:'Technical',
+   blockerDesc:'Payment gateway vendor released breaking API change v2.3 to v3.0 without notice — all integration code invalidated',
+   linkedRiskId:'R006',riskTrigger:'Any third-party API version change during active sprint',
+   triggerFired:true,triggerFiredDate:'2023-07-03',
+   linkedIssueId:'I004',issueCreatedBy:'TM001',issueCreatedDate:'2023-07-03',
+   escalationStages:[
+     {stage:1,date:'2023-07-03',owner:'TM004',action:'Identified at sprint start. Raised issue immediately. Rebalanced sprint.',outcome:'14 non-critical stories deferred to S8. Migration scope: 3 days.'},
+     {stage:2,date:'2023-07-03',owner:'TM001+TM002',action:'Briefed sponsor. Formally escalated to vendor.',outcome:'Vendor provided v3.0 migration guide within 24hrs.'},
+     {stage:3,date:'2023-07-04',owner:'TM002',action:'Formal complaint to vendor account director.',outcome:'Vendor: 3 months free support + 90-day notice commitment for future changes.'}
+   ],
+   resolution:'Integration layer rewritten in 3 days. Original estimate 8 days — team focused effort reduced to 3. 14 non-critical stories carried to S8.',
+   resolvedBy:'TM004',resolvedDate:'2023-07-06',
+   actualImpact:'3-day sprint slip. 14 non-critical pts to S8. No programme go-live impact — absorbed by float.',
+   retroSprint:'S7',retroAction:'Add 90-day API breaking-change notice clause to all vendor agreements. Non-negotiable procurement requirement.',
+   retroOwner:'TM001',retroDueDate:'2023-07-20',
+   recurrenceCheck:'S8',recurrenceResult:'prevented',
+   recurrenceNote:'Vendor gave advance notice of all S8-S12 updates. Zero unannounced breaking changes.'},
+  {id:'DT005',projectId:'P005',sprintId:'S10',sprintName:'Sprint 10 — UAT',
+   storyTitle:'Customer portal UAT — dashboard reporting module',owner:'TM003',
+   pointsAffected:8,daysSlipped:2,
+   blockerId:'D005',blockerType:'Scope',
+   blockerDesc:'Client requested 14 new dashboard widgets during UAT as mandatory for sign-off. None were in agreed scope.',
+   linkedRiskId:'R007',riskTrigger:'Any scope addition request during UAT phase',
+   triggerFired:true,triggerFiredDate:'2023-08-14',
+   linkedIssueId:'I005',issueCreatedBy:'TM001',issueCreatedDate:'2023-08-14',
+   escalationStages:[
+     {stage:1,date:'2023-08-14',owner:'TM001',action:'CR-005 raised immediately. All 14 widgets logged as out-of-scope. CCB scheduled.',outcome:'CCB convened within 48 hours.'},
+     {stage:2,date:'2023-08-15',owner:'TM001+TM002+CLIENT',action:'CCB: 3 critical approved, 11 deferred to Phase 2.',outcome:'Sprint unblocked. Phase 2 scope boundary agreed.'},
+     {stage:3,date:'2023-08-16',owner:'TM002',action:'Sponsor-to-sponsor call. Phase 2 document signed.',outcome:'Client formally signed Phase 2 scope boundary.'}
+   ],
+   resolution:'Change control contained scope to 3 critical widgets. 11 deferred with formal sign-off. Only 2-day slip.',
+   resolvedBy:'TM003',resolvedDate:'2023-08-18',
+   actualImpact:'2-day UAT slip. 3 widgets built. 11 deferred to Phase 2 — formally signed. Minimal programme impact.',
+   retroSprint:'S10',retroAction:'Re-sign out-of-scope boundary document at UAT entry gate — not just at kickoff.',
+   retroOwner:'TM001',retroDueDate:'2023-08-25',
+   recurrenceCheck:'S11',recurrenceResult:'prevented',
+   recurrenceNote:'S11 UAT gate re-confirmation: zero new scope requests in S11-S12.'}
 ];
 
 // ── PORTFOLIO EPICS (cross-project) ───────────────────────────
@@ -3325,6 +3410,14 @@ DB.portfolioEpics = [
   {id:'E007',projectId:'P002',name:'Reporting & Analytics',colour:'#F59E0B',stories:6,done:2,inSprint:2,points:22,pointsDone:8},
   {id:'E008',projectId:'P003',name:'LMS Configuration',colour:'#7C3AED',stories:10,done:3,inSprint:3,points:40,pointsDone:12},
   {id:'E009',projectId:'P003',name:'Content Development',colour:'#0EA5E9',stories:15,done:2,inSprint:5,points:60,pointsDone:8}
+,
+  {id:'E010',projectId:'P004',name:'Data Assessment',colour:'#10B981',stories:8,done:8,inSprint:0,points:32,pointsDone:32},
+  {id:'E011',projectId:'P004',name:'Migration Engine',colour:'#4F46E5',stories:12,done:12,inSprint:0,points:48,pointsDone:48},
+  {id:'E012',projectId:'P004',name:'Validation & Go-Live',colour:'#F59E0B',stories:6,done:6,inSprint:0,points:24,pointsDone:24},
+  {id:'E013',projectId:'P005',name:'Customer Portal',colour:'#7C3AED',stories:15,done:15,inSprint:0,points:60,pointsDone:60},
+  {id:'E014',projectId:'P005',name:'Internal Dashboard',colour:'#0EA5E9',stories:12,done:12,inSprint:0,points:48,pointsDone:48},
+  {id:'E015',projectId:'P005',name:'API Gateway',colour:'#EF4444',stories:10,done:10,inSprint:0,points:40,pointsDone:40},
+  {id:'E016',projectId:'P005',name:'Integration & Testing',colour:'#10B981',stories:8,done:8,inSprint:0,points:32,pointsDone:32}
 ];
 
 // ── SPRINT INTELLIGENCE PER PROJECT ───────────────────────────
@@ -3369,6 +3462,32 @@ DB.sprintIntelligence = {
   P003: [
     {id:'SI-P003-S1',sprintId:'S1',projectId:'P003',name:'Sprint 1 — Meridian Foundation',committed:42,completed:24,velocity:24,ragAtClose:'red',blockers:['D002 — LMS access not provisioned across 5 locations (RESOLVED — 7-day delay)'],keyDecisions:['Sprint 0 gate added: environment verification before Sprint 1 starts'],retroSummary:'Severe LMS access issue. Escalated to steering. Resolved via account director. Key learning: environment must be confirmed before Sprint 1 starts.',retroActions:[{text:'Add environment gate to Sprint 0',owner:'TM001',status:'Done'},{text:'IT access raised as dependency at project initiation',owner:'TM008',status:'Done'}],delayTraceIds:['DT002']},
     {id:'SI-P003-S2',sprintId:'S2',projectId:'P003',name:'Sprint 2 — Content Development',committed:42,completed:null,velocity:null,ragAtClose:'in-progress',blockers:['Carried 18 pts from S1'],keyDecisions:['S1 retro actions applied — no LMS issues'],retroSummary:'In progress',retroActions:[],delayTraceIds:[]}
+  ]
+,
+
+  P004:[
+    {id:'SI-P004-S1',sprintId:'S1',projectId:'P004',name:'Sprint 1 — Data Assessment',committed:38,completed:40,velocity:40,ragAtClose:'green',blockers:[],keyDecisions:['Contingency tool approved for S2 build'],retroSummary:'Strong start. Contingency tool scoped and approved.',retroActions:[{text:'Build contingency mapping tool in S2',owner:'TM018',status:'Done'}],delayTraceIds:[]},
+    {id:'SI-P004-S2',sprintId:'S2',projectId:'P004',name:'Sprint 2 — Tool Build',committed:40,completed:42,velocity:42,ragAtClose:'green',blockers:[],keyDecisions:['Contingency tool built and tested'],retroSummary:'Ahead of plan. Tool delivered.',retroActions:[{text:'Full dry-run migration in S3',owner:'TM006',status:'Done'}],delayTraceIds:[]},
+    {id:'SI-P004-S3',sprintId:'S3',projectId:'P004',name:'Sprint 3 — Dry Run',committed:42,completed:42,velocity:42,ragAtClose:'green',blockers:[],keyDecisions:['Dry run: 99.7% accuracy','Rollback tested'],retroSummary:'Dry run successful. Rollback confirmed.',retroActions:[],delayTraceIds:[]},
+    {id:'SI-P004-S4',sprintId:'S4',projectId:'P004',name:'Sprint 4 — Migration Engine',committed:42,completed:42,velocity:42,ragAtClose:'green',blockers:['R004 TRIGGER FIRED — undocumented schema columns. CONTAINED in 4 hours. ZERO sprint impact.'],keyDecisions:['Risk contained by contingency tool','Zero days slipped'],retroSummary:'Risk fired and was contained. Sprint on time. This is what good risk management looks like.',retroActions:[{text:'Document tool as reusable asset',owner:'TM018',status:'Done'}],delayTraceIds:['DT003']},
+    {id:'SI-P004-S5',sprintId:'S5',projectId:'P004',name:'Sprint 5 — Wave 1',committed:38,completed:40,velocity:40,ragAtClose:'green',blockers:[],keyDecisions:['Wave 1: 2.3M records at 99.8%'],retroSummary:'Wave 1 clean. S4 learning applied proactively.',retroActions:[],delayTraceIds:[]},
+    {id:'SI-P004-S6',sprintId:'S6',projectId:'P004',name:'Sprint 6 — Wave 2',committed:40,completed:40,velocity:40,ragAtClose:'green',blockers:[],keyDecisions:['4.1M total records','Compliance checkpoints 1 and 2 cleared'],retroSummary:'Wave 2 clean.',retroActions:[],delayTraceIds:[]},
+    {id:'SI-P004-S7',sprintId:'S7',projectId:'P004',name:'Sprint 7 — Wave 3',committed:40,completed:42,velocity:42,ragAtClose:'green',blockers:[],keyDecisions:['All records migrated','99.9% accuracy','Checkpoints 3 and 4 cleared'],retroSummary:'Above threshold. All compliance cleared.',retroActions:[],delayTraceIds:[]},
+    {id:'SI-P004-S8',sprintId:'S8',projectId:'P004',name:'Sprint 8 — Go-Live',committed:38,completed:40,velocity:40,ragAtClose:'green',blockers:[],keyDecisions:['Go-live on exact planned date','Zero downtime','Client accepted delivery'],retroSummary:'Perfect go-live. On time, under budget.',retroActions:[{text:'Submit contingency tool to Learning Library',owner:'TM018',status:'Done'}],delayTraceIds:[]}
+  ],
+  P005:[
+    {id:'SI-P005-S1',sprintId:'S1',projectId:'P005',name:'Sprint 1 — Foundation',committed:40,completed:40,velocity:40,ragAtClose:'green',blockers:[],keyDecisions:['Architecture approved'],retroSummary:'Clean foundation.',retroActions:[],delayTraceIds:[]},
+    {id:'SI-P005-S2',sprintId:'S2',projectId:'P005',name:'Sprint 2 — Portal Core',committed:42,completed:44,velocity:44,ragAtClose:'green',blockers:[],keyDecisions:['Component library approved'],retroSummary:'Overdelivered.',retroActions:[],delayTraceIds:[]},
+    {id:'SI-P005-S3',sprintId:'S3',projectId:'P005',name:'Sprint 3 — Authentication',committed:40,completed:40,velocity:40,ragAtClose:'green',blockers:[],keyDecisions:['Security review cleared'],retroSummary:'Clean sprint.',retroActions:[],delayTraceIds:[]},
+    {id:'SI-P005-S4',sprintId:'S4',projectId:'P005',name:'Sprint 4 — Dashboard',committed:42,completed:40,velocity:40,ragAtClose:'amber',blockers:['Design review took 3 extra days'],keyDecisions:['Async approval process established'],retroSummary:'Minor delay managed.',retroActions:[{text:'Pre-approve design patterns',owner:'TM017',status:'Done'}],delayTraceIds:[]},
+    {id:'SI-P005-S5',sprintId:'S5',projectId:'P005',name:'Sprint 5 — API Foundation',committed:40,completed:42,velocity:42,ragAtClose:'green',blockers:[],keyDecisions:['API versioning clause drafted'],retroSummary:'Recovered.',retroActions:[],delayTraceIds:[]},
+    {id:'SI-P005-S6',sprintId:'S6',projectId:'P005',name:'Sprint 6 — API Integration',committed:42,completed:42,velocity:42,ragAtClose:'green',blockers:[],keyDecisions:['v2.3 integration complete in staging'],retroSummary:'Integration complete.',retroActions:[],delayTraceIds:[]},
+    {id:'SI-P005-S7',sprintId:'S7',projectId:'P005',name:'Sprint 7 — API Production',committed:48,completed:34,velocity:34,ragAtClose:'red',blockers:['D004 — API BREAKING CHANGE v2.3 to v3.0 without notice — 3-day slip (contained from estimated 8)'],keyDecisions:['Vendor escalated','Sprint rebalanced — 14 stories deferred'],retroSummary:'Major blocker. Rapid escalation contained 8-day risk to 3-day slip.',retroActions:[{text:'90-day notice clause for all vendor API contracts',owner:'TM001',status:'Done'}],delayTraceIds:['DT004']},
+    {id:'SI-P005-S8',sprintId:'S8',projectId:'P005',name:'Sprint 8 — Recovery',committed:44,completed:46,velocity:46,ragAtClose:'green',blockers:[],keyDecisions:['S7 carry-over absorbed','API lock in planning'],retroSummary:'Full recovery. Overdelivered.',retroActions:[],delayTraceIds:[]},
+    {id:'SI-P005-S9',sprintId:'S9',projectId:'P005',name:'Sprint 9 — Testing 1',committed:40,completed:40,velocity:40,ragAtClose:'green',blockers:[],keyDecisions:['Vendor gave advance notice of update'],retroSummary:'Clean. Vendor coordination working.',retroActions:[],delayTraceIds:[]},
+    {id:'SI-P005-S10',sprintId:'S10',projectId:'P005',name:'Sprint 10 — UAT',committed:42,completed:36,velocity:36,ragAtClose:'amber',blockers:['D005 — CLIENT SCOPE CREEP: 14 new widgets requested in UAT — 2-day slip (contained from 9)'],keyDecisions:['CR-005 raised immediately','3 approved, 11 deferred to Phase 2','Phase 2 scope signed'],retroSummary:'Scope creep attempt. Change control invoked. 2-day slip only.',retroActions:[{text:'Add scope re-confirmation to UAT entry gate',owner:'TM001',status:'Done'}],delayTraceIds:['DT005']},
+    {id:'SI-P005-S11',sprintId:'S11',projectId:'P005',name:'Sprint 11 — UAT Phase 2',committed:38,completed:40,velocity:40,ragAtClose:'green',blockers:[],keyDecisions:['Scope re-confirmation gate — zero new requests','UAT certificate signed'],retroSummary:'Clean. S10 learning applied.',retroActions:[],delayTraceIds:[]},
+    {id:'SI-P005-S12',sprintId:'S12',projectId:'P005',name:'Sprint 12 — Go-Live',committed:30,completed:30,velocity:30,ragAtClose:'green',blockers:[],keyDecisions:['Go-live 5 days after plan — fully traced','Full acceptance received'],retroSummary:'Complete. 5-day slip traced end-to-end. Learnings captured and applied.',retroActions:[{text:'Submit all 3 learnings to Learning Library',owner:'TM001',status:'Done'}],delayTraceIds:[]}
   ]
 };
 
@@ -4243,6 +4362,22 @@ DB.learnings = [
    context:'3 missing API endpoints discovered mid-sprint. Required replanning and partial scope deferral.',
    outcome:'prevented',outcomeEvidence:'Full API spec confirmed before Sprint 3 planning. Zero mid-sprint API surprises.',
    addedBy:'TM004',date:'2024-01-29',usedInTemplates:['T001']}
+,
+  {id:'L006',category:'Technical',project:'Pinnacle Data Migration',sprint:'S4',
+   lesson:'Build contingency plans as working code BEFORE the risk fires. A contingency tool built in Sprint 2 contained a Sprint 4 risk trigger with ZERO days slipped.',
+   context:'R004 triggered — 847 unmapped columns mid-sprint. Tool activated in 1 hour. Sprint on time.',
+   outcome:'prevented',outcomeEvidence:'Tool used proactively S5-S8. Zero schema issues. Zero days slipped on a risk estimated at 8+ days.',
+   addedBy:'TM018',date:'2023-11-30',usedInTemplates:['T005']},
+  {id:'L007',category:'Vendor Management',project:'Orion Digital Platform',sprint:'S7',
+   lesson:'All API vendor contracts must include a 90-day advance notice clause for breaking changes. Add to procurement checklist — non-negotiable.',
+   context:'Vendor released v3.0 breaking change without notice. 8-day impact contained to 3 days through rapid escalation.',
+   outcome:'prevented',outcomeEvidence:'Vendor gave advance notice for all S8-S12 updates. Zero unannounced breaking changes.',
+   addedBy:'TM004',date:'2023-09-05',usedInTemplates:['T001','T002']},
+  {id:'L008',category:'Scope Management',project:'Orion Digital Platform',sprint:'S10',
+   lesson:'Re-sign the out-of-scope boundary document at UAT entry gate — not just at kickoff. Clients forget. Get the signature again.',
+   context:'14 new widgets demanded during UAT. Change control invoked. 2-day slip only.',
+   outcome:'prevented',outcomeEvidence:'S11 UAT gate re-confirmation: zero new scope requests.',
+   addedBy:'TM003',date:'2023-09-05',usedInTemplates:['T001','T002','T003']}
 ];
 
 // ── SETUP FLOW ────────────────────────────────────────────────
@@ -5821,7 +5956,43 @@ window.onload = () => {
   initPhase8();
   initPhase9();
   initIntegrations();
-  rDash();
+
+  // ── URL MODE HANDLING ────────────────────────────
+  const _params = new URLSearchParams(window.location.search);
+  const _mode    = _params.get('mode');
+  const _section = _params.get('section');
+  const _overlay = document.getElementById('vc-setup-overlay');
+
+  function _skipSetup() {
+    localStorage.setItem('vc_setup_done','1');
+    if (_overlay) _overlay.style.display = 'none';
+    VC.org.setupDone = true;
+  }
+
+  if (_mode === 'demo') {
+    // Skip setup — show live dashboard immediately
+    _skipSetup();
+    if (_section) {
+      rDash();
+      setTimeout(() => go(_section), 300);
+    } else {
+      rDash();
+    }
+    setTimeout(() => toast('👋 Welcome to VeloClear — this is a live demo with real project data. Click anything.', 'success'), 800);
+
+  } else if (_mode === 'wizard') {
+    // Skip setup — go straight to new project wizard
+    _skipSetup();
+    rDash();
+    setTimeout(() => {
+      go('newproject');
+      toast('🎯 Let's set up your first project — the wizard guides every step.', 'success');
+    }, 400);
+
+  } else {
+    // Normal load — check if setup needed
+    rDash();
+  }
   calcScore(); calcStrategy();
   const today = new Date().toISOString().split('T')[0];
   document.querySelectorAll('input[type="date"]').forEach(i => i.value = today);
