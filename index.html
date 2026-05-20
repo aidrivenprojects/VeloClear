@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" href="https://fonts.gstatic.com/s/syne/v22/8vIS7w4qzmVxsWxjBZRjr0FKM_04uQ.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="https://fonts.gstatic.com/s/dmsans/v14/rP2Hp2ywxg089UriCZOIHQ.woff2" as="font" type="font/woff2" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@700;800;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 /* ══════════════════════════════════════════════════════
    VELOCLEAR — ADAPTIVE LANDING PAGE
@@ -83,7 +83,7 @@ body {
   overflow-x:hidden;
   -webkit-font-smoothing:antialiased;
 }
-h1,h2,h3,h4 { font-family:'Syne',sans-serif; letter-spacing:-.03em; line-height:1.1; }
+h1,h2,h3,h4 { font-family:'Inter',system-ui,-apple-system,sans-serif; font-weight:800; letter-spacing:-.04em; line-height:1.08; }
 img { max-width:100%; }
 a { text-decoration:none; color:inherit; }
 ::-webkit-scrollbar { width:3px; }
@@ -131,9 +131,10 @@ a { text-decoration:none; color:inherit; }
 
 /* Entry logo */
 .entry-logo {
-  display:flex; align-items:center; gap:10px;
+  display:inline-flex; align-items:center; gap:10px;
   margin-bottom:clamp(20px,4vh,48px); position:relative; z-index:1;
   animation:fade-down .5s var(--ease) both;
+  width:auto; flex-shrink:0; align-self:center;
 }
 .entry-logo-mark {
   width:40px; height:40px;
@@ -143,7 +144,7 @@ a { text-decoration:none; color:inherit; }
   box-shadow:0 8px 24px rgba(91,79,232,.5);
 }
 .entry-logo-name {
-  font-family:'Syne',sans-serif;
+  font-family:'Inter',system-ui,sans-serif;
   font-size:22px; font-weight:800; color:#fff;
   letter-spacing:-.04em;
 }
@@ -245,19 +246,19 @@ a { text-decoration:none; color:inherit; }
 .nav {
   position:fixed; top:0; left:0; right:0; z-index:100;
   height:60px; padding:0 clamp(16px,5vw,60px);
-  display:flex; align-items:center; justify-content:space-between;
+  display:flex; align-items:center; justify-content:space-between; overflow:hidden;
   background:rgba(10,6,24,.85);
   backdrop-filter:blur(20px);
   border-bottom:1px solid var(--border);
   transition:all .3s var(--ease);
 }
-.nav-logo { display:flex; align-items:center; gap:9px; cursor:pointer; }
+.nav-logo { display:inline-flex; align-items:center; gap:9px; cursor:pointer; flex-shrink:0; width:auto; }
 .nav-logo-mark {
   width:30px; height:30px; border-radius:8px;
   background:var(--grad-brand);
   display:flex; align-items:center; justify-content:center; font-size:15px;
 }
-.nav-logo-name { font-family:'Syne',sans-serif; font-size:16px; font-weight:800; color:#fff; letter-spacing:-.04em; }
+.nav-logo-name { font-family:'Inter',system-ui,sans-serif; font-size:16px; font-weight:800; color:#fff; letter-spacing:-.04em; }
 .nav-logo-name em { font-style:normal; color:var(--indigo-l); }
 .nav-right { display:flex; align-items:center; gap:12px; }
 
@@ -294,6 +295,7 @@ a { text-decoration:none; color:inherit; }
   min-height:100vh; padding:100px clamp(16px,5vw,60px) 80px;
   display:flex; flex-direction:column; align-items:center; justify-content:center;
   text-align:center; position:relative; overflow:hidden;
+  isolation:isolate;
 }
 .hero-ambient { position:absolute; inset:0; pointer-events:none; }
 .hero-orb {
@@ -364,7 +366,7 @@ a { text-decoration:none; color:inherit; }
   animation:fade-up .5s .3s var(--ease) both;
 }
 .proof-item { text-align:center; }
-.proof-num { font-family:'Syne',sans-serif; font-size:28px; font-weight:800; color:#00D4AA; display:inline-block; }
+.proof-num { font-family:'Inter',system-ui,sans-serif; font-size:28px; font-weight:900; color:#00D4AA; display:inline-block; }
 .proof-label { font-size:11px; color:var(--text-3); margin-top:2px; line-height:1.4; max-width:100px; }
 .proof-sep { width:1px; background:var(--border); height:40px; align-self:center; }
 
@@ -414,7 +416,7 @@ a { text-decoration:none; color:inherit; }
 .vc-card.accent-green::before { background:var(--grad-green); }
 .vc-card.accent-cool::before { background:var(--grad-cool); }
 .card-icon { font-size:28px; margin-bottom:14px; display:block; }
-.card-title { font-family:'Syne',sans-serif; font-size:16px; font-weight:700; color:#fff; margin-bottom:8px; }
+.card-title { font-family:'Inter',system-ui,sans-serif; font-size:16px; font-weight:700; color:#fff; margin-bottom:8px; }
 .card-desc { font-size:12.5px; color:var(--text-3); line-height:1.7; }
 .card-tags { display:flex; flex-wrap:wrap; gap:5px; margin-top:14px; }
 .ctag {
@@ -480,7 +482,7 @@ a { text-decoration:none; color:inherit; }
 .ba-vs {
   background:var(--bg-3); border:1px solid var(--border);
   border-radius:50px; padding:10px 14px;
-  font-family:'Syne',sans-serif; font-size:12px; font-weight:800; color:var(--text-3);
+  font-family:'Inter',system-ui,sans-serif; font-size:12px; font-weight:800; color:var(--text-3);
   writing-mode:vertical-lr; text-align:center; letter-spacing:.05em; align-self:stretch;
   display:flex; align-items:center; justify-content:center;
 }
@@ -554,7 +556,7 @@ a { text-decoration:none; color:inherit; }
 }
 .stat-block:last-child { border-right:none; }
 .stat-block:hover { background:rgba(255,255,255,.06); }
-.stat-num { font-family:'Syne',sans-serif; font-size:40px; font-weight:800; color:#00D4AA; line-height:1; margin-bottom:6px; display:inline-block; }
+.stat-num { font-family:'Inter',system-ui,sans-serif; font-size:40px; font-weight:900; color:#00D4AA; line-height:1; margin-bottom:6px; display:inline-block; }
 .stat-label { font-size:12px; color:var(--text-3); line-height:1.5; }
 
 /* ── FINAL CTA ── */
@@ -588,7 +590,7 @@ footer {
 }
 .footer-brand { display:flex; align-items:center; gap:9px; }
 .footer-mark { width:26px;height:26px;border-radius:7px;background:var(--grad-brand);display:flex;align-items:center;justify-content:center;font-size:12px; }
-.footer-name { font-family:'Syne',sans-serif; font-size:14px; font-weight:800; color:#fff; }
+.footer-name { font-family:'Inter',system-ui,sans-serif; font-size:14px; font-weight:800; color:#fff; }
 .footer-tag { font-size:10px; color:var(--text-3); margin-top:1px; }
 .footer-links { display:flex; gap:20px; flex-wrap:wrap; }
 .footer-links a { font-size:11.5px; color:var(--text-3); transition:color .2s; }
@@ -616,7 +618,7 @@ footer {
 }
 .demo-close:hover { background:rgba(255,92,124,.15); color:var(--rose); }
 .demo-icon { font-size:44px; margin-bottom:16px; }
-.demo-h { font-family:'Syne',sans-serif; font-size:20px; font-weight:800; color:#fff; margin-bottom:10px; }
+.demo-h { font-family:'Inter',system-ui,sans-serif; font-size:20px; font-weight:800; color:#fff; margin-bottom:10px; }
 .demo-p { font-size:13px; color:var(--text-2); line-height:1.7; margin-bottom:22px; }
 .demo-info {
   background:rgba(91,79,232,.1); border:1px solid rgba(91,79,232,.2);
@@ -686,10 +688,10 @@ footer {
     <div class="entry-orb eo3"></div>
   </div>
 
-  <div class="entry-logo" style="display:flex;align-items:center;gap:12px;margin-bottom:clamp(20px,4vh,48px);position:relative;z-index:1;animation:fade-down .5s var(--ease) both;width:auto;align-self:center;">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" fill="none" style="width:40px;height:40px;min-width:40px;max-width:40px;flex-shrink:0;display:block;overflow:visible;"><defs><linearGradient id="mg40" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#4F46E5"/><stop offset="100%" stop-color="#00D4AA"/></linearGradient></defs><rect width="40" height="40" rx="9" fill="url(#mg40)"/><polygon points="6,9 13,9 20,28 18,31 16,31" fill="white"/><polygon points="16,31 20,28 34,9 32,9" fill="white" opacity="0.88"/><polygon points="15.5,30 20,22 24.5,30 20,32.5" fill="#00D4AA" opacity="0.85"/></svg>
+  <div class="entry-logo" style="display:inline-flex;align-items:center;gap:12px;margin-bottom:clamp(20px,4vh,48px);position:relative;z-index:1;animation:fade-down .5s var(--ease) both;width:auto;align-self:center;flex-shrink:0;">
+    <div style="width:40px;height:40px;min-width:40px;max-width:40px;min-height:40px;max-height:40px;border-radius:10px;background:linear-gradient(135deg,#4F46E5,#00D4AA);display:flex;align-items:center;justify-content:center;flex-shrink:0;flex-grow:0;box-shadow:0 4px 16px rgba(79,70,229,.4);"><svg viewBox="0 0 24 24" style="width:22px;height:22px;flex-shrink:0;" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 5L9.5 17L12 13L14.5 17L21 5" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="19" r="1.5" fill="#00D4AA"/></svg></div>
     <div>
-      <div style="font-family:Syne,sans-serif;font-size:20px;font-weight:800;letter-spacing:-.04em;line-height:1.1;"><span style="color:#fff">Velo</span><span style="color:#00D4AA">Clear</span></div>
+      <div style="font-family:'Inter',system-ui,sans-serif;font-size:20px;font-weight:800;letter-spacing:-.04em;line-height:1.1;white-space:nowrap;width:auto;overflow:hidden;"><span style="color:#fff;display:inline;">Velo</span><span style="color:#00D4AA;display:inline;">Clear</span></div>
       <div style="font-family:DM Sans,sans-serif;font-size:9px;font-weight:500;color:rgba(255,255,255,.35);letter-spacing:.06em;text-transform:uppercase;margin-top:2px">Track · Trace · Learn</div>
     </div>
   </div>
@@ -761,9 +763,9 @@ footer {
   <!-- NAV -->
   <nav class="nav" id="main-nav">
     <div class="nav-logo" onclick="resetToGate()" style="display:inline-flex;align-items:center;gap:9px;cursor:pointer;text-decoration:none;flex-shrink:0;">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none" style="width:32px;height:32px;min-width:32px;max-width:32px;flex-shrink:0;display:block;overflow:visible;"><defs><linearGradient id="mg32" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#4F46E5"/><stop offset="100%" stop-color="#00D4AA"/></linearGradient></defs><rect width="32" height="32" rx="7" fill="url(#mg32)"/><polygon points="5,7 10,7 16,22 14.5,25 13,25" fill="white"/><polygon points="13,25 16,22 27,7 25.5,7" fill="white" opacity="0.88"/><polygon points="12.5,24 16,18 19.5,24 16,26" fill="#00D4AA" opacity="0.85"/></svg>
+      <div style="width:32px;height:32px;min-width:32px;max-width:32px;min-height:32px;max-height:32px;border-radius:8px;background:linear-gradient(135deg,#4F46E5,#00D4AA);display:flex;align-items:center;justify-content:center;flex-shrink:0;flex-grow:0;"><svg viewBox="0 0 24 24" style="width:18px;height:18px;flex-shrink:0;" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 5L9.5 17L12 13L14.5 17L21 5" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="19" r="1.5" fill="#00D4AA"/></svg></div>
       <div>
-        <div style="font-family:Syne,sans-serif;font-size:15px;font-weight:800;letter-spacing:-.04em;line-height:1.1;"><span style="color:#fff">Velo</span><span style="color:#00D4AA">Clear</span></div>
+        <div style="font-family:'Inter',system-ui,sans-serif;font-size:15px;font-weight:800;letter-spacing:-.04em;line-height:1.1;white-space:nowrap;width:auto;overflow:hidden;"><span style="color:#fff;display:inline;">Velo</span><span style="color:#00D4AA;display:inline;">Clear</span></div>
         <div style="font-family:DM Sans,sans-serif;font-size:8px;font-weight:500;color:rgba(255,255,255,.3);letter-spacing:.06em;text-transform:uppercase;margin-top:1px">Track · Trace · Learn</div>
       </div>
     </div>
@@ -774,7 +776,7 @@ footer {
         <span style="color:var(--text-3);font-size:10px">· change</span>
       </div>
       <button class="nav-btn-demo" onclick="openDemo()">See demo</button>
-      <a class="nav-btn-try" href="VeloClear_v2.html">Open app →</a>
+      <a class="nav-btn-try" href="VeloClear_v2.html?mode=demo">Open app →</a>
     </div>
   </nav>
 
@@ -800,7 +802,7 @@ footer {
           VeloClear asks you <strong>34 plain-English questions</strong> — one at a time, with explanations — and builds your complete project foundation automatically. The risks, the governance, the escalation plan, the stakeholder map. All of it. You just answer the questions.
         </p>
         <div class="hero-cta-row">
-          <a class="btn-hero-primary" href="VeloClear_v2.html">🎯 Start my first project — guided, free</a>
+          <a class="btn-hero-primary" href="VeloClear_v2.html?mode=wizard">🎯 Start my first project — guided, free</a>
           <button class="btn-hero-secondary" onclick="openDemo()">▶ See a 2-min walkthrough</button>
         </div>
         <div class="hero-proof">
@@ -937,7 +939,7 @@ footer {
           VeloClear connects every delivery decision to its outcome — <strong>blocker to risk to issue to escalation to resolution to learning</strong> — automatically. When a client asks why you were late, the answer is assembled in one click.
         </p>
         <div class="hero-cta-row">
-          <a class="btn-hero-primary" href="VeloClear_v2.html">🔍 See the Impact Trace →</a>
+          <a class="btn-hero-primary" href="VeloClear_v2.html?mode=demo">🔍 See the Impact Trace →</a>
           <button class="btn-hero-secondary" onclick="openDemo()">▶ Watch it in action</button>
         </div>
         <div class="hero-proof">
@@ -1053,7 +1055,7 @@ footer {
           VeloClear gives you <strong>portfolio-level visibility</strong> across every project, every team, every sprint — with the ability to drill into any delay, any decision, any learning. Not a dashboard that shows green lights. A system that shows you what is actually happening.
         </p>
         <div class="hero-cta-row">
-          <a class="btn-hero-primary" href="VeloClear_v2.html">🗓️ See the Programme Timeline →</a>
+          <a class="btn-hero-primary" href="VeloClear_v2.html?mode=demo">🗓️ See the Programme Timeline →</a>
           <button class="btn-hero-secondary" onclick="openDemo()">▶ Watch the portfolio view</button>
         </div>
         <div class="hero-proof">
@@ -1158,7 +1160,7 @@ footer {
           VeloClear captures every lesson from every project, links it to the delay that caused it, and checks whether it was applied in the next sprint. <strong>Your organisation gets smarter with every delivery.</strong> The institutional knowledge grows — and every new PM inherits it.
         </p>
         <div class="hero-cta-row">
-          <a class="btn-hero-primary" href="VeloClear_v2.html">📚 See the Learning Engine →</a>
+          <a class="btn-hero-primary" href="VeloClear_v2.html?mode=demo">📚 See the Learning Engine →</a>
           <button class="btn-hero-secondary" onclick="openDemo()">▶ See it in practice</button>
         </div>
         <div class="hero-proof">
@@ -1262,7 +1264,7 @@ footer {
           VeloClear shows you your sprint cards, your assigned stories, and the retro items for your team. <strong>Drag cards between columns. Log a blocker. Add a retro item.</strong> That is it. Everything else is your PM's problem — and VeloClear helps them handle it without involving you.
         </p>
         <div class="hero-cta-row">
-          <a class="btn-hero-primary" href="VeloClear_v2.html">🏃 See my sprint board →</a>
+          <a class="btn-hero-primary" href="VeloClear_v2.html?mode=demo">🏃 See my sprint board →</a>
           <button class="btn-hero-secondary" onclick="openDemo()">▶ Quick 60-second look</button>
         </div>
         <div class="hero-proof">
@@ -1318,10 +1320,10 @@ footer {
   <!-- ═══ FOOTER (shared) ══════════════════════════════════ -->
   <footer>
     <div class="footer-inner">
-      <div class="footer-brand" style="display:flex;align-items:center;gap:10px;">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none" style="width:32px;height:32px;min-width:32px;max-width:32px;flex-shrink:0;display:block;overflow:visible;"><defs><linearGradient id="mg32" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#4F46E5"/><stop offset="100%" stop-color="#00D4AA"/></linearGradient></defs><rect width="32" height="32" rx="7" fill="url(#mg32)"/><polygon points="5,7 10,7 16,22 14.5,25 13,25" fill="white"/><polygon points="13,25 16,22 27,7 25.5,7" fill="white" opacity="0.88"/><polygon points="12.5,24 16,18 19.5,24 16,26" fill="#00D4AA" opacity="0.85"/></svg>
+      <div class="footer-brand" style="display:inline-flex;align-items:center;gap:10px;flex-shrink:0;">
+        <div style="width:32px;height:32px;min-width:32px;max-width:32px;min-height:32px;max-height:32px;border-radius:8px;background:linear-gradient(135deg,#4F46E5,#00D4AA);display:flex;align-items:center;justify-content:center;flex-shrink:0;flex-grow:0;"><svg viewBox="0 0 24 24" style="width:18px;height:18px;flex-shrink:0;" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 5L9.5 17L12 13L14.5 17L21 5" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="19" r="1.5" fill="#00D4AA"/></svg></div>
         <div>
-          <div style="font-family:Syne,sans-serif;font-size:14px;font-weight:800;letter-spacing:-.03em;"><span style="color:#fff">Velo</span><span style="color:#00D4AA">Clear</span></div>
+          <div style="font-family:'Inter',system-ui,sans-serif;font-size:14px;font-weight:800;letter-spacing:-.03em;white-space:nowrap;width:auto;overflow:hidden;"><span style="color:#fff;display:inline;">Velo</span><span style="color:#00D4AA;display:inline;">Clear</span></div>
           <div style="font-size:10px;color:rgba(255,255,255,.3);margin-top:1px;">Track every project. Trace every delay. Learn from everything.</div>
         </div>
       </div>
@@ -1330,7 +1332,7 @@ footer {
         <a href="VeloClear_v2.html">Open app</a>
         <a href="#" onclick="openDemo()">See demo</a>
       </div>
-      <div class="footer-copy">© 2025 VeloClear</div>
+      <div class="footer-copy">© 2026 VeloClear</div>
     </div>
   </footer>
 
@@ -1342,7 +1344,7 @@ footer {
 <div id="demo-modal">
   <div class="demo-card">
     <button class="demo-close" onclick="closeDemo()">✕</button>
-    <div style="margin-bottom:16px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none" style="width:48px;height:48px;min-width:48px;max-width:48px;flex-shrink:0;display:block;overflow:visible;"><defs><linearGradient id="mg48" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#4F46E5"/><stop offset="100%" stop-color="#00D4AA"/></linearGradient></defs><rect width="48" height="48" rx="11" fill="url(#mg48)"/><polygon points="7,10 15,10 23.5,33 21.5,37 19.5,37" fill="white"/><polygon points="19.5,37 23.5,33 41,10 39,10" fill="white" opacity="0.88"/><polygon points="19,36 24,26 29,36 24,39" fill="#00D4AA" opacity="0.85"/></svg></div>
+    <div style="margin-bottom:16px;"><div style="width:48px;height:48px;min-width:48px;max-width:48px;min-height:48px;max-height:48px;border-radius:12px;background:linear-gradient(135deg,#4F46E5,#00D4AA);display:flex;align-items:center;justify-content:center;flex-shrink:0;flex-grow:0;box-shadow:0 6px 20px rgba(79,70,229,.4);"><svg viewBox="0 0 24 24" style="width:26px;height:26px;flex-shrink:0;" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 5L9.5 17L12 13L14.5 17L21 5" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="19" r="1.5" fill="#00D4AA"/></svg></div></div>
     <h3 class="demo-h">Live Demo — Apex Mobile Platform</h3>
     <p class="demo-p">A real project in progress. Sprint 3 active, one risk trigger has fired, the delay is fully traced, the learning has been captured and verified. Click anything — it all works.</p>
     <div class="demo-info">
@@ -1355,8 +1357,8 @@ footer {
       </div>
     </div>
     <div class="demo-btns">
-      <a class="btn-hero-primary" href="VeloClear_v2.html" style="justify-content:center;font-size:14px;padding:13px;">🚀 Open Live Demo</a>
-      <a class="btn-hero-secondary" href="VeloClear_v2.html" style="justify-content:center;font-size:13px;padding:12px;">🎯 Start my own project</a>
+      <a class="btn-hero-primary" href="VeloClear_v2.html?mode=demo" style="justify-content:center;font-size:14px;padding:13px;">🚀 Open Live Demo</a>
+      <a class="btn-hero-secondary" href="VeloClear_v2.html?mode=wizard" style="justify-content:center;font-size:13px;padding:12px;">🎯 Start my own project</a>
     </div>
   </div>
 </div>
