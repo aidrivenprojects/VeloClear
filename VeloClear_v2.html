@@ -4081,111 +4081,94 @@ function scrollToProject(id) {
 
 // ── SPRINT DRAWER ─────────────────────────────────────────────
 function openDrawer(siId) {
-  const si = Object.values(DB.sprintIntelligence || {})
-    .flat()
-    .find(s => s && s.id === siId);
+  var allSI = [];
+  Object.keys(DB.sprintIntelligence || {}).forEach(function(k) {
+    var arr = DB.sprintIntelligence[k];
+    if (Array.isArray(arr)) allSI = allSI.concat(arr);
+  });
+  var si = allSI.find(function(s) { return s && s.id === siId; });
   if (!si) { console.warn('No SI found for', siId); return; }
 
-  const proj = DB.projects.find(p => p.id === si.projectId) || {};
-  const ragCol = si.ragAtClose === 'green' ? '#10B981' : si.ragAtClose === 'amber' ? '#F59E0B' : '#EF4444';
+  var proj = DB.projects.find(function(p) { return p.id === si.projectId; }) || {};
 
   document.getElementById('drawer-sprint-name').textContent = si.name || siId;
   document.getElementById('drawer-sprint-sub').textContent =
-    (proj.name || si.projectId) + '  ·  Velocity: ' + (si.velocity || '—') +
-    ' pts  ·  RAG at close: ' + (si.ragAtClose || '—').toUpperCase();
+    (proj.name || si.projectId) + '  \u00b7  Velocity: ' + (si.velocity || '\u2014') +
+    ' pts  \u00b7  RAG: ' + (si.ragAtClose || '\u2014').toUpperCase();
 
-  const dtLinks = (si.delayTraceIds || []).map(dtId => {
-    const dt = (DB.delayTrace || []).find(d => d.id === dtId);
-    if (!dt) return '';
-    return \`<div style="margin-top:12px;padding:14px;background:rgba(239,68,68,.06);border:1px solid rgba(239,68,68,.2);border-radius:10px;cursor:pointer;" onclick="closeDrawer();go('impact')">
-      <div style="font-size:11px;font-weight:700;color:var(--red-d);margin-bottom:4px;">\${dtId} — \${dt.daysSlipped === 0 ? '✅ ZERO DAYS SLIPPED' : '⚠️ ' + dt.daysSlipped + ' days slipped'}</div>
-      <div style="font-size:12px;color:var(--ink);">\${dt.storyTitle || ''}</div>
-      <div style="font-size:11px;color:var(--muted);margin-top:4px;">\${dt.blockerType} blocker → Click to open Impact Trace ↗</div>
-    </div>\`;
-  }).join('');
+  function makeCard(label, items, borderColor, bgColor) {
+    if (!items || !items.length) return '';
+    var h = '<div style="margin-bottom:16px;">';
+    h += '<div style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px;">' + label + '</div>';
+    items.forEach(function(item) {
+      h += '<div style="padding:10px 12px;background:' + bgColor + ';border-left:3px solid ' + borderColor + ';border-radius:0 8px 8px 0;font-size:12px;color:var(--ink);margin-bottom:6px;">' + item + '</div>';
+    });
+    h += '</div>';
+    return h;
+  }
 
-  document.getElementById('drawer-content').innerHTML = \`
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px;">
-      <div style="background:var(--surface-2);border-radius:10px;padding:14px;text-align:center;">
-        <div style="font-size:22px;font-weight:800;color:var(--ink);">\${si.completed || 0}</div>
-        <div style="font-size:10px;color:var(--muted);margin-top:2px;">Points Completed</div>
-      </div>
-      <div style="background:var(--surface-2);border-radius:10px;padding:14px;text-align:center;">
-        <div style="font-size:22px;font-weight:800;color:var(--ink);">\${si.committed || 0}</div>
-        <div style="font-size:10px;color:var(--muted);margin-top:2px;">Points Committed</div>
-      </div>
-    </div>
+  var dtHtml = '';
+  (si.delayTraceIds || []).forEach(function(dtId) {
+    var dt = (DB.delayTrace || []).find(function(d) { return d.id === dtId; });
+    if (!dt) return;
+    var slip = dt.daysSlipped === 0 ? '\u2705 ZERO DAYS SLIPPED' : '\u26a0\ufe0f ' + dt.daysSlipped + ' days slipped';
+    var d = document.createElement('div');
+    d.style.cssText = 'margin-top:12px;padding:14px;background:rgba(239,68,68,.06);border:1px solid rgba(239,68,68,.2);border-radius:10px;cursor:pointer;';
+    d.setAttribute('onclick', 'closeDrawer();go(\'impact\')');
+    d.innerHTML =
+      '<div style="font-size:11px;font-weight:700;color:var(--red-d);margin-bottom:4px;">' + dtId + ' \u2014 ' + slip + '</div>' +
+      '<div style="font-size:12px;color:var(--ink);">' + (dt.storyTitle || '') + '</div>' +
+      '<div style="font-size:11px;color:var(--muted);margin-top:4px;">' + dt.blockerType + ' blocker \u2192 Click to open Impact Trace \u2197</div>';
+    dtHtml += d.outerHTML;
+  });
 
-    \${si.blockers && si.blockers.length > 0 ? \`
-    <div style="margin-bottom:16px;">
-      <div style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px;">Blockers</div>
-      \${si.blockers.map(b => \`<div style="padding:10px 12px;background:rgba(239,68,68,.05);border-left:3px solid var(--red-d);border-radius:0 8px 8px 0;font-size:12px;color:var(--ink);margin-bottom:6px;">\${b}</div>\`).join('')}
-    </div>\` : ''}
+  var retroActHtml = '';
+  (si.retroActions || []).forEach(function(a) {
+    retroActHtml +=
+      '<div style="display:flex;align-items:flex-start;gap:10px;padding:10px;background:var(--surface-2);border-radius:8px;margin-bottom:6px;">' +
+      '<span style="font-size:14px;">' + (a.status === 'Done' ? '\u2705' : '\u23f3') + '</span>' +
+      '<div><div style="font-size:12px;color:var(--ink);">' + a.text + '</div>' +
+      '<div style="font-size:10px;color:var(--muted);margin-top:2px;">Owner: ' + (a.owner || '\u2014') + ' \u00b7 Status: ' + (a.status || '\u2014') + '</div></div></div>';
+  });
 
-    \${si.keyDecisions && si.keyDecisions.length > 0 ? \`
-    <div style="margin-bottom:16px;">
-      <div style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px;">Key Decisions</div>
-      \${si.keyDecisions.map(d => \`<div style="padding:10px 12px;background:rgba(79,70,229,.05);border-left:3px solid var(--indigo);border-radius:0 8px 8px 0;font-size:12px;color:var(--ink);margin-bottom:6px;">\${d}</div>\`).join('')}
-    </div>\` : ''}
+  var content = document.getElementById('drawer-content');
 
-    <div style="margin-bottom:16px;">
-      <div style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px;">Retrospective Summary</div>
-      <div style="padding:12px;background:var(--surface-2);border-radius:10px;font-size:12px;color:var(--ink);line-height:1.6;">\${si.retroSummary || '—'}</div>
-    </div>
+  content.innerHTML =
+    '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px;">' +
+      '<div style="background:var(--surface-2);border-radius:10px;padding:14px;text-align:center;">' +
+        '<div style="font-size:22px;font-weight:800;color:var(--ink);">' + (si.completed || 0) + '</div>' +
+        '<div style="font-size:10px;color:var(--muted);margin-top:2px;">Points Completed</div>' +
+      '</div>' +
+      '<div style="background:var(--surface-2);border-radius:10px;padding:14px;text-align:center;">' +
+        '<div style="font-size:22px;font-weight:800;color:var(--ink);">' + (si.committed || 0) + '</div>' +
+        '<div style="font-size:10px;color:var(--muted);margin-top:2px;">Points Committed</div>' +
+      '</div>' +
+    '</div>' +
+    makeCard('Blockers', si.blockers, 'var(--red-d)', 'rgba(239,68,68,.05)') +
+    makeCard('Key Decisions', si.keyDecisions, 'var(--indigo)', 'rgba(79,70,229,.05)') +
+    '<div style="margin-bottom:16px;">' +
+      '<div style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px;">Retrospective Summary</div>' +
+      '<div style="padding:12px;background:var(--surface-2);border-radius:10px;font-size:12px;color:var(--ink);line-height:1.6;">' + (si.retroSummary || '\u2014') + '</div>' +
+    '</div>' +
+    (retroActHtml ? '<div style="margin-bottom:16px;"><div style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px;">Retro Actions</div>' + retroActHtml + '</div>' : '') +
+    (dtHtml ? '<div><div style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px;">Delay Traces</div>' + dtHtml + '</div>' : '');
 
-    \${si.retroActions && si.retroActions.length > 0 ? \`
-    <div style="margin-bottom:16px;">
-      <div style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px;">Retro Actions</div>
-      \${si.retroActions.map(a => \`<div style="display:flex;align-items:flex-start;gap:10px;padding:10px;background:var(--surface-2);border-radius:8px;margin-bottom:6px;">
-        <span style="font-size:14px;">\${a.status==='Done'?'✅':'⏳'}</span>
-        <div><div style="font-size:12px;color:var(--ink);">\${a.text}</div>
-        <div style="font-size:10px;color:var(--muted);margin-top:2px;">Owner: \${a.owner || '—'}  ·  Status: \${a.status || '—'}</div></div>
-      </div>\`).join('')}
-    </div>\` : ''}
-
-    \${dtLinks ? \`
-    <div>
-      <div style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px;">Delay Traces</div>
-      \${dtLinks}
-    </div>\` : ''}
-  \`;
-
-  const drawerEl = document.getElementById('sprint-drawer');
-  const overlayEl = document.getElementById('drawer-overlay');
+  var drawerEl = document.getElementById('sprint-drawer');
+  var overlayEl = document.getElementById('drawer-overlay');
   drawerEl.style.display = 'block';
   drawerEl.style.transform = 'translateX(100%)';
   drawerEl.style.opacity = '0';
   overlayEl.style.display = 'block';
   overlayEl.style.opacity = '0';
   document.body.style.overflow = 'hidden';
-  // Trigger slide animation
-  requestAnimationFrame(() => {
-    requestAnimationFrame(() => {
+  requestAnimationFrame(function() {
+    requestAnimationFrame(function() {
       drawerEl.style.transform = 'translateX(0)';
       drawerEl.style.opacity = '1';
       overlayEl.style.opacity = '1';
     });
   });
 }
-function miniDelayCard(dt) {
-  const owner = getMember(dt.owner);
-  return `<div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px;margin-bottom:8px;border-left:3px solid var(--red);">
-    <div style="font-size:11px;font-weight:700;color:var(--red-d);margin-bottom:6px">${dt.id} — ${dt.daysSlipped} days slipped · ${dt.pointsAffected} pts affected</div>
-    <div style="display:flex;gap:4px;align-items:center;font-size:10px;color:var(--muted);margin-bottom:6px">
-      ${owner?memberAvatar(dt.owner):''}
-      <span style="margin-left:4px">${memberName(dt.owner)}</span>
-    </div>
-    <div style="font-size:10px;color:var(--muted);line-height:1.6">${dt.blockerDesc}</div>
-    <div style="display:flex;gap:8px;margin-top:6px;flex-wrap:wrap;">
-      <span class="badge ${dt.triggerFired?'badge-red':'badge-gray'}">Trigger ${dt.triggerFired?'FIRED':'Not fired'}</span>
-      <span class="badge ${dt.recurrenceResult==='prevented'?'badge-green':'badge-red'}">
-        ${dt.recurrenceResult==='prevented'?'✓ Learning prevented recurrence':'⚠ Recurred'}
-      </span>
-    </div>
-    <button class="btn btn-ghost btn-sm" style="margin-top:8px;font-size:10px" onclick="closeDrawer();setTimeout(()=>go('impact'),100)">View full trace →</button>
-  </div>`;
-}
-
 function closeDrawer() {
   const drawerEl = document.getElementById('sprint-drawer');
   const overlayEl = document.getElementById('drawer-overlay');
@@ -6461,7 +6444,7 @@ window.onload = () => {
     rDash();
     setTimeout(() => {
       go('newproject');
-      toast('🎯 Let's set up your first project — the wizard guides every step.', 'success');
+      toast('🎯 Let\'s set up your first project — the wizard guides every step.', 'success');
     }, 400);
 
   } else {
