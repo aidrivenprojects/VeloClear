@@ -242,7 +242,7 @@ table.data-table{width:100%;border-collapse:collapse;font-size:11.5px;}
 /* Additional layout fixes */
 .modal .form-grid,.modal .form-grid-3{grid-template-columns:1fr 1fr;}
 @media(max-width:600px){.modal .form-grid,.modal .form-grid-3{grid-template-columns:1fr;}}
-.sec{animation:fade-up .3s ease;}
+.sec{opacity:1 !important;visibility:visible !important;}
 .topbar-sub{display:none;}
 @media(min-width:800px){.topbar-sub{display:block;}}
 /* Prevent any text overflow */
@@ -627,7 +627,7 @@ table.data-table{width:100%;border-collapse:collapse;font-size:11.5px;}
 }
 
 .vc-enter {
-  animation: vc-fade-up 0.28s cubic-bezier(0.4,0,0.2,1) both;
+  animation: vc-fade-up 0.28s cubic-bezier(0.4,0,0.2,1) forwards;
 }
 .vc-enter-fast {
   animation: vc-fade-up 0.18s cubic-bezier(0.4,0,0.2,1) both;
