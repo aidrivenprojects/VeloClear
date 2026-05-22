@@ -603,6 +603,328 @@ table.data-table{width:100%;border-collapse:collapse;font-size:11.5px;}
   .overlay-bg{display:none !important;}
 }
 
+
+/* ══════════════════════════════════════════════════════
+   VELOCLEAR ANIMATION SYSTEM
+   Layer 1: Section transitions
+   Layer 2: Data entry animations
+   Layer 3: Micro-interactions
+   Layer 4: Accessibility
+══════════════════════════════════════════════════════ */
+
+/* ── LAYER 1: SECTION TRANSITIONS ─────────────────── */
+@keyframes vc-fade-up {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes vc-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes vc-slide-right {
+  from { opacity: 0; transform: translateX(-12px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+.vc-enter {
+  animation: vc-fade-up 0.28s cubic-bezier(0.4,0,0.2,1) both;
+}
+.vc-enter-fast {
+  animation: vc-fade-up 0.18s cubic-bezier(0.4,0,0.2,1) both;
+}
+
+/* Staggered children — add to any container */
+.vc-stagger > * { opacity: 0; animation: vc-fade-up 0.3s cubic-bezier(0.4,0,0.2,1) both; }
+.vc-stagger > *:nth-child(1)  { animation-delay: 0.04s; }
+.vc-stagger > *:nth-child(2)  { animation-delay: 0.08s; }
+.vc-stagger > *:nth-child(3)  { animation-delay: 0.12s; }
+.vc-stagger > *:nth-child(4)  { animation-delay: 0.16s; }
+.vc-stagger > *:nth-child(5)  { animation-delay: 0.20s; }
+.vc-stagger > *:nth-child(6)  { animation-delay: 0.24s; }
+.vc-stagger > *:nth-child(7)  { animation-delay: 0.28s; }
+.vc-stagger > *:nth-child(8)  { animation-delay: 0.32s; }
+
+/* ── LAYER 2: DATA ANIMATIONS ──────────────────────── */
+@keyframes vc-bar-fill {
+  from { width: 0% !important; }
+}
+@keyframes vc-count-blur {
+  from { filter: blur(4px); opacity: 0.4; }
+  to   { filter: blur(0); opacity: 1; }
+}
+@keyframes vc-scale-in {
+  from { opacity: 0; transform: scale(0.93); }
+  to   { opacity: 1; transform: scale(1); }
+}
+@keyframes vc-slide-in-right {
+  from { transform: translateX(100%); opacity: 0; }
+  to   { transform: translateX(0); opacity: 1; }
+}
+@keyframes vc-slide-in-left {
+  from { transform: translateX(-100%); opacity: 0; }
+  to   { transform: translateX(0); opacity: 1; }
+}
+
+/* Stat value pop-in */
+.stat-value {
+  animation: vc-count-blur 0.5s cubic-bezier(0.4,0,0.2,1) both;
+}
+
+/* Progress/bar fill */
+.vc-bar-animated {
+  animation: vc-bar-fill 0.7s cubic-bezier(0.4,0,0.2,1) both;
+}
+
+/* Chain nodes — stagger in */
+.chain-step {
+  opacity: 0;
+  animation: vc-fade-up 0.25s cubic-bezier(0.4,0,0.2,1) both;
+}
+.chain-step:nth-child(1) { animation-delay: 0.05s; }
+.chain-step:nth-child(2) { animation-delay: 0.10s; }
+.chain-step:nth-child(3) { animation-delay: 0.15s; }
+.chain-step:nth-child(4) { animation-delay: 0.20s; }
+.chain-step:nth-child(5) { animation-delay: 0.25s; }
+.chain-step:nth-child(6) { animation-delay: 0.30s; }
+.chain-step:nth-child(7) { animation-delay: 0.35s; }
+
+/* RAG dots — fade in */
+.rag-dot {
+  animation: vc-scale-in 0.3s cubic-bezier(0.34,1.56,0.64,1) both;
+}
+
+/* Sprint drawer slide */
+#sprint-drawer {
+  transition: transform 0.32s cubic-bezier(0.4,0,0.2,1),
+              opacity  0.32s cubic-bezier(0.4,0,0.2,1) !important;
+}
+#sprint-drawer.drawer-open {
+  transform: translateX(0) !important;
+}
+
+/* ── LAYER 3: MICRO-INTERACTIONS ───────────────────── */
+
+/* Cards — lift on hover */
+.card {
+  transition: transform 0.2s cubic-bezier(0.4,0,0.2,1),
+              box-shadow 0.2s cubic-bezier(0.4,0,0.2,1),
+              border-color 0.2s ease !important;
+}
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0,0,0,.15) !important;
+}
+
+/* Stat cards */
+.stat-card {
+  transition: transform 0.2s cubic-bezier(0.4,0,0.2,1),
+              box-shadow 0.2s ease !important;
+  cursor: default;
+}
+.stat-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 28px rgba(0,0,0,.18) !important;
+}
+
+/* Buttons — press effect */
+.btn {
+  transition: transform 0.12s ease, box-shadow 0.12s ease,
+              background 0.18s ease, opacity 0.15s ease !important;
+}
+.btn:active {
+  transform: scale(0.97) !important;
+}
+.btn-primary:hover {
+  box-shadow: 0 6px 18px rgba(79,70,229,.35) !important;
+  transform: translateY(-1px);
+}
+.btn-primary:active {
+  transform: scale(0.97) translateY(0) !important;
+}
+
+/* Nav items — smooth active state */
+.nav-item {
+  transition: background 0.18s ease, color 0.18s ease,
+              border-color 0.18s ease, padding-left 0.18s ease !important;
+  position: relative;
+  overflow: hidden;
+}
+.nav-item::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
+  background: var(--indigo);
+  transform: scaleY(0);
+  transition: transform 0.2s cubic-bezier(0.4,0,0.2,1);
+  transform-origin: center;
+}
+.nav-item.active::before {
+  transform: scaleY(1);
+}
+
+/* Badge — subtle pop */
+.badge {
+  transition: transform 0.15s ease !important;
+}
+.badge:hover {
+  transform: scale(1.06);
+}
+
+/* Table rows — highlight on hover */
+.data-table tbody tr {
+  transition: background 0.15s ease !important;
+}
+.data-table tbody tr:hover {
+  background: var(--surface-2) !important;
+}
+
+/* Sprint blocks on timeline */
+.sprint-block {
+  transition: transform 0.2s cubic-bezier(0.4,0,0.2,1),
+              box-shadow 0.2s ease,
+              filter 0.2s ease !important;
+}
+.sprint-block:hover {
+  transform: translateY(-3px) scale(1.02) !important;
+  box-shadow: 0 8px 20px rgba(0,0,0,.2) !important;
+  filter: brightness(1.1);
+  cursor: pointer;
+}
+
+/* Sidebar logo hover */
+.sidebar-logo {
+  transition: opacity 0.2s ease !important;
+}
+.sidebar-logo:hover {
+  opacity: 0.85;
+}
+
+/* Integration tiles */
+.int-card {
+  transition: transform 0.2s cubic-bezier(0.4,0,0.2,1),
+              box-shadow 0.2s ease,
+              border-color 0.2s ease !important;
+}
+.int-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0,0,0,.15) !important;
+}
+
+/* Wizard steps */
+.wizard-step-pill {
+  transition: background 0.25s ease, color 0.25s ease,
+              transform 0.2s ease !important;
+}
+.wizard-step-pill.active {
+  transform: scale(1.05);
+}
+
+/* Modal entrance */
+.modal {
+  animation: vc-scale-in 0.25s cubic-bezier(0.34,1.2,0.64,1) both !important;
+}
+
+/* Toast — already animated but enhance */
+.toast {
+  animation: vc-slide-in-right 0.3s cubic-bezier(0.34,1.2,0.64,1) both !important;
+}
+
+/* Risk heat map cells */
+.heat-cell {
+  transition: transform 0.18s cubic-bezier(0.4,0,0.2,1),
+              box-shadow 0.18s ease !important;
+}
+.heat-cell:hover {
+  transform: scale(1.18) !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,.25) !important;
+  z-index: 10;
+  position: relative;
+}
+
+/* Dropdown / select focus */
+select:focus, input:focus, textarea:focus {
+  transition: border-color 0.18s ease, box-shadow 0.18s ease !important;
+}
+
+/* Page header fade */
+.page-header {
+  animation: vc-fade-up 0.3s cubic-bezier(0.4,0,0.2,1) both;
+}
+
+/* Alert slide in */
+.alert {
+  animation: vc-slide-right 0.35s cubic-bezier(0.4,0,0.2,1) both;
+  animation-delay: 0.15s;
+  opacity: 0;
+  animation-fill-mode: both;
+}
+
+/* ── LAYER 4: ACCESSIBILITY ────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ── TOPBAR TRANSITION ─────────────────────────────── */
+.topbar {
+  transition: background 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+/* ── ROLE SWITCHER TABS ─────────────────────────────── */
+.role-btn {
+  transition: background 0.2s ease, color 0.2s ease,
+              transform 0.15s ease, box-shadow 0.2s ease !important;
+}
+.role-btn:hover {
+  transform: translateY(-1px);
+}
+.role-btn.active {
+  transform: none;
+}
+
+/* ── PROGRESS BARS ──────────────────────────────────── */
+.progress-fill, [class*="progress"] > div {
+  transition: width 0.8s cubic-bezier(0.4,0,0.2,1) !important;
+}
+
+/* ── DRAWER OVERLAY FADE ────────────────────────────── */
+#drawer-overlay {
+  transition: opacity 0.25s ease !important;
+}
+
+/* ── SETUP OVERLAY ──────────────────────────────────── */
+.setup-option {
+  transition: border-color 0.2s ease, background 0.2s ease,
+              transform 0.15s ease, box-shadow 0.15s ease !important;
+}
+.setup-option:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0,0,0,.12) !important;
+}
+.setup-option.active {
+  transform: none;
+}
+
+/* ── NEW PROJECT WIZARD ─────────────────────────────── */
+.wiz-q-block {
+  animation: vc-fade-up 0.3s cubic-bezier(0.4,0,0.2,1) both;
+}
+
+/* ── SCROLL REVEAL BASE ─────────────────────────────── */
+.vc-reveal {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+.vc-reveal.vc-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 </style>
 </head>
 
@@ -948,13 +1270,13 @@ table.data-table{width:100%;border-collapse:collapse;font-size:11.5px;}
   <span class="alert-icon">🎯</span>
   <div><strong>2 items need your attention:</strong> Risk R001 trigger has fired (vendor missed milestone) · CR-001 pending CCB for 52 hours (overdue). <a href="#" onclick="go('escalation')" style="color:var(--amber-d);font-weight:700;">View escalations →</a></div>
 </div>
-<div class="stat-grid fade-up fade-up-2">
+<div class="stat-grid fade-up fade-up-2 vc-stagger">
   <div class="stat-card indigo"><div class="stat-icon">📦</div><div class="stat-value" id="st-projects">3</div><div class="stat-label">Active Projects</div><div class="stat-trend trend-up">↑ 1 this month</div></div>
   <div class="stat-card amber"><div class="stat-icon">⚠️</div><div class="stat-value" id="st-highrisk">4</div><div class="stat-label">High Risks Open</div><div class="stat-trend trend-down">↑ 2 this week</div></div>
   <div class="stat-card green"><div class="stat-icon">💰</div><div class="stat-value">1.08</div><div class="stat-label">Portfolio CPI Avg</div><div class="stat-trend trend-up">↑ Under budget</div></div>
   <div class="stat-card red"><div class="stat-icon">🔄</div><div class="stat-value" id="st-crs">2</div><div class="stat-label">CRs Pending CCB</div><div class="stat-trend trend-down">⏱ 52hr overdue</div></div>
 </div>
-<div class="grid-2 fade-up fade-up-3">
+<div class="grid-2 fade-up fade-up-3 vc-stagger">
   <div class="card">
     <div class="card-header"><div class="card-icon indigo">🚦</div><div><div class="card-title">Portfolio RAG Summary</div><div class="card-sub">Auto-calculated from all project inputs. Click any row to drill in.</div></div></div>
     <div class="card-body" style="padding:0;">
@@ -2039,9 +2361,18 @@ function go(id) {
       if(hm) hm.textContent = '☰';
     }
   }
-  document.querySelectorAll('.sec').forEach(s => s.style.display = 'none');
+  // Hide all sections
+  document.querySelectorAll('.sec').forEach(s => {
+    s.style.display = 'none';
+    s.classList.remove('vc-enter');
+  });
   const sec = document.getElementById('s-'+id);
-  if (sec) { sec.style.display = 'block'; sec.classList.add('fade-up'); }
+  if (sec) {
+    sec.style.display = 'block';
+    // Trigger reflow then add animation class
+    void sec.offsetWidth;
+    sec.classList.add('vc-enter');
+  }
   document.querySelectorAll('.nav-item').forEach(n => {
     n.classList.toggle('active', n.getAttribute('onclick') && n.getAttribute('onclick').includes("'"+id+"'"));
   });
@@ -2210,6 +2541,9 @@ function decideCR(id,decision) {
 function rDash() {
   // Mini heat map
   rHeat('mini-hm', true);
+  // Trigger stat animations after render
+  setTimeout(animateStatCards, 80);
+  setTimeout(animateEVMBars, 400);
 
   // ── Portfolio RAG Summary table ──
   const ragBody = document.getElementById('dash-rag-body');
@@ -3838,9 +4172,22 @@ function openDrawer(siId) {
     </div>\` : ''}
   \`;
 
-  document.getElementById('sprint-drawer').style.display = 'block';
-  document.getElementById('drawer-overlay').style.display = 'block';
+  const drawerEl = document.getElementById('sprint-drawer');
+  const overlayEl = document.getElementById('drawer-overlay');
+  drawerEl.style.display = 'block';
+  drawerEl.style.transform = 'translateX(100%)';
+  drawerEl.style.opacity = '0';
+  overlayEl.style.display = 'block';
+  overlayEl.style.opacity = '0';
   document.body.style.overflow = 'hidden';
+  // Trigger slide animation
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      drawerEl.style.transform = 'translateX(0)';
+      drawerEl.style.opacity = '1';
+      overlayEl.style.opacity = '1';
+    });
+  });
 }
 function miniDelayCard(dt) {
   const owner = getMember(dt.owner);
@@ -3862,9 +4209,20 @@ function miniDelayCard(dt) {
 }
 
 function closeDrawer() {
-  document.getElementById('sprint-drawer').style.display = 'none';
-  document.getElementById('drawer-overlay').style.display = 'none';
+  const drawerEl = document.getElementById('sprint-drawer');
+  const overlayEl = document.getElementById('drawer-overlay');
+  if (!drawerEl) return;
+  // Animate out
+  drawerEl.style.transform = 'translateX(100%)';
+  drawerEl.style.opacity = '0';
+  if (overlayEl) overlayEl.style.opacity = '0';
   document.body.style.overflow = '';
+  setTimeout(() => {
+    drawerEl.style.display = 'none';
+    drawerEl.style.transform = '';
+    drawerEl.style.opacity = '';
+    if (overlayEl) { overlayEl.style.display = 'none'; overlayEl.style.opacity = ''; }
+  }, 320);
 }
 
 // ── SPRINT INTELLIGENCE ───────────────────────────────────────
@@ -6015,6 +6373,70 @@ window.addEventListener('appinstalled', () => {
 </script>
 
 <script>
+
+// ── COUNT-UP ANIMATION ───────────────────────────────────────
+function countUp(el, target, duration, prefix, suffix) {
+  if (!el) return;
+  const start = 0;
+  const startTime = performance.now();
+  const isFloat = target % 1 !== 0;
+  function update(currentTime) {
+    const elapsed = currentTime - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    // Ease out cubic
+    const eased = 1 - Math.pow(1 - progress, 3);
+    const current = start + (target - start) * eased;
+    el.textContent = (prefix||'') + (isFloat ? current.toFixed(2) : Math.floor(current)) + (suffix||'');
+    if (progress < 1) requestAnimationFrame(update);
+  }
+  requestAnimationFrame(update);
+}
+
+function animateStatCards() {
+  // Animate the 4 stat cards on dashboard
+  const animations = [
+    { id: 'st-projects',  target: DB.projects.filter(p=>p.status==='Active').length, suffix: '' },
+    { id: 'st-highrisk',  target: DB.risks.filter(r=>r.score>=12&&r.status!=='Closed').length, suffix: '' },
+    { id: 'st-crs',       target: DB.crs ? DB.crs.filter(c=>c.status==='Pending CCB').length : 2, suffix: '' },
+  ];
+  animations.forEach(({id, target, suffix}) => {
+    const el = document.getElementById(id);
+    if (el) countUp(el, target, 800, '', suffix);
+  });
+  // CPI average
+  const cpiEl = document.querySelector('.stat-card.green .stat-value');
+  if (cpiEl) {
+    const activeProjects = DB.projects.filter(p => p.status === 'Active');
+    const avgCpi = activeProjects.length > 0
+      ? activeProjects.reduce((s, p) => s + (p.ac > 0 ? p.ev/p.ac : 1), 0) / activeProjects.length
+      : 1.08;
+    countUp(cpiEl, avgCpi, 900, '', '');
+  }
+}
+
+// ── EVM BAR ANIMATION ────────────────────────────────────────
+function animateEVMBars() {
+  // Find all progress bars in EVM chart and animate them
+  setTimeout(() => {
+    document.querySelectorAll('#dash-evm-chart [style*="width:"]').forEach(bar => {
+      bar.classList.add('vc-bar-animated');
+    });
+  }, 100);
+}
+
+// ── SCROLL REVEAL ────────────────────────────────────────────
+function initScrollReveal() {
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('vc-visible');
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+  document.querySelectorAll('.vc-reveal').forEach(el => obs.observe(el));
+}
+
 window.onload = () => {
   autoRAG(); updateBadges();
   initPhase7();
@@ -6061,6 +6483,8 @@ window.onload = () => {
   calcScore(); calcStrategy();
   const today = new Date().toISOString().split('T')[0];
   document.querySelectorAll('input[type="date"]').forEach(i => i.value = today);
+  // Init scroll reveal
+  initScrollReveal();
   // Drop zone
   const dz = document.getElementById('drop-zone');
   if(dz){dz.addEventListener('dragover',e=>{e.preventDefault();dz.classList.add('drag-over');});dz.addEventListener('dragleave',()=>dz.classList.remove('drag-over'));dz.addEventListener('drop',e=>{e.preventDefault();dz.classList.remove('drag-over');if(e.dataTransfer.files[0]){document.getElementById('file-in').files=e.dataTransfer.files;handleImport({target:{files:e.dataTransfer.files}});}});}
