@@ -19,7 +19,7 @@
 body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--ink);min-height:100vh;overflow-x:hidden;}
 ::-webkit-scrollbar{width:5px;height:5px;}::-webkit-scrollbar-thumb{background:var(--muted-ll);border-radius:3px;}
 /* SIDEBAR */
-.sidebar{position:fixed;top:0;left:0;width:220px;height:100vh;background:var(--ink-2);display:flex;flex-direction:column;z-index:150;overflow-y:auto;transition:transform .25s ease;}
+.sidebar{position:fixed;top:0;left:0;width:220px;height:100vh;background:var(--ink-2);display:flex;flex-direction:column;z-index:150;overflow-y:auto;overflow-x:hidden;transition:transform .25s ease;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.1) transparent;}
 .sidebar-logo{display:flex;align-items:center;}
 .logo-icon{width:34px;height:34px;background:linear-gradient(135deg,var(--indigo),#00D4AA);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:17px;box-shadow:var(--shadow-indigo);flex-shrink:0;}
 .logo-text{color:#fff;font-weight:800;font-size:15px;}
@@ -927,6 +927,11 @@ select:focus, input:focus, textarea:focus {
   transform: translateY(0);
 }
 
+
+.stat-card{cursor:pointer;}
+.stat-card:hover{transform:translateY(-3px) !important;box-shadow:0 10px 28px rgba(0,0,0,.18) !important;}
+
+.epic-tag{writing-mode:horizontal-tb !important;text-orientation:mixed !important;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:80px;display:inline-block;vertical-align:middle;}
 </style>
 </head>
 
@@ -1071,7 +1076,7 @@ select:focus, input:focus, textarea:focus {
 <!-- ══════════════════════════════════════════════════════════════
      VELOCLEAR — PROJECT CREATION WIZARD (34 questions)
 ══════════════════════════════════════════════════════════════ -->
-<div id="vc-wizard-overlay">
+<div id="vc-wizard-overlay" style="position:fixed;inset:0;z-index:9000;background:#fff;overflow-y:auto;display:none;">
   <div class="wizard-shell">
     <!-- Wizard topbar -->
     <div class="wizard-topbar">
@@ -1263,59 +1268,84 @@ select:focus, input:focus, textarea:focus {
 
 <!-- ═══ SECTION: DASHBOARD ═══ -->
 <section id="s-dashboard" class="sec">
-<div class="page-header fade-up">
-  <div class="breadcrumb">VeloClear <span>›</span> Portfolio</div>
-  <div class="page-title">Portfolio Command Centre</div>
-  <div class="page-desc">Your complete delivery picture — all projects, all health indicators, all risks in one view. Every number auto-calculated. Red means act now. Click any indicator to drill in.</div>
+
+<!-- ── DASHBOARD HEADER ─────────────────────────── -->
+<div class="page-header">
+  <div>
+    <div class="breadcrumb">VeloClear <span>›</span> Portfolio</div>
+    <div class="page-title">Portfolio Command Centre</div>
+  </div>
+  <div style="display:flex;gap:8px;">
+    <button class="btn btn-ghost btn-sm" onclick="go('reports')">📄 Reports</button>
+    <button class="btn btn-primary btn-sm" onclick="startWizard(null)">＋ New Project</button>
+  </div>
 </div>
-<div class="alert warn fade-up fade-up-1" id="dash-alert">
-  <span class="alert-icon">🎯</span>
-  <div><strong>2 items need your attention:</strong> Risk R001 trigger has fired (vendor missed milestone) · CR-001 pending CCB for 52 hours (overdue). <a href="#" onclick="go('escalation')" style="color:var(--amber-d);font-weight:700;">View escalations →</a></div>
-</div>
-<div class="stat-grid fade-up fade-up-2 vc-stagger">
-  <div class="stat-card indigo"><div class="stat-icon">📦</div><div class="stat-value" id="st-projects">3</div><div class="stat-label">Active Projects</div><div class="stat-trend trend-up">↑ 1 this month</div></div>
-  <div class="stat-card amber"><div class="stat-icon">⚠️</div><div class="stat-value" id="st-highrisk">4</div><div class="stat-label">High Risks Open</div><div class="stat-trend trend-down">↑ 2 this week</div></div>
-  <div class="stat-card green"><div class="stat-icon">💰</div><div class="stat-value">1.08</div><div class="stat-label">Portfolio CPI Avg</div><div class="stat-trend trend-up">↑ Under budget</div></div>
-  <div class="stat-card red"><div class="stat-icon">🔄</div><div class="stat-value" id="st-crs">2</div><div class="stat-label">CRs Pending CCB</div><div class="stat-trend trend-down">⏱ 52hr overdue</div></div>
-</div>
-<div class="grid-2 fade-up fade-up-3 vc-stagger">
-  <div class="card">
-    <div class="card-header"><div class="card-icon indigo">🚦</div><div><div class="card-title">Portfolio RAG Summary</div><div class="card-sub">Auto-calculated from all project inputs. Click any row to drill in.</div></div></div>
-    <div class="card-body" style="padding:0;">
-    <table style="width:100%;border-collapse:collapse;">
-      <thead><tr style="border-bottom:1px solid var(--border);background:var(--surface-2);">
-        <th style="padding:8px;text-align:left;font-size:10px;color:var(--muted);font-weight:600;">PROJECT</th>
-        <th style="padding:8px;text-align:left;font-size:10px;color:var(--muted);font-weight:600;">SCOPE</th>
-        <th style="padding:8px;text-align:left;font-size:10px;color:var(--muted);font-weight:600;">SCHEDULE</th>
-        <th style="padding:8px;text-align:left;font-size:10px;color:var(--muted);font-weight:600;">COST</th>
-        <th style="padding:8px;text-align:left;font-size:10px;color:var(--muted);font-weight:600;">QUALITY</th>
-        <th style="padding:8px;text-align:left;font-size:10px;color:var(--muted);font-weight:600;">RISK</th>
-        <th style="padding:8px;text-align:left;font-size:10px;color:var(--muted);font-weight:600;">OVERALL</th>
-        <th style="padding:8px;text-align:left;font-size:10px;color:var(--muted);font-weight:600;">STATUS</th>
-      </tr></thead>
+
+<!-- ── ROW 1: KPI STRIP (4 compact cards) ────────── -->
+<div id="dash-kpi-strip" style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px;"></div>
+
+<!-- ── ROW 2: PORTFOLIO HEALTH BAR ──────────────── -->
+<div id="dash-health-bar" style="margin-bottom:16px;"></div>
+
+<!-- ── ROW 3: RAG TABLE (full width, compact) ────── -->
+<div class="card" style="margin-bottom:16px;">
+  <div class="card-header">
+    <div class="card-icon indigo">🚦</div>
+    <div>
+      <div class="card-title">Portfolio RAG Summary</div>
+      <div class="card-sub">Click any row to open the full RAG Dashboard</div>
+    </div>
+    <button class="btn btn-ghost btn-sm" onclick="go('rag')" style="margin-left:auto;">Full RAG →</button>
+  </div>
+  <div style="overflow-x:auto;">
+    <table style="width:100%;border-collapse:collapse;min-width:500px;">
+      <thead>
+        <tr style="border-bottom:2px solid var(--border);background:var(--surface-2);">
+          <th style="padding:10px 12px;text-align:left;font-size:11px;color:var(--muted);font-weight:700;white-space:nowrap;">PROJECT</th>
+          <th style="padding:10px 12px;text-align:center;font-size:11px;color:var(--muted);font-weight:700;white-space:nowrap;">RAG</th>
+          <th style="padding:10px 12px;text-align:left;font-size:11px;color:var(--muted);font-weight:700;white-space:nowrap;">STATUS</th>
+          <th style="padding:10px 12px;text-align:center;font-size:11px;color:var(--muted);font-weight:700;white-space:nowrap;">SPRINT</th>
+          <th style="padding:10px 12px;text-align:center;font-size:11px;color:var(--muted);font-weight:700;white-space:nowrap;">CPI</th>
+          <th style="padding:10px 12px;text-align:center;font-size:11px;color:var(--muted);font-weight:700;white-space:nowrap;">SPI</th>
+          <th style="padding:10px 12px;text-align:right;font-size:11px;color:var(--muted);font-weight:700;white-space:nowrap;">ACTION</th>
+        </tr>
+      </thead>
       <tbody id="dash-rag-body"></tbody>
     </table>
-      <table class="data-table">
-        <thead><tr><th>Project</th><th>Scope</th><th>Schedule</th><th>Cost</th><th>Risk</th><th>Overall</th></tr></thead>
-        <tbody>
-          <tr onclick="go('rag')" style="cursor:pointer"><td><strong>Apex Mobile App</strong></td><td><div class="rag"><div class="rag-dot green"></div>G</div></td><td><div class="rag"><div class="rag-dot amber"></div>A</div></td><td><div class="rag"><div class="rag-dot green"></div>G</div></td><td><div class="rag"><div class="rag-dot red"></div>R</div></td><td><span class="badge badge-amber">● AMBER</span></td></tr>
-          <tr><td><strong>Nexus Compliance Portal</strong></td><td><div class="rag"><div class="rag-dot green"></div>G</div></td><td><div class="rag"><div class="rag-dot green"></div>G</div></td><td><div class="rag"><div class="rag-dot green"></div>G</div></td><td><div class="rag"><div class="rag-dot amber"></div>A</div></td><td><span class="badge badge-green">● GREEN</span></td></tr>
-          <tr><td><strong>Meridian Rollout</strong></td><td><div class="rag"><div class="rag-dot amber"></div>A</div></td><td><div class="rag"><div class="rag-dot red"></div>R</div></td><td><div class="rag"><div class="rag-dot amber"></div>A</div></td><td><div class="rag"><div class="rag-dot amber"></div>A</div></td><td><span class="badge badge-red">● RED</span></td></tr>
-        </tbody>
-      </table>
-    </div>
   </div>
+</div>
+
+<!-- ── ROW 4: EVM + HEATMAP SIDE BY SIDE ─────────── -->
+<div style="display:grid;grid-template-columns:3fr 2fr;gap:16px;margin-bottom:16px;">
+
+  <!-- EVM Performance -->
   <div class="card">
-    <div class="card-header"><div class="card-icon emerald">📊</div><div><div class="card-title">EVM Performance</div><div class="card-sub">CPI = EV÷AC · SPI = EV÷PV · EAC = BAC÷CPI · Above 1.0 = on plan</div></div></div>
-    <div class="card-body" id="dash-evm-chart" style="padding:16px;">
-  <div style="text-align:center;color:var(--muted);font-size:12px;padding:20px;">Loading EVM data...</div>
+    <div class="card-header">
+      <div class="card-icon green">📊</div>
+      <div>
+        <div class="card-title">EVM Performance</div>
+        <div class="card-sub">CPI = EV÷AC · SPI = EV÷PV · Above 1.0 = on plan</div>
+      </div>
+      <button class="btn btn-ghost btn-sm" onclick="go('evm')" style="margin-left:auto;">Full EVM →</button>
+    </div>
+    <div id="dash-evm-chart" style="padding:8px 16px 16px;"></div>
   </div>
+
+  <!-- Mini Heat Map -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon amber">🌡</div>
+      <div>
+        <div class="card-title">Risk Heat Map</div>
+        <div class="card-sub">Probability vs Impact</div>
+      </div>
+      <button class="btn btn-ghost btn-sm" onclick="go('heatmap')" style="margin-left:auto;">Full Map →</button>
+    </div>
+    <div id="mini-hm" style="padding:8px;"></div>
+  </div>
+
 </div>
-<div class="card fade-up" style="margin-top:18px;">
-  <div class="card-header"><div class="card-icon red">🔥</div><div><div class="card-title">Aggregate Risk Heat Map</div><div class="card-sub">Score = Probability × Impact · Risks plotted across all projects · Click for full view</div></div><div class="card-header-actions"><button class="btn btn-secondary btn-sm" onclick="go('heatmap')" style="cursor:pointer !important;pointer-events:all !important;">Full Heat Map →</button></div></div>
-  <div class="card-body" id="mini-hm"></div>
-</div>
-</section>
+
 
 <!-- ═══ SECTION: RAID ═══ -->
 <section id="s-raid" class="sec" style="display:none">
@@ -1352,7 +1382,7 @@ select:focus, input:focus, textarea:focus {
 <div class="page-header"><div class="breadcrumb">Phase 4 <span>›</span> Risk Heat Map</div><button onclick="go('dashboard')" style="display:inline-flex;align-items:center;gap:6px;background:transparent;border:1px solid var(--border);border-radius:8px;padding:6px 14px;font-size:12px;font-weight:600;color:var(--muted);cursor:pointer;margin-bottom:16px;font-family:inherit;" onmouseover="this.style.color='var(--indigo)';this.style.borderColor='var(--indigo)'" onmouseout="this.style.color='var(--muted)';this.style.borderColor='var(--border)'">← Dashboard</button>
   <div class="page-title">Risk Heat Map</div><div class="page-desc">Every risk plotted by Probability (1–5, Y-axis) vs Impact (1–5, X-axis). Score = P × I. Scores 1–4 = Low (accept) · 5–14 = Medium (monitor) · 15–25 = High (must mitigate immediately). The white ring shows where your risks are plotted.</div></div>
 <div class="grid-2">
-  <div class="card"><div class="card-header"><div class="card-icon red">🔥</div><div><div class="card-title">5×5 Risk Heat Map</div><div class="card-sub">Hover over any cell to see risks in that zone · Ringed cells contain a plotted risk</div></div></div><div class="card-body" id="full-hm"></div></div>
+  <div class="card"><div class="card-header"><div class="card-icon red">🔥</div><div><div class="card-title">5×5 Risk Heat Map</div><div class="card-sub">Hover over any cell to see risks in that zone · Ringed cells contain a plotted risk</div></div></div><div class="card-body" id="full-hm" style="min-height:320px;overflow:auto;"></div></div>
   <div class="card"><div class="card-header"><div class="card-icon amber">📊</div><div><div class="card-title">Risk Distribution</div><div class="card-sub">How many risks fall in each zone — auto-updates as you add risks</div></div></div>
     <div class="card-body">
       <div style="margin-bottom:14px;"><div style="display:flex;justify-content:space-between;margin-bottom:3px;"><span style="font-size:12px;font-weight:600;color:var(--red-d);">🔴 High Risk (Score ≥15)</span><span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--red-d);" id="cnt-high">1</span></div><div class="progress-bar"><div class="progress-fill red" id="bar-high" style="width:33%"></div></div></div>
@@ -1821,6 +1851,8 @@ select:focus, input:focus, textarea:focus {
 <!-- ═══ SECTION: PROGRAMME TIMELINE ═══ -->
 <section id="s-timeline" class="sec" style="display:none">
 <div class="page-header">
+  <button onclick="go('dashboard')" style="display:inline-flex;align-items:center;gap:6px;background:transparent;border:1px solid var(--border);border-radius:8px;padding:6px 14px;font-size:12px;font-weight:600;color:var(--muted);cursor:pointer;margin-bottom:16px;font-family:inherit;">&#8592; Dashboard</button>
+  
   <div class="breadcrumb">Phase 8 <span>›</span> Programme Intelligence</div>
   <div class="page-title">Programme Timeline</div>
   <div class="page-desc">All projects · All epics · All sprints in one view. Click any sprint block to open the Sprint Intelligence drawer — see who owned what, what was blocked, how it was resolved, and what the team learned. Red blocks are where delays occurred.</div>
@@ -2101,7 +2133,8 @@ select:focus, input:focus, textarea:focus {
       <div class="form-group full"><label class="form-label">🚨 Contingency Plan — What you do AFTER the trigger fires</label><textarea class="form-textarea" id="r-contingency" placeholder="Immediate response when the trigger fires"></textarea><div class="form-hint"><strong>Example:</strong> "Activate internal wrapper immediately. Brief steering within 24 hours. Escalate to vendor account director (not project contact). Revise delivery date by 3 days."</div></div>
     </div>
   </div>
-  <div class="modal-actions"><button class="btn btn-ghost" onclick="closeM('m-risk')">Cancel</button><button class="btn btn-primary" onclick="saveRisk()">💾 Save to RAID Log</button></div>
+  <div class="modal-actions"><button class="btn btn-ghost" onclick="closeM('m-risk')">Cancel</button><button class="btn btn-primary" onclick="saveRisk()">💾 Save to RAID Log</button>
+  <div class="modal-footer"><button class="btn btn-ghost" onclick="closeM('m-risk')">Cancel</button><button class="btn btn-primary" onclick="saveRisk()">Save Risk</button></div></div>
 </div>
 </div>
 
@@ -2520,103 +2553,149 @@ function decideCR(id,decision) {
 
 // ── RENDER FUNCTIONS ──────────────────────────────────
 function rDash() {
-  // Mini heat map
-  rHeat('mini-hm', true);
-  // Trigger stat animations after render
-  setTimeout(animateStatCards, 80);
-  setTimeout(animateEVMBars, 400);
+  // ── KPI STRIP ─────────────────────────────────────────────
+  var activeProjects = DB.projects.filter(function(p){ return p.status === 'Active'; });
+  var closedProjects = DB.projects.filter(function(p){ return p.status === 'Closed'; });
+  var highRisks = (DB.risks || []).filter(function(r){ return r.score >= 9 && r.status !== 'Closed'; });
+  var pendingCRs = (DB.crs || []).filter(function(c){ return c.status === 'Pending CCB'; });
+  var openEscs = (DB.escalations || []).filter(function(e){ return e.status === 'Open'; });
 
-  // ── Portfolio RAG Summary table ──
-  const ragBody = document.getElementById('dash-rag-body');
+  var cpiSum = 0; var cpiCount = 0;
+  activeProjects.forEach(function(p) {
+    if (p.ac > 0) { cpiSum += p.ev/p.ac; cpiCount++; }
+  });
+  var avgCpi = cpiCount > 0 ? (cpiSum/cpiCount) : 1.00;
+  var cpiOk = avgCpi >= 1.0;
+
+  var redCount = activeProjects.filter(function(p){ return p.ragOverall === 'red'; }).length;
+  var amberCount = activeProjects.filter(function(p){ return p.ragOverall === 'amber'; }).length;
+  var greenCount = activeProjects.filter(function(p){ return p.ragOverall === 'green'; }).length;
+
+  function kpiCard(icon, value, label, sub, subCol) {
+    return '<div class="card" style="padding:16px 18px;display:flex;flex-direction:column;gap:4px;cursor:default;">' +
+      '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px;">' +
+        '<span style="font-size:18px;">' + icon + '</span>' +
+        '<span style="font-size:10px;font-weight:700;color:' + (subCol||'var(--muted)') + ';background:' + (subCol?subCol+'18':'var(--surface-2)') + ';padding:2px 8px;border-radius:50px;">' + sub + '</span>' +
+      '</div>' +
+      '<div style="font-size:28px;font-weight:800;color:var(--ink);line-height:1;">' + value + '</div>' +
+      '<div style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-top:2px;">' + label + '</div>' +
+    '</div>';
+  }
+
+  var kpiEl = document.getElementById('dash-kpi-strip');
+  if (kpiEl) {
+    kpiEl.innerHTML =
+      kpiCard('🟢', activeProjects.length, 'Active Projects', closedProjects.length + ' closed', '#10B981') +
+      kpiCard('⚠️', highRisks.length, 'High Risks', openEscs.length + ' escalated', highRisks.length > 0 ? '#EF4444' : '#10B981') +
+      kpiCard('📊', avgCpi.toFixed(2), 'Portfolio CPI', cpiOk ? 'Under budget' : 'Over budget', cpiOk ? '#10B981' : '#EF4444') +
+      kpiCard('📋', pendingCRs.length, 'Pending CRs', redCount + ' red · ' + amberCount + ' amber', redCount > 0 ? '#EF4444' : amberCount > 0 ? '#F59E0B' : '#10B981');
+    // Count up animation
+    if (typeof countUp === 'function') {
+      setTimeout(function() { animateStatCards(); }, 50);
+    }
+  }
+
+  // ── HEALTH BAR ────────────────────────────────────────────
+  var healthEl = document.getElementById('dash-health-bar');
+  if (healthEl) {
+    var total = DB.projects.length;
+    var gPct = Math.round((greenCount/total)*100);
+    var aPct = Math.round((amberCount/total)*100);
+    var rPct = Math.round((redCount/total)*100);
+    var cPct = Math.round((closedProjects.length/total)*100);
+    healthEl.innerHTML =
+      '<div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:12px 16px;">' +
+        '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">' +
+          '<span style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;">Portfolio Health</span>' +
+          '<div style="display:flex;gap:12px;">' +
+            '<span style="font-size:11px;color:#10B981;">● ' + greenCount + ' Green</span>' +
+            '<span style="font-size:11px;color:#F59E0B;">● ' + amberCount + ' Amber</span>' +
+            '<span style="font-size:11px;color:#EF4444;">● ' + redCount + ' Red</span>' +
+            '<span style="font-size:11px;color:var(--muted);">● ' + closedProjects.length + ' Closed</span>' +
+          '</div>' +
+        '</div>' +
+        '<div style="height:10px;border-radius:5px;overflow:hidden;display:flex;gap:2px;">' +
+          '<div style="flex:' + greenCount + ';background:#10B981;border-radius:5px 0 0 5px;min-width:' + (greenCount?'4px':'0') + ';transition:flex .8s ease;"></div>' +
+          '<div style="flex:' + amberCount + ';background:#F59E0B;min-width:' + (amberCount?'4px':'0') + ';transition:flex .8s ease;"></div>' +
+          '<div style="flex:' + redCount + ';background:#EF4444;min-width:' + (redCount?'4px':'0') + ';transition:flex .8s ease;"></div>' +
+          '<div style="flex:' + closedProjects.length + ';background:#94A3B8;border-radius:0 5px 5px 0;min-width:' + (closedProjects.length?'4px':'0') + ';transition:flex .8s ease;"></div>' +
+        '</div>' +
+      '</div>';
+  }
+
+  // ── RAG TABLE ─────────────────────────────────────────────
+  var ragBody = document.getElementById('dash-rag-body');
   if (ragBody) {
-    const cols = ['scope','schedule','cost','quality','risk',
-    {id:'R004',projectId:'P004',desc:'Legacy schema may have unmapped fields discovered mid-migration',
-     category:'Technical',probability:'Medium',impact:'High',score:9,
-     mitigation:'Build contingency schema mapping tool in Sprint 2',
-     owner:'TM018',status:'Closed',ragStatus:'green',
-     triggerCondition:'Data profiling reveals >5% unmapped fields in any module'},
-    {id:'R005',projectId:'P004',desc:'Migration window overrun causing production downtime',
-     category:'Operational',probability:'Low',impact:'Critical',score:8,
-     mitigation:'Rollback procedure tested and documented. Hard stop at 6am.',
-     owner:'TM001',status:'Closed',ragStatus:'green',
-     triggerCondition:'Migration not complete by 5:30am window'},
-    {id:'R006',projectId:'P005',desc:'Third-party API vendor releases breaking change without notice',
-     category:'Technical',probability:'Medium',impact:'High',score:9,
-     mitigation:'Add 90-day notice clause to vendor contract. Build API version lock in sprint planning.',
-     owner:'TM004',status:'Closed',ragStatus:'green',
-     triggerCondition:'Any third-party API version change during active development sprint'},
-    {id:'R007',projectId:'P005',desc:'Client requests out-of-scope items during UAT as mandatory',
-     category:'Scope',probability:'High',impact:'Medium',score:8,
-     mitigation:'Re-confirm scope boundary document at UAT entry gate. Invoke change control immediately.',
-     owner:'TM001',status:'Closed',ragStatus:'green',
-     triggerCondition:'Any scope addition request during UAT phase'}
-  ];
-    const colLabel = {'scope':'Scope','schedule':'Schedule','cost':'Cost','quality':'Quality','risk':'Risk'};
-    const ragDot = r => {
-      const col = r==='green'?'#10B981':r==='amber'?'#F59E0B':r==='red'?'#EF4444':'#94A3B8';
-      return `<span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:${col};margin-right:4px;"></span>${r?r.toUpperCase():'—'}`;
-    };
-    ragBody.innerHTML = (function() {
-    var ragDotFn = function(r) {
-      var c = r==='green'?'#10B981':r==='amber'?'#F59E0B':r==='red'?'#EF4444':'#94A3B8';
-      return '<span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:'+c+';margin-right:4px;"></span>'+(r?r.toUpperCase():'—');
-    };
-    return DB.projects.map(function(p) {
+    ragBody.innerHTML = DB.projects.map(function(p) {
       var rag = p.ragOverall || 'green';
-      var cols = ['Scope','Schedule','Cost','Quality','Risk'];
-      var cells = cols.map(function(col) {
-        return '<td style="padding:10px 8px;font-size:11px;">' + ragDotFn(p['rag'+col] || rag) + '</td>';
-      }).join('');
-      var bg = rag==='green'?'var(--emerald-bg)':rag==='amber'?'var(--amber-bg)':'var(--red-bg)';
-      var fc = rag==='green'?'var(--emerald-d)':rag==='amber'?'var(--amber-d)':'var(--red-d)';
+      var ragCol = rag==='green'?'#10B981':rag==='amber'?'#F59E0B':'#EF4444';
+      var ragBg  = rag==='green'?'rgba(16,185,129,.1)':rag==='amber'?'rgba(245,158,11,.1)':'rgba(239,68,68,.1)';
+      var cpi = p.ac > 0 ? (p.ev/p.ac).toFixed(2) : '—';
+      var spi = p.pv > 0 ? (p.ev/p.pv).toFixed(2) : '—';
+      var cpiCol = parseFloat(cpi) >= 1 ? '#10B981' : parseFloat(cpi) >= 0.85 ? '#F59E0B' : '#EF4444';
+      var spiCol = parseFloat(spi) >= 1 ? '#10B981' : parseFloat(spi) >= 0.85 ? '#F59E0B' : '#EF4444';
+      var sprintText = p.currentSprint ? p.currentSprint + ' / ' + p.totalSprints : p.status;
+      var statusBadge = '<span style="font-size:10px;font-weight:700;padding:2px 8px;border-radius:50px;background:' + ragBg + ';color:' + ragCol + ';">' + rag.toUpperCase() + '</span>';
+
       var tr = document.createElement('tr');
-      tr.style.cssText = 'cursor:pointer;border-bottom:1px solid var(--border);transition:background .15s ease;';
-      tr.setAttribute('onclick', "go('rag')");
-      tr.setAttribute('title', 'Open full RAG view');
-      tr.addEventListener('mouseover', function() { this.style.background = 'var(--surface-2)'; });
-      tr.addEventListener('mouseout', function() { this.style.background = ''; });
-      tr.innerHTML = '<td style="padding:10px 8px;font-weight:600;font-size:12px;">'+(p.name||'')+'</td>' +
-        cells +
-        '<td style="padding:10px 8px;"><span style="font-size:10px;font-weight:700;padding:2px 8px;border-radius:50px;background:'+bg+';color:'+fc+';">'+rag.toUpperCase()+'</span></td>' +
-        '<td style="padding:10px 8px;font-size:11px;color:var(--muted);">'+(p.status||'')+'</td>';
+      tr.style.cssText = 'border-bottom:1px solid var(--border);cursor:pointer;transition:background .15s;';
+      tr.onmouseover = function(){ this.style.background = 'var(--surface-2)'; };
+      tr.onmouseout  = function(){ this.style.background = ''; };
+      tr.onclick = function(){ go('rag'); };
+      tr.innerHTML =
+        '<td style="padding:10px 12px;font-size:12px;font-weight:600;color:var(--ink);white-space:nowrap;max-width:160px;overflow:hidden;text-overflow:ellipsis;">' + p.name + '</td>' +
+        '<td style="padding:10px 12px;text-align:center;">' +
+          '<span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:' + ragCol + ';"></span>' +
+        '</td>' +
+        '<td style="padding:10px 12px;">' + statusBadge + '</td>' +
+        '<td style="padding:10px 12px;text-align:center;font-size:11px;color:var(--muted);">' + sprintText + '</td>' +
+        '<td style="padding:10px 12px;text-align:center;font-size:12px;font-weight:700;color:' + cpiCol + ';">' + cpi + '</td>' +
+        '<td style="padding:10px 12px;text-align:center;font-size:12px;font-weight:700;color:' + spiCol + ';">' + spi + '</td>' +
+        '<td style="padding:10px 12px;text-align:right;">' +
+          '<button onclick="event.stopPropagation();go(\'timeline\')" style="background:transparent;border:1px solid var(--border);border-radius:6px;padding:3px 8px;font-size:10px;cursor:pointer;color:var(--muted);">Timeline</button>' +
+        '</td>';
       return tr.outerHTML;
     }).join('');
-  }());
   }
 
-  // ── EVM Performance bars ──
-  const evmChart = document.getElementById('dash-evm-chart');
-  if (evmChart) {
-    const maxVal = 1.3;
-    evmChart.innerHTML = DB.projects.slice(0,3).map(p => {
-      const cpiVal = p.ac > 0 ? (p.ev/p.ac) : 1;
-      const spiVal = p.pv > 0 ? (p.ev/p.pv) : 1;
-      const cpiPct = Math.min((cpiVal/maxVal)*100, 100);
-      const spiPct = Math.min((spiVal/maxVal)*100, 100);
-      const cpiCol = cpiVal>=1?'#10B981':cpiVal>=0.85?'#F59E0B':'#EF4444';
-      const spiCol = spiVal>=1?'#10B981':spiVal>=0.85?'#F59E0B':'#EF4444';
-      const shortName = p.name.split(' ').slice(0,2).join(' ');
-      return `<div style="margin-bottom:16px;">
-        <div style="font-size:11px;font-weight:600;color:var(--ink);margin-bottom:6px;cursor:pointer;" onclick="go('evm')" title="Click for full EVM">${shortName} <span style="color:var(--muted);font-weight:400;">(${p.status})</span></div>
-        <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
-          <span style="font-size:10px;width:28px;color:var(--muted);">CPI</span>
-          <div style="flex:1;height:8px;background:var(--border);border-radius:4px;overflow:hidden;">
-            <div style="height:100%;width:${cpiPct}%;background:${cpiCol};border-radius:4px;transition:width .4s;"></div>
-          </div>
-          <span style="font-size:10px;font-weight:700;color:${cpiCol};width:30px;">${cpiVal.toFixed(2)}</span>
-        </div>
-        <div style="display:flex;align-items:center;gap:8px;">
-          <span style="font-size:10px;width:28px;color:var(--muted);">SPI</span>
-          <div style="flex:1;height:8px;background:var(--border);border-radius:4px;overflow:hidden;">
-            <div style="height:100%;width:${spiPct}%;background:${spiCol};border-radius:4px;transition:width .4s;"></div>
-          </div>
-          <span style="font-size:10px;font-weight:700;color:${spiCol};width:30px;">${spiVal.toFixed(2)}</span>
-        </div>
-      </div>`;
-    }).join('') + `<div style="text-align:center;margin-top:8px;"><button class="btn btn-ghost btn-sm" onclick="go('evm')">Full EVM →</button></div>`;
+  // ── EVM BARS ──────────────────────────────────────────────
+  var evmEl = document.getElementById('dash-evm-chart');
+  if (evmEl) {
+    evmEl.innerHTML = DB.projects.map(function(p) {
+      var cpiVal = p.ac > 0 ? p.ev/p.ac : 1;
+      var spiVal = p.pv > 0 ? p.ev/p.pv : 1;
+      var cpiPct = Math.min((cpiVal/1.3)*100, 100);
+      var spiPct = Math.min((spiVal/1.3)*100, 100);
+      var cpiCol = cpiVal>=1?'#10B981':cpiVal>=0.85?'#F59E0B':'#EF4444';
+      var spiCol = spiVal>=1?'#10B981':spiVal>=0.85?'#F59E0B':'#EF4444';
+      var shortName = p.name.split(' ').slice(0,2).join(' ');
+      var badge = p.status === 'Closed' ? '<span style="font-size:9px;color:var(--muted);font-weight:600;background:var(--surface-2);padding:1px 5px;border-radius:4px;margin-left:4px;">Closed</span>' : '';
+      return '<div style="margin-bottom:14px;">' +
+        '<div style="font-size:11px;font-weight:600;color:var(--ink);margin-bottom:5px;">' + shortName + badge + '</div>' +
+        '<div style="display:flex;align-items:center;gap:8px;margin-bottom:3px;">' +
+          '<span style="font-size:10px;color:var(--muted);width:24px;">CPI</span>' +
+          '<div style="flex:1;height:7px;background:var(--border);border-radius:4px;overflow:hidden;">' +
+            '<div style="height:100%;width:' + cpiPct.toFixed(1) + '%;background:' + cpiCol + ';border-radius:4px;"></div>' +
+          '</div>' +
+          '<span style="font-size:11px;font-weight:700;color:' + cpiCol + ';width:34px;text-align:right;">' + cpiVal.toFixed(2) + '</span>' +
+        '</div>' +
+        '<div style="display:flex;align-items:center;gap:8px;">' +
+          '<span style="font-size:10px;color:var(--muted);width:24px;">SPI</span>' +
+          '<div style="flex:1;height:7px;background:var(--border);border-radius:4px;overflow:hidden;">' +
+            '<div style="height:100%;width:' + spiPct.toFixed(1) + '%;background:' + spiCol + ';border-radius:4px;"></div>' +
+          '</div>' +
+          '<span style="font-size:11px;font-weight:700;color:' + spiCol + ';width:34px;text-align:right;">' + spiVal.toFixed(2) + '</span>' +
+        '</div>' +
+      '</div>';
+    }).join('') +
+    '<div style="margin-top:8px;text-align:right;">' +
+      '<button class="btn btn-ghost btn-sm" onclick="go(\'evm\')">Full EVM Analysis →</button>' +
+    '</div>';
   }
+
+  // ── MINI HEAT MAP ─────────────────────────────────────────
+  rHeat('mini-hm', true);
 }
-
 function rRaid() {
   const rb=document.getElementById('tb-risks');
   if(rb) rb.innerHTML=DB.risks.map(r=>`<tr><td style="font-family:'JetBrains Mono',monospace;font-size:10px">${r.id}</td><td><span style="font-size:11px">${r.desc.substring(0,70)}${r.desc.length>70?'...':''}</span></td><td><span class="badge badge-indigo">${r.cat}</span></td><td style="font-family:'JetBrains Mono',monospace;font-weight:700">${r.prob}</td><td style="font-family:'JetBrains Mono',monospace;font-weight:700">${r.impact}</td><td><span class="badge ${scoreClass(r.score)}">${r.score}</span></td><td style="font-size:10px;color:var(--muted);max-width:130px">${r.trigger||'⚠️ No trigger set!'}</td><td><span class="badge badge-indigo">${r.response}</span></td><td style="font-size:11px">${r.owner}</td><td>${statusBadge(r.status)}</td><td><button class="btn btn-ghost btn-sm btn-icon" onclick="fireTrigger('${r.id}')" title="Fire trigger → converts to Issue" ${r.status==='TRIGGERED'?'disabled':''}>🎯</button></td></tr>`).join('');
@@ -4053,7 +4132,7 @@ function rTimeline() {
             };
 
             return `<div
-              onclick="if(this.getAttribute('data-siid')){openDrawer(this.getAttribute('data-siid'));}" data-siid="${si ? si.id : ''}"
+              data-siid="${si ? si.id : ''}"
               style="
                 min-width:72px;max-width:72px;height:64px;border-radius:8px;
                 background:${bgMap[rag]||bgMap.future};
@@ -4115,6 +4194,17 @@ function rTimeline() {
       </div>
     </div>`;
   }).join('');
+
+  // Event delegation for sprint blocks
+  setTimeout(function() {
+    document.querySelectorAll('[data-siid]').forEach(function(el) {
+      var sid = el.getAttribute('data-siid');
+      if (sid && sid.length > 0) {
+        el.style.cursor = 'pointer';
+        el.onclick = function(e) { e.stopPropagation(); openDrawer(sid); };
+      }
+    });
+  }, 150);
 }
 
 function scrollToProject(id) {
@@ -6834,8 +6924,8 @@ window.onload = () => {
       </div>
     </div>
     <div class="modal-footer">
-      <button class="btn btn-ghost" onclick="closeM('m-escalation')">Cancel</button>
-      <button class="btn btn-primary" onclick="saveEscalation()">Raise Escalation</button>
+      <button class="btn btn-ghost" onclick="closeM('m-risk')">Cancel</button>
+      <button class="btn btn-primary" onclick="saveRisk()">Save Risk</button>
     </div>
   </div>
 </div>
