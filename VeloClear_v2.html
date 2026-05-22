@@ -39,7 +39,7 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg)
 .ps-label{font-size:8px;color:rgba(255,255,255,.35);font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:3px;}
 .ps-name{color:#fff;font-size:12px;font-weight:600;display:flex;justify-content:space-between;align-items:center;}
 /* MAIN */
-.main{margin-left:220px;min-height:100vh;min-width:0;overflow-x:hidden;}
+.main{margin-left:220px !important;min-height:100vh;min-width:0;overflow-x:hidden;}
 .topbar{background:var(--surface);border-bottom:1px solid var(--border);padding:0 16px;height:48px;display:flex;align-items:center;gap:10px;position:sticky;top:0;z-index:100;box-shadow:var(--shadow-sm);min-width:0;}
 .topbar-title{font-size:13px;font-weight:700;color:var(--ink);white-space:nowrap;}
 .topbar-sub{font-size:10px;color:var(--muted-l);white-space:nowrap;}
@@ -932,6 +932,8 @@ select:focus, input:focus, textarea:focus {
 .stat-card:hover{transform:translateY(-3px) !important;box-shadow:0 10px 28px rgba(0,0,0,.18) !important;}
 
 .epic-tag{writing-mode:horizontal-tb !important;text-orientation:mixed !important;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:80px;display:inline-block;vertical-align:middle;}
+
+.modal-backdrop{display:none;position:fixed;inset:0;background:rgba(15,23,42,.5);z-index:500;align-items:center;justify-content:center;backdrop-filter:blur(2px);}.modal-backdrop.open{display:flex;}
 </style>
 </head>
 
@@ -1199,23 +1201,23 @@ select:focus, input:focus, textarea:focus {
     </div>
   </div>
   <div class="nav-item" onclick="go('integrations')" data-label="Integrations"><div class="ni-icon">🔌</div>Integrations</div>
-  <div style="font-size:9px;font-weight:700;letter-spacing:.08em;color:rgba(255,255,255,.28);padding:8px 14px 2px;text-transform:uppercase;border-top:1px solid rgba(255,255,255,.05);margin-top:2px;">VeloClear</div>
+  <div style="font-size:9px;font-weight:700;letter-spacing:.1em;color:rgba(255,255,255,.35);padding:16px 14px 4px 14px;text-transform:uppercase;">VeloClear</div>
   <div class="nav-item" onclick="go('newproject')" data-label="New Project"><div class="ni-icon">➕</div>New Project</div>
   <div class="nav-item" onclick="go('delivery-answer')" data-label="Delivery Answer"><div class="ni-icon">📋</div>Delivery Answer</div>
   <div class="nav-item" onclick="go('learning')" data-label="Learning Library"><div class="ni-icon">📚</div>Learning Library</div>
-  <div style="font-size:9px;font-weight:700;letter-spacing:.08em;color:rgba(255,255,255,.28);padding:8px 14px 2px;text-transform:uppercase;border-top:1px solid rgba(255,255,255,.05);margin-top:2px;">Portfolio</div>
+  <div style="font-size:9px;font-weight:700;letter-spacing:.1em;color:rgba(255,255,255,.35);padding:16px 14px 4px 14px;text-transform:uppercase;">Portfolio</div>
   <div class="nav-item active" onclick="go('dashboard')" data-label="Dashboard"><div class="ni-icon">📊</div>Dashboard<span class="ni-alert"></span></div>
-  <div style="font-size:9px;font-weight:700;letter-spacing:.08em;color:rgba(255,255,255,.28);padding:8px 14px 2px;text-transform:uppercase;border-top:1px solid rgba(255,255,255,.05);margin-top:2px;">Phase 4 — Risk &amp; RAID</div>
+  <div style="font-size:9px;font-weight:700;letter-spacing:.1em;color:rgba(255,255,255,.35);padding:16px 14px 4px 14px;text-transform:uppercase;">Phase 4 — Risk &amp; RAID</div>
   <div class="nav-item" onclick="go('raid')" data-label="RAID Log"><div class="ni-icon">🎯</div>RAID Log<span class="nav-badge" id="b-risk">3</span></div>
   <div class="nav-item" onclick="go('heatmap')" data-label="Risk Heat Map"><div class="ni-icon">🔥</div>Risk Heat Map</div>
   <div class="nav-item" onclick="go('issues')" data-label="Issue Log"><div class="ni-icon">⚠️</div>Issue Log<span class="nav-badge" id="b-issues">1</span></div>
-  <div style="font-size:9px;font-weight:700;letter-spacing:.08em;color:rgba(255,255,255,.28);padding:8px 14px 2px;text-transform:uppercase;border-top:1px solid rgba(255,255,255,.05);margin-top:2px;">Phase 5 — Stakeholders</div>
+  <div style="font-size:9px;font-weight:700;letter-spacing:.1em;color:rgba(255,255,255,.35);padding:16px 14px 4px 14px;text-transform:uppercase;">Phase 5 — Stakeholders</div>
   <div class="nav-item" onclick="go('stakeholders')" data-label="Stakeholders"><div class="ni-icon">👥</div>Stakeholder Register</div>
   <div class="nav-item" onclick="go('pigrid')" data-label="Power-Interest Grid"><div class="ni-icon">📍</div>Power-Interest Grid</div>
   <div class="nav-item" onclick="go('engagement')" data-label="Engagement Matrix"><div class="ni-icon">📈</div>Engagement Matrix</div>
   <div class="nav-item" onclick="go('raci')" data-label="RACI Matrix"><div class="ni-icon">📋</div>RACI Matrix</div>
   <div class="nav-item" onclick="go('comms')" data-label="Communications Plan"><div class="ni-icon">📡</div>Communications Plan</div>
-  <div style="font-size:9px;font-weight:700;letter-spacing:.08em;color:rgba(255,255,255,.28);padding:8px 14px 2px;text-transform:uppercase;border-top:1px solid rgba(255,255,255,.05);margin-top:2px;">Phase 6 — Governance</div>
+  <div style="font-size:9px;font-weight:700;letter-spacing:.1em;color:rgba(255,255,255,.35);padding:16px 14px 4px 14px;text-transform:uppercase;">Phase 6 — Governance</div>
   <div class="nav-item" onclick="go('rag')" data-label="RAG Dashboard"><div class="ni-icon">🚦</div>RAG Dashboard</div>
   <div class="nav-item" onclick="go('cr')" data-label="Change Control"><div class="ni-icon">🔄</div>Change Control<span class="nav-badge" id="b-cr">2</span></div>
   <div class="nav-item" onclick="go('escalation')" data-label="Escalation Tracker"><div class="ni-icon">📣</div>Escalation Tracker</div>
@@ -1223,7 +1225,7 @@ select:focus, input:focus, textarea:focus {
   <div class="nav-item" onclick="go('audit')" data-label="Audit Trail"><div class="ni-icon">🔏</div>Audit Trail</div>
   <div class="nav-item" onclick="go('reports')" data-label="Auto Reports"><div class="ni-icon">📄</div>Auto Reports</div>
   <div class="nav-item" onclick="go('import')" data-label="Import / Export"><div class="ni-icon">⬆️</div>Import / Export</div>
-  <div style="font-size:9px;font-weight:700;letter-spacing:.08em;color:rgba(255,255,255,.28);padding:8px 14px 2px;text-transform:uppercase;border-top:1px solid rgba(255,255,255,.05);margin-top:2px;">Phase 7 — Agile Delivery</div>
+  <div style="font-size:9px;font-weight:700;letter-spacing:.1em;color:rgba(255,255,255,.35);padding:16px 14px 4px 14px;text-transform:uppercase;">Phase 7 — Agile Delivery</div>
   <div class="nav-item" onclick="go('backlog')" data-label="Product Backlog"><div class="ni-icon">📝</div>Product Backlog</div>
   <div class="nav-item" onclick="go('sprint')" data-label="Sprint Board"><div class="ni-icon">🏃</div>Sprint Board<span class="nav-badge" id="b-sprint">0</span></div>
   <div class="nav-item" onclick="go('burndown')" data-label="Burn-Down"><div class="ni-icon">📉</div>Burn-Down Chart</div>
@@ -1231,7 +1233,7 @@ select:focus, input:focus, textarea:focus {
   <div class="nav-item" onclick="go('retro')" data-label="Retrospective"><div class="ni-icon">🔄</div>Retrospective</div>
   <div class="nav-item" onclick="go('delivery')" data-label="Delivery Health"><div class="ni-icon">🎯</div>Delivery Health</div>
 
-  <div style="font-size:9px;font-weight:700;letter-spacing:.08em;color:rgba(255,255,255,.28);padding:8px 14px 2px;text-transform:uppercase;border-top:1px solid rgba(255,255,255,.05);margin-top:2px;">Phase 8 — Programme Intelligence</div>
+  <div style="font-size:9px;font-weight:700;letter-spacing:.1em;color:rgba(255,255,255,.35);padding:16px 14px 4px 14px;text-transform:uppercase;">Phase 8 — Programme Intelligence</div>
   <div class="nav-item" onclick="go('timeline')" data-label="Programme Timeline"><div class="ni-icon">🗓️</div>Programme Timeline</div>
   <div class="nav-item" onclick="go('intelligence')" data-label="Sprint Intelligence"><div class="ni-icon">🧠</div>Sprint Intelligence</div>
   <div class="nav-item" onclick="go('impact')" data-label="Impact Trace"><div class="ni-icon">🔍</div>Impact Trace</div>
@@ -1494,7 +1496,9 @@ select:focus, input:focus, textarea:focus {
 
 <!-- ═══ SECTION: REPORTS ═══ -->
 <section id="s-reports" class="sec" style="display:none">
-<div class="page-header"><div class="breadcrumb">Phase 6 <span>›</span> Auto Reports</div><div class="page-title">Automated Reports</div><div class="page-desc">All reports auto-assembled from your live project data. Click Generate — the system pulls current RAG status, EVM numbers, all open risks, pending CRs, and active escalations into a formatted document. No manual assembly required.</div></div>
+<div class="page-header"><div class="breadcrumb">Phase 6 <span>›</span> Auto Reports</div>
+<div class="page-content" id="reports-list"></div>
+<div class="page-title">Automated Reports</div><div class="page-desc">All reports auto-assembled from your live project data. Click Generate — the system pulls current RAG status, EVM numbers, all open risks, pending CRs, and active escalations into a formatted document. No manual assembly required.</div></div>
 <div class="grid-3">
   <div class="card" style="cursor:pointer" onclick="genReport('steering')"><div class="card-body" style="text-align:center;padding:24px 14px;"><div style="font-size:36px;margin-bottom:10px;">📋</div><div style="font-size:13px;font-weight:700;margin-bottom:5px;">Steering Committee Pack</div><div style="font-size:11px;color:var(--muted);line-height:1.6;">RAG · EVM · Open Risks · Pending CRs · Escalations · Actions. Auto from live data.</div><div style="margin-top:12px;"><span class="badge badge-indigo">Auto-generated</span></div></div></div>
   <div class="card" style="cursor:pointer" onclick="genReport('risk')"><div class="card-body" style="text-align:center;padding:24px 14px;"><div style="font-size:36px;margin-bottom:10px;">🔥</div><div style="font-size:13px;font-weight:700;margin-bottom:5px;">Risk Report</div><div style="font-size:11px;color:var(--muted);line-height:1.6;">Heat map · All risks sorted by score · Trigger status · Mitigation progress.</div><div style="margin-top:12px;"><span class="badge badge-red">3 High Risks</span></div></div></div>
@@ -1506,6 +1510,7 @@ select:focus, input:focus, textarea:focus {
 <!-- ═══ SECTION: IMPORT ═══ -->
 <section id="s-import" class="sec" style="display:none">
 <div class="page-header"><div class="breadcrumb">VeloClear <span>›</span> Data</div><div class="page-title">Import &amp; Export</div><div class="page-desc">Bring in existing data from Excel, CSV, or JSON. Download a template first to see the expected column format, fill in your data, then upload. Export any module at any time for backup or sharing.</div></div>
+<div id="import-list" class="page-content"></div>
 <div class="grid-2">
   <div class="card"><div class="card-header"><div class="card-icon indigo">⬆️</div><div><div class="card-title">Import Data</div><div class="card-sub">Download a template → fill it in → upload here</div></div></div>
     <div class="card-body">
@@ -2378,9 +2383,12 @@ function go(id) {
   const sec = document.getElementById('s-'+id);
   if (sec) {
     sec.style.display = 'block';
-    // Trigger reflow then add animation class
     void sec.offsetWidth;
     sec.classList.add('vc-enter');
+    // Scroll content area to top on every navigation
+    const contentEl = document.getElementById('app') || document.querySelector('.content');
+    if (contentEl) contentEl.scrollTop = 0;
+    window.scrollTo(0,0);
   }
   document.querySelectorAll('.nav-item').forEach(n => {
     n.classList.toggle('active', n.getAttribute('onclick') && n.getAttribute('onclick').includes("'"+id+"'"));
@@ -5868,6 +5876,8 @@ function initPhase9() {
   } else {
     overlay.style.display = 'none';
     VC.org.setupDone = true;
+    // Navigate to dashboard when returning user
+    setTimeout(function() { rDash(); go('dashboard'); }, 50);
   }
 }
 
@@ -6578,13 +6588,15 @@ function rReports() {
     </div>`).join('');
 
   const body = el.querySelector('.page-content') || el;
-  const existing = el.querySelector('#reports-list');
-  if (existing) existing.innerHTML = cards;
-  else {
-    const div = document.createElement('div');
+  // Target the reports-list div or page-content
+  var target = document.getElementById('reports-list') || el.querySelector('.page-content');
+  if (target) {
+    target.innerHTML = cards;
+  } else {
+    var div = document.createElement('div');
     div.id = 'reports-list';
     div.innerHTML = cards;
-    body.appendChild(div);
+    el.appendChild(div);
   }
 }
 
@@ -6622,14 +6634,9 @@ function rImport() {
       </div>
     </div>`).join('');
 
-  const existing = el.querySelector('#import-list');
-  if (existing) existing.innerHTML = cards;
-  else {
-    const div = document.createElement('div');
-    div.id = 'import-list';
-    div.innerHTML = cards;
-    el.querySelector('.page-content') ? el.querySelector('.page-content').appendChild(div) : el.appendChild(div);
-  }
+  var iel = document.getElementById('import-list') || el.querySelector('.page-content');
+  if (iel) { iel.innerHTML = cards; }
+  else { var id2 = document.createElement('div'); id2.id='import-list'; id2.innerHTML=cards; el.appendChild(id2); }
 }
 
 
@@ -6659,7 +6666,7 @@ window.onload = () => {
   const _overlay = document.getElementById('vc-setup-overlay');
 
   function _skipSetup() {
-    localStorage.setItem('vc_setup_done','1');
+    // Demo mode - don't write to localStorage so setup shows on next plain visit
     if (_overlay) _overlay.style.display = 'none';
     VC.org.setupDone = true;
   }
@@ -6671,8 +6678,9 @@ window.onload = () => {
       rDash();
       setTimeout(() => go(_section), 300);
     } else {
-      rDash();
+      rDash(); go('dashboard');
     }
+    // Mark as demo-visited (not permanent setup done)
     setTimeout(() => toast('👋 Welcome to VeloClear — this is a live demo with real project data. Click anything.', 'success'), 800);
 
   } else if (_mode === 'wizard') {
