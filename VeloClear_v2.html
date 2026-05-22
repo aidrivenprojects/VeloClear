@@ -427,7 +427,7 @@ table.data-table{width:100%;border-collapse:collapse;font-size:11.5px;}
 /* ── SETUP OPTION CARDS ── */
 .setup-option{padding:16px 18px;border:2px solid rgba(255,255,255,.1);border-radius:12px;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:14px;background:rgba(255,255,255,.04);margin-bottom:8px;}
 .setup-option:hover{border-color:rgba(79,70,229,.5);background:rgba(79,70,229,.1);}
-.setup-option.active{border-color:#00D4AA;background:rgba(0,212,170,.08);}
+.setup-option.active{border-color:#00D4AA !important;background:rgba(0,212,170,.12) !important;box-shadow:0 0 0 2px rgba(0,212,170,.25) !important;transform:none !important;}
 .so-icon{font-size:24px;flex-shrink:0;}
 .so-body{flex:1;}
 .so-title{font-size:14px;font-weight:700;color:#fff;margin-bottom:2px;}
@@ -1192,23 +1192,23 @@ select:focus, input:focus, textarea:focus {
     </div>
   </div>
   <div class="nav-item" onclick="go('integrations')" data-label="Integrations"><div class="ni-icon">🔌</div>Integrations</div>
-  <div class="sb-section">VeloClear</div>
+  <div style="font-size:9px;font-weight:700;letter-spacing:.08em;color:rgba(255,255,255,.28);padding:12px 14px 4px;text-transform:uppercase;border-top:1px solid rgba(255,255,255,.05);margin-top:4px;">VeloClear</div>
   <div class="nav-item" onclick="go('newproject')" data-label="New Project"><div class="ni-icon">➕</div>New Project</div>
   <div class="nav-item" onclick="go('delivery-answer')" data-label="Delivery Answer"><div class="ni-icon">📋</div>Delivery Answer</div>
   <div class="nav-item" onclick="go('learning')" data-label="Learning Library"><div class="ni-icon">📚</div>Learning Library</div>
-  <div class="sb-section">Portfolio</div>
+  <div style="font-size:9px;font-weight:700;letter-spacing:.08em;color:rgba(255,255,255,.28);padding:12px 14px 4px;text-transform:uppercase;border-top:1px solid rgba(255,255,255,.05);margin-top:4px;">Portfolio</div>
   <div class="nav-item active" onclick="go('dashboard')" data-label="Dashboard"><div class="ni-icon">📊</div>Dashboard<span class="ni-alert"></span></div>
-  <div class="sb-section">Phase 4 — Risk &amp; RAID</div>
+  <div style="font-size:9px;font-weight:700;letter-spacing:.08em;color:rgba(255,255,255,.28);padding:12px 14px 4px;text-transform:uppercase;border-top:1px solid rgba(255,255,255,.05);margin-top:4px;">Phase 4 — Risk &amp; RAID</div>
   <div class="nav-item" onclick="go('raid')" data-label="RAID Log"><div class="ni-icon">🎯</div>RAID Log<span class="nav-badge" id="b-risk">3</span></div>
   <div class="nav-item" onclick="go('heatmap')" data-label="Risk Heat Map"><div class="ni-icon">🔥</div>Risk Heat Map</div>
   <div class="nav-item" onclick="go('issues')" data-label="Issue Log"><div class="ni-icon">⚠️</div>Issue Log<span class="nav-badge" id="b-issues">1</span></div>
-  <div class="sb-section">Phase 5 — Stakeholders</div>
+  <div style="font-size:9px;font-weight:700;letter-spacing:.08em;color:rgba(255,255,255,.28);padding:12px 14px 4px;text-transform:uppercase;border-top:1px solid rgba(255,255,255,.05);margin-top:4px;">Phase 5 — Stakeholders</div>
   <div class="nav-item" onclick="go('stakeholders')" data-label="Stakeholders"><div class="ni-icon">👥</div>Stakeholder Register</div>
   <div class="nav-item" onclick="go('pigrid')" data-label="Power-Interest Grid"><div class="ni-icon">📍</div>Power-Interest Grid</div>
   <div class="nav-item" onclick="go('engagement')" data-label="Engagement Matrix"><div class="ni-icon">📈</div>Engagement Matrix</div>
   <div class="nav-item" onclick="go('raci')" data-label="RACI Matrix"><div class="ni-icon">📋</div>RACI Matrix</div>
   <div class="nav-item" onclick="go('comms')" data-label="Communications Plan"><div class="ni-icon">📡</div>Communications Plan</div>
-  <div class="sb-section">Phase 6 — Governance</div>
+  <div style="font-size:9px;font-weight:700;letter-spacing:.08em;color:rgba(255,255,255,.28);padding:12px 14px 4px;text-transform:uppercase;border-top:1px solid rgba(255,255,255,.05);margin-top:4px;">Phase 6 — Governance</div>
   <div class="nav-item" onclick="go('rag')" data-label="RAG Dashboard"><div class="ni-icon">🚦</div>RAG Dashboard</div>
   <div class="nav-item" onclick="go('cr')" data-label="Change Control"><div class="ni-icon">🔄</div>Change Control<span class="nav-badge" id="b-cr">2</span></div>
   <div class="nav-item" onclick="go('escalation')" data-label="Escalation Tracker"><div class="ni-icon">📣</div>Escalation Tracker</div>
@@ -1216,7 +1216,7 @@ select:focus, input:focus, textarea:focus {
   <div class="nav-item" onclick="go('audit')" data-label="Audit Trail"><div class="ni-icon">🔏</div>Audit Trail</div>
   <div class="nav-item" onclick="go('reports')" data-label="Auto Reports"><div class="ni-icon">📄</div>Auto Reports</div>
   <div class="nav-item" onclick="go('import')" data-label="Import / Export"><div class="ni-icon">⬆️</div>Import / Export</div>
-  <div class="sb-section">Phase 7 — Agile Delivery</div>
+  <div style="font-size:9px;font-weight:700;letter-spacing:.08em;color:rgba(255,255,255,.28);padding:12px 14px 4px;text-transform:uppercase;border-top:1px solid rgba(255,255,255,.05);margin-top:4px;">Phase 7 — Agile Delivery</div>
   <div class="nav-item" onclick="go('backlog')" data-label="Product Backlog"><div class="ni-icon">📝</div>Product Backlog</div>
   <div class="nav-item" onclick="go('sprint')" data-label="Sprint Board"><div class="ni-icon">🏃</div>Sprint Board<span class="nav-badge" id="b-sprint">0</span></div>
   <div class="nav-item" onclick="go('burndown')" data-label="Burn-Down"><div class="ni-icon">📉</div>Burn-Down Chart</div>
@@ -1224,7 +1224,7 @@ select:focus, input:focus, textarea:focus {
   <div class="nav-item" onclick="go('retro')" data-label="Retrospective"><div class="ni-icon">🔄</div>Retrospective</div>
   <div class="nav-item" onclick="go('delivery')" data-label="Delivery Health"><div class="ni-icon">🎯</div>Delivery Health</div>
 
-  <div class="sb-section">Phase 8 — Programme Intelligence</div>
+  <div style="font-size:9px;font-weight:700;letter-spacing:.08em;color:rgba(255,255,255,.28);padding:12px 14px 4px;text-transform:uppercase;border-top:1px solid rgba(255,255,255,.05);margin-top:4px;">Phase 8 — Programme Intelligence</div>
   <div class="nav-item" onclick="go('timeline')" data-label="Programme Timeline"><div class="ni-icon">🗓️</div>Programme Timeline</div>
   <div class="nav-item" onclick="go('intelligence')" data-label="Sprint Intelligence"><div class="ni-icon">🧠</div>Sprint Intelligence</div>
   <div class="nav-item" onclick="go('impact')" data-label="Impact Trace"><div class="ni-icon">🔍</div>Impact Trace</div>
@@ -1305,38 +1305,12 @@ select:focus, input:focus, textarea:focus {
   </div>
   <div class="card">
     <div class="card-header"><div class="card-icon emerald">📊</div><div><div class="card-title">EVM Performance</div><div class="card-sub">CPI = EV÷AC · SPI = EV÷PV · EAC = BAC÷CPI · Above 1.0 = on plan</div></div></div>
-    <div class="card-body">
-      <svg viewBox="0 0 420 175" xmlns="http://www.w3.org/2000/svg" font-family="Inter,system-ui,-apple-system,sans-serif" style="width:100%;height:auto;">
-        <line x1="44" y1="18" x2="44" y2="132" stroke="#E2E8F0" stroke-width="1.5"/>
-        <line x1="44" y1="132" x2="372" y2="132" stroke="#E2E8F0" stroke-width="1.5"/>
-        <line x1="44" y1="80" x2="372" y2="80" stroke="#EF4444" stroke-width="1" stroke-dasharray="5,4"/>
-        <text x="376" y="84" font-size="8" fill="#EF4444">1.0</text>
-        <rect x="56" y="48" width="36" height="84" fill="#10B981" opacity=".8" rx="3"/>
-        <rect x="148" y="42" width="36" height="90" fill="#10B981" opacity=".8" rx="3"/>
-        <rect x="240" y="52" width="36" height="80" fill="#10B981" opacity=".8" rx="3"/>
-        <rect x="96" y="84" width="36" height="48" fill="#F59E0B" opacity=".75" rx="3"/>
-        <rect x="188" y="88" width="36" height="44" fill="#EF4444" opacity=".75" rx="3"/>
-        <rect x="280" y="82" width="36" height="50" fill="#F59E0B" opacity=".75" rx="3"/>
-        <text x="74" y="42" font-size="9" fill="#10B981" text-anchor="middle" font-weight="700">1.08</text>
-        <text x="166" y="36" font-size="9" fill="#10B981" text-anchor="middle" font-weight="700">1.10</text>
-        <text x="258" y="46" font-size="9" fill="#10B981" text-anchor="middle" font-weight="700">1.07</text>
-        <text x="114" y="78" font-size="9" fill="#F59E0B" text-anchor="middle">0.97</text>
-        <text x="206" y="83" font-size="9" fill="#EF4444" text-anchor="middle">0.88</text>
-        <text x="298" y="76" font-size="9" fill="#F59E0B" text-anchor="middle">0.96</text>
-        <text x="74" y="148" font-size="9" fill="#64748B" text-anchor="middle">Apex</text>
-        <text x="166" y="148" font-size="9" fill="#64748B" text-anchor="middle">NX</text>
-        <text x="258" y="148" font-size="9" fill="#64748B" text-anchor="middle">Meridian</text>
-        <rect x="8" y="150" width="9" height="7" fill="#10B981" rx="1"/><text x="20" y="157" font-size="8" fill="#64748B">CPI (above 1.0 = good)</text>
-        <rect x="160" y="150" width="9" height="7" fill="#F59E0B" rx="1"/><text x="172" y="157" font-size="8" fill="#64748B">SPI</text>
-        <text x="8" y="22" font-size="8" fill="#64748B">1.2</text>
-        <text x="8" y="84" font-size="8" fill="#EF4444">1.0</text>
-        <text x="8" y="136" font-size="8" fill="#64748B">0.7</text>
-      </svg>
-    </div>
+    <div class="card-body" id="dash-evm-chart" style="padding:16px;">
+  <div style="text-align:center;color:var(--muted);font-size:12px;padding:20px;">Loading EVM data...</div>
   </div>
 </div>
 <div class="card fade-up" style="margin-top:18px;">
-  <div class="card-header"><div class="card-icon red">🔥</div><div><div class="card-title">Aggregate Risk Heat Map</div><div class="card-sub">Score = Probability × Impact · Risks plotted across all projects · Click for full view</div></div><div class="card-header-actions"><button class="btn btn-secondary btn-sm" onclick="go('heatmap')">Full Heat Map →</button></div></div>
+  <div class="card-header"><div class="card-icon red">🔥</div><div><div class="card-title">Aggregate Risk Heat Map</div><div class="card-sub">Score = Probability × Impact · Risks plotted across all projects · Click for full view</div></div><div class="card-header-actions"><button class="btn btn-secondary btn-sm" onclick="go('heatmap')" style="cursor:pointer !important;pointer-events:all !important;">Full Heat Map →</button></div></div>
   <div class="card-body" id="mini-hm"></div>
 </div>
 </section>
@@ -2381,7 +2355,7 @@ function go(id) {
   setTimeout(() => { render(id); updateTbBtn(); }, 30);
 }
 function render(id) {
-  const fns = {dashboard:rDash,raid:rRaid,heatmap:()=>rHeat('full-hm'),issues:rFullIssues,stakeholders:rStakeholders,pigrid:rPIGrid,engagement:rEngagement,raci:rRaci,comms:rComms,rag:rRAG,cr:rCR,escalation:rEscalation,decisions:rDecisions,audit:rAudit,backlog:rBacklog,sprint:rSprint,burndown:rBurndown,velocity:rVelocity,retro:rRetro,delivery:rDelivery,timeline:rTimeline,intelligence:rIntelligence,impact:rImpact,people:rPeople,evm:rEVM,newproject:rNewProject,'delivery-answer':rDeliveryAnswer,learning:rLearning,integrations:rIntegrations};
+  const fns = {dashboard:rDash,raid:rRaid,heatmap:()=>setTimeout(()=>rHeat('full-hm'),50),issues:rFullIssues,stakeholders:rStakeholders,pigrid:rPIGrid,engagement:rEngagement,raci:rRaci,comms:rComms,rag:rRAG,cr:rCR,escalation:rEscalation,decisions:rDecisions,audit:rAudit,backlog:rBacklog,sprint:rSprint,burndown:rBurndown,velocity:rVelocity,retro:rRetro,delivery:rDelivery,timeline:rTimeline,intelligence:rIntelligence,impact:rImpact,people:rPeople,evm:rEVM,newproject:rNewProject,'delivery-answer':rDeliveryAnswer,learning:rLearning,integrations:rIntegrations};
   if (fns[id]) fns[id]();
 }
 
@@ -2555,7 +2529,11 @@ function rDash() {
       return `<span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:${col};margin-right:4px;"></span>${r?r.toUpperCase():'—'}`;
     };
     ragBody.innerHTML = DB.projects.map(p => `
-      <tr style="cursor:pointer;border-bottom:1px solid var(--border);" onclick="go('rag')" title="Click to open full RAG view">
+      <tr style="cursor:pointer;border-bottom:1px solid var(--border);transition:background .15s ease;" 
+          onmouseover="this.style.background='var(--surface-2)'" 
+          onmouseout="this.style.background=''"
+          onclick="go('rag');setTimeout(()=>{const el=document.querySelector('[data-proj=\''+p.id+'\']');if(el)el.scrollIntoView({behavior:'smooth'});},200)" 
+          title="Click to open full RAG view for ${p.name}">
         <td style="padding:10px 8px;font-weight:600;font-size:12px;">${p.name}</td>
         ${cols.map(c => `<td style="padding:10px 8px;font-size:11px;">${ragDot(p['rag'+c.charAt(0).toUpperCase()+c.slice(1)] || p.ragOverall)}</td>`).join('')}
         <td style="padding:10px 8px;"><span style="font-size:10px;font-weight:700;padding:2px 8px;border-radius:50px;background:${p.ragOverall==='green'?'var(--emerald-bg)':p.ragOverall==='amber'?'var(--amber-bg)':'var(--red-bg)'};color:${p.ragOverall==='green'?'var(--emerald-d)':p.ragOverall==='amber'?'var(--amber-d)':'var(--red-d)'};">${p.ragOverall?.toUpperCase()}</span></td>
@@ -4851,11 +4829,21 @@ function setupNext(step) {
 
 function completeSetup() {
   VC.org.setupDone = true;
-  VC.currentRole = selectedSetupRole;
+  VC.currentRole = selectedSetupRole || 'pm';
   markSetupDone();
-  document.getElementById('vc-setup-overlay').style.display = 'none';
-  updateRoleView(selectedSetupRole);
-  startWizard(null);
+  const overlay = document.getElementById('vc-setup-overlay');
+  if (overlay) overlay.style.display = 'none';
+  // Go to dashboard first, then open wizard
+  rDash();
+  document.querySelectorAll('.sec').forEach(s => s.style.display = 'none');
+  const dash = document.getElementById('s-dashboard');
+  if (dash) dash.style.display = 'block';
+  cur = 'dashboard';
+  // Small delay to ensure DOM is ready before wizard opens
+  setTimeout(() => {
+    startWizard(null);
+    toast('🎯 Wizard started — answer each question to set up your project.', 'success');
+  }, 150);
 }
 
 function skipSetupToApp() {
