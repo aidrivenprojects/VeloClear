@@ -414,7 +414,7 @@ table.data-table{width:100%;border-collapse:collapse;font-size:11.5px;}
 /* ── ROLE SWITCHER ── */
 .role-switcher{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:rgba(15,23,42,.92);backdrop-filter:blur(10px);border-radius:50px;padding:6px 8px;display:flex;gap:4px;z-index:300;box-shadow:0 8px 32px rgba(15,23,42,.4);}
 .role-btn{padding:6px 14px;border-radius:40px;border:none;background:transparent;color:rgba(255,255,255,.5);font-family:inherit;font-size:11px;font-weight:600;cursor:pointer;transition:all .2s;white-space:nowrap;}
-.role-btn.active{background:linear-gradient(135deg,#4F46E5,#00D4AA);color:#fff;box-shadow:0 2px 8px rgba(79,70,229,.4);}
+.role-btn.active{background:linear-gradient(135deg,#4F46E5,#00D4AA) !important;color:#fff !important;box-shadow:0 2px 8px rgba(79,70,229,.4) !important;transform:none !important;}
 .role-btn:hover:not(.active){color:#fff;background:rgba(255,255,255,.1);}
 .role-indicator{position:fixed;top:56px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#4F46E5,#7C3AED);color:#fff;font-size:11px;font-weight:700;padding:4px 14px;border-radius:0 0 10px 10px;z-index:99;display:none;letter-spacing:.5px;}
 
@@ -884,6 +884,8 @@ select:focus, input:focus, textarea:focus {
 }
 .role-btn.active {
   transform: none;
+  background:linear-gradient(135deg,#4F46E5,#00D4AA) !important;
+  color:#fff !important;
 }
 
 /* ── PROGRESS BARS ──────────────────────────────────── */
@@ -1192,23 +1194,23 @@ select:focus, input:focus, textarea:focus {
     </div>
   </div>
   <div class="nav-item" onclick="go('integrations')" data-label="Integrations"><div class="ni-icon">🔌</div>Integrations</div>
-  <div style="font-size:9px;font-weight:700;letter-spacing:.08em;color:rgba(255,255,255,.28);padding:12px 14px 4px;text-transform:uppercase;border-top:1px solid rgba(255,255,255,.05);margin-top:4px;">VeloClear</div>
+  <div style="font-size:9px;font-weight:700;letter-spacing:.08em;color:rgba(255,255,255,.28);padding:8px 14px 2px;text-transform:uppercase;border-top:1px solid rgba(255,255,255,.05);margin-top:2px;">VeloClear</div>
   <div class="nav-item" onclick="go('newproject')" data-label="New Project"><div class="ni-icon">➕</div>New Project</div>
   <div class="nav-item" onclick="go('delivery-answer')" data-label="Delivery Answer"><div class="ni-icon">📋</div>Delivery Answer</div>
   <div class="nav-item" onclick="go('learning')" data-label="Learning Library"><div class="ni-icon">📚</div>Learning Library</div>
-  <div style="font-size:9px;font-weight:700;letter-spacing:.08em;color:rgba(255,255,255,.28);padding:12px 14px 4px;text-transform:uppercase;border-top:1px solid rgba(255,255,255,.05);margin-top:4px;">Portfolio</div>
+  <div style="font-size:9px;font-weight:700;letter-spacing:.08em;color:rgba(255,255,255,.28);padding:8px 14px 2px;text-transform:uppercase;border-top:1px solid rgba(255,255,255,.05);margin-top:2px;">Portfolio</div>
   <div class="nav-item active" onclick="go('dashboard')" data-label="Dashboard"><div class="ni-icon">📊</div>Dashboard<span class="ni-alert"></span></div>
-  <div style="font-size:9px;font-weight:700;letter-spacing:.08em;color:rgba(255,255,255,.28);padding:12px 14px 4px;text-transform:uppercase;border-top:1px solid rgba(255,255,255,.05);margin-top:4px;">Phase 4 — Risk &amp; RAID</div>
+  <div style="font-size:9px;font-weight:700;letter-spacing:.08em;color:rgba(255,255,255,.28);padding:8px 14px 2px;text-transform:uppercase;border-top:1px solid rgba(255,255,255,.05);margin-top:2px;">Phase 4 — Risk &amp; RAID</div>
   <div class="nav-item" onclick="go('raid')" data-label="RAID Log"><div class="ni-icon">🎯</div>RAID Log<span class="nav-badge" id="b-risk">3</span></div>
   <div class="nav-item" onclick="go('heatmap')" data-label="Risk Heat Map"><div class="ni-icon">🔥</div>Risk Heat Map</div>
   <div class="nav-item" onclick="go('issues')" data-label="Issue Log"><div class="ni-icon">⚠️</div>Issue Log<span class="nav-badge" id="b-issues">1</span></div>
-  <div style="font-size:9px;font-weight:700;letter-spacing:.08em;color:rgba(255,255,255,.28);padding:12px 14px 4px;text-transform:uppercase;border-top:1px solid rgba(255,255,255,.05);margin-top:4px;">Phase 5 — Stakeholders</div>
+  <div style="font-size:9px;font-weight:700;letter-spacing:.08em;color:rgba(255,255,255,.28);padding:8px 14px 2px;text-transform:uppercase;border-top:1px solid rgba(255,255,255,.05);margin-top:2px;">Phase 5 — Stakeholders</div>
   <div class="nav-item" onclick="go('stakeholders')" data-label="Stakeholders"><div class="ni-icon">👥</div>Stakeholder Register</div>
   <div class="nav-item" onclick="go('pigrid')" data-label="Power-Interest Grid"><div class="ni-icon">📍</div>Power-Interest Grid</div>
   <div class="nav-item" onclick="go('engagement')" data-label="Engagement Matrix"><div class="ni-icon">📈</div>Engagement Matrix</div>
   <div class="nav-item" onclick="go('raci')" data-label="RACI Matrix"><div class="ni-icon">📋</div>RACI Matrix</div>
   <div class="nav-item" onclick="go('comms')" data-label="Communications Plan"><div class="ni-icon">📡</div>Communications Plan</div>
-  <div style="font-size:9px;font-weight:700;letter-spacing:.08em;color:rgba(255,255,255,.28);padding:12px 14px 4px;text-transform:uppercase;border-top:1px solid rgba(255,255,255,.05);margin-top:4px;">Phase 6 — Governance</div>
+  <div style="font-size:9px;font-weight:700;letter-spacing:.08em;color:rgba(255,255,255,.28);padding:8px 14px 2px;text-transform:uppercase;border-top:1px solid rgba(255,255,255,.05);margin-top:2px;">Phase 6 — Governance</div>
   <div class="nav-item" onclick="go('rag')" data-label="RAG Dashboard"><div class="ni-icon">🚦</div>RAG Dashboard</div>
   <div class="nav-item" onclick="go('cr')" data-label="Change Control"><div class="ni-icon">🔄</div>Change Control<span class="nav-badge" id="b-cr">2</span></div>
   <div class="nav-item" onclick="go('escalation')" data-label="Escalation Tracker"><div class="ni-icon">📣</div>Escalation Tracker</div>
@@ -1216,7 +1218,7 @@ select:focus, input:focus, textarea:focus {
   <div class="nav-item" onclick="go('audit')" data-label="Audit Trail"><div class="ni-icon">🔏</div>Audit Trail</div>
   <div class="nav-item" onclick="go('reports')" data-label="Auto Reports"><div class="ni-icon">📄</div>Auto Reports</div>
   <div class="nav-item" onclick="go('import')" data-label="Import / Export"><div class="ni-icon">⬆️</div>Import / Export</div>
-  <div style="font-size:9px;font-weight:700;letter-spacing:.08em;color:rgba(255,255,255,.28);padding:12px 14px 4px;text-transform:uppercase;border-top:1px solid rgba(255,255,255,.05);margin-top:4px;">Phase 7 — Agile Delivery</div>
+  <div style="font-size:9px;font-weight:700;letter-spacing:.08em;color:rgba(255,255,255,.28);padding:8px 14px 2px;text-transform:uppercase;border-top:1px solid rgba(255,255,255,.05);margin-top:2px;">Phase 7 — Agile Delivery</div>
   <div class="nav-item" onclick="go('backlog')" data-label="Product Backlog"><div class="ni-icon">📝</div>Product Backlog</div>
   <div class="nav-item" onclick="go('sprint')" data-label="Sprint Board"><div class="ni-icon">🏃</div>Sprint Board<span class="nav-badge" id="b-sprint">0</span></div>
   <div class="nav-item" onclick="go('burndown')" data-label="Burn-Down"><div class="ni-icon">📉</div>Burn-Down Chart</div>
@@ -1224,7 +1226,7 @@ select:focus, input:focus, textarea:focus {
   <div class="nav-item" onclick="go('retro')" data-label="Retrospective"><div class="ni-icon">🔄</div>Retrospective</div>
   <div class="nav-item" onclick="go('delivery')" data-label="Delivery Health"><div class="ni-icon">🎯</div>Delivery Health</div>
 
-  <div style="font-size:9px;font-weight:700;letter-spacing:.08em;color:rgba(255,255,255,.28);padding:12px 14px 4px;text-transform:uppercase;border-top:1px solid rgba(255,255,255,.05);margin-top:4px;">Phase 8 — Programme Intelligence</div>
+  <div style="font-size:9px;font-weight:700;letter-spacing:.08em;color:rgba(255,255,255,.28);padding:8px 14px 2px;text-transform:uppercase;border-top:1px solid rgba(255,255,255,.05);margin-top:2px;">Phase 8 — Programme Intelligence</div>
   <div class="nav-item" onclick="go('timeline')" data-label="Programme Timeline"><div class="ni-icon">🗓️</div>Programme Timeline</div>
   <div class="nav-item" onclick="go('intelligence')" data-label="Sprint Intelligence"><div class="ni-icon">🧠</div>Sprint Intelligence</div>
   <div class="nav-item" onclick="go('impact')" data-label="Impact Trace"><div class="ni-icon">🔍</div>Impact Trace</div>
@@ -2355,12 +2357,17 @@ function go(id) {
   setTimeout(() => { render(id); updateTbBtn(); }, 30);
 }
 function render(id) {
-  const fns = {dashboard:rDash,raid:rRaid,heatmap:()=>setTimeout(()=>rHeat('full-hm'),50),issues:rFullIssues,stakeholders:rStakeholders,pigrid:rPIGrid,engagement:rEngagement,raci:rRaci,comms:rComms,rag:rRAG,cr:rCR,escalation:rEscalation,decisions:rDecisions,audit:rAudit,backlog:rBacklog,sprint:rSprint,burndown:rBurndown,velocity:rVelocity,retro:rRetro,delivery:rDelivery,timeline:rTimeline,intelligence:rIntelligence,impact:rImpact,people:rPeople,evm:rEVM,newproject:rNewProject,'delivery-answer':rDeliveryAnswer,learning:rLearning,integrations:rIntegrations};
+  const fns = {dashboard:rDash,raid:rRaid,heatmap:()=>setTimeout(()=>rHeat('full-hm'),50),issues:rFullIssues,stakeholders:rStakeholders,pigrid:rPIGrid,engagement:rEngagement,raci:rRaci,comms:rComms,rag:rRAG,cr:rCR,escalation:rEscalation,decisions:rDecisions,audit:rAudit,backlog:rBacklog,sprint:rSprint,burndown:rBurndown,velocity:rVelocity,retro:rRetro,delivery:rDelivery,timeline:rTimeline,intelligence:rIntelligence,impact:rImpact,people:rPeople,evm:rEVM,newproject:rNewProject,'delivery-answer':rDeliveryAnswer,learning:rLearning,integrations:rIntegrations,
+    reports:rReports,
+    import:rImport
+  };
   if (fns[id]) fns[id]();
 }
 
 // ── MODALS ────────────────────────────────────────────
 function showM(id) { document.getElementById(id).classList.add('open'); }
+function openM(id) { showM(id); }
+
 function closeM(id) { document.getElementById(id).classList.remove('open'); }
 document.addEventListener('click', e => { if (e.target.classList.contains('modal-overlay')) e.target.classList.remove('open'); });
 
@@ -2522,7 +2529,28 @@ function rDash() {
   // ── Portfolio RAG Summary table ──
   const ragBody = document.getElementById('dash-rag-body');
   if (ragBody) {
-    const cols = ['scope','schedule','cost','quality','risk'];
+    const cols = ['scope','schedule','cost','quality','risk',
+    {id:'R004',projectId:'P004',desc:'Legacy schema may have unmapped fields discovered mid-migration',
+     category:'Technical',probability:'Medium',impact:'High',score:9,
+     mitigation:'Build contingency schema mapping tool in Sprint 2',
+     owner:'TM018',status:'Closed',ragStatus:'green',
+     triggerCondition:'Data profiling reveals >5% unmapped fields in any module'},
+    {id:'R005',projectId:'P004',desc:'Migration window overrun causing production downtime',
+     category:'Operational',probability:'Low',impact:'Critical',score:8,
+     mitigation:'Rollback procedure tested and documented. Hard stop at 6am.',
+     owner:'TM001',status:'Closed',ragStatus:'green',
+     triggerCondition:'Migration not complete by 5:30am window'},
+    {id:'R006',projectId:'P005',desc:'Third-party API vendor releases breaking change without notice',
+     category:'Technical',probability:'Medium',impact:'High',score:9,
+     mitigation:'Add 90-day notice clause to vendor contract. Build API version lock in sprint planning.',
+     owner:'TM004',status:'Closed',ragStatus:'green',
+     triggerCondition:'Any third-party API version change during active development sprint'},
+    {id:'R007',projectId:'P005',desc:'Client requests out-of-scope items during UAT as mandatory',
+     category:'Scope',probability:'High',impact:'Medium',score:8,
+     mitigation:'Re-confirm scope boundary document at UAT entry gate. Invoke change control immediately.',
+     owner:'TM001',status:'Closed',ragStatus:'green',
+     triggerCondition:'Any scope addition request during UAT phase'}
+  ];
     const colLabel = {'scope':'Scope','schedule':'Schedule','cost':'Cost','quality':'Quality','risk':'Risk'};
     const ragDot = r => {
       const col = r==='green'?'#10B981':r==='amber'?'#F59E0B':r==='red'?'#EF4444':'#94A3B8';
@@ -4010,7 +4038,7 @@ function rTimeline() {
             };
 
             return `<div
-              onclick="${si?`openDrawer('${si.id}')`:'null'}"
+              onclick="if(this.getAttribute('data-siid')){openDrawer(this.getAttribute('data-siid'));}" data-siid="${si ? si.id : ''}"
               style="
                 min-width:72px;max-width:72px;height:64px;border-radius:8px;
                 background:${bgMap[rag]||bgMap.future};
@@ -4840,16 +4868,16 @@ function skipSetupToApp() {
 // ── WIZARD ENGINE ─────────────────────────────────────────────
 const WIZ_QUESTIONS = [
   // ── CONVERSATION 1: FOUNDATION ──
-  {id:1, conv:'Foundation — The Why', q:'What is this project called?',
+  {id:1, conv:'Conversation 1 — Foundation', q:'What is this project called?',
    why:'The project name appears on every report, every communication, every steering pack. Make it clear and specific.',
    type:'text', placeholder:'e.g. Branch Manager Mobile App, Nexus Compliance Portal', field:'name', required:true},
 
-  {id:2, conv:'Foundation — The Why', q:'What problem does this project solve — or what opportunity does it create?',
+  {id:2, conv:'Conversation 1 — Foundation', q:'What problem does this project solve — or what opportunity does it create?',
    why:'This is the single statement everyone returns to when scope creep appears or priorities conflict. If a decision does not serve this purpose, it probably should not be made.',
    type:'textarea', placeholder:'Write in plain language as if explaining to someone who knows nothing about your organisation.\n\ne.g. "Branch managers are missing urgent client alerts because they only check email. We need push notifications so response time drops from 4 hours to 30 minutes."',
    field:'purpose', required:true},
 
-  {id:3, conv:'Foundation — The Why', q:'Who asked for this project — and why does it need to happen now?',
+  {id:3, conv:'Conversation 1 — Foundation', q:'Who asked for this project — and why does it need to happen now?',
    why:'The urgency driver determines your escalation strategy before the project starts. A regulatory deadline is non-negotiable. An internal initiative can slip. Know which one you have.',
    type:'options', field:'urgencyType', options:[
      {value:'regulatory', icon:'⚖️', title:'Regulatory or Compliance Deadline', desc:'Non-negotiable. Missing this date has legal or financial consequences.'},
@@ -4859,22 +4887,22 @@ const WIZ_QUESTIONS = [
      {value:'improvement', icon:'🔧', title:'Internal Improvement Initiative', desc:'Valuable but flexible. Priority may compete with other initiatives.'}
    ]},
 
-  {id:4, conv:'Foundation — The Why', q:'What will measurably exist at the end of this project that does not exist today?',
+  {id:4, conv:'Conversation 1 — Foundation', q:'What will measurably exist at the end of this project that does not exist today?',
    why:'Not activities — outcomes. The test: Can you measure whether this exists or not on the last day? If yes, it is a good outcome statement. If it is vague, delays are already being built in.',
    type:'textarea', placeholder:'Describe the deliverable and its measurable impact.\n\ne.g. "Branch managers will have a mobile app on their phones that sends them client alerts within 60 seconds. Response time will drop from 4 hours to 30 minutes — measurable at 30-day post-launch review."',
    field:'outcome', required:true},
 
-  {id:5, conv:'Foundation — The Why', q:'How will you know on the last day whether this project truly succeeded?',
+  {id:5, conv:'Conversation 1 — Foundation', q:'How will you know on the last day whether this project truly succeeded?',
    why:'This becomes your outcome measurement plan — the difference between "we delivered the app" (activity) and "response time dropped to 30 minutes" (value). Success criteria defined now prevent arguments at closure.',
    type:'textarea', placeholder:'Write 2–3 specific, measurable success criteria with numbers.\n\ne.g.\n• Branch manager alert response time ≤ 30 minutes (measured 30 days post-launch)\n• App adoption rate ≥ 80% of target users within 60 days\n• Zero critical security vulnerabilities at launch',
    field:'successCriteria', required:true},
 
-  {id:6, conv:'Foundation — The Why', q:'What is explicitly OUT of scope for this project?',
+  {id:6, conv:'Conversation 1 — Foundation', q:'What is explicitly OUT of scope for this project?',
    why:'Every scope dispute that ever caused a delay started with something that was never formally excluded. This is the most skipped question in project management. VeloClear makes it mandatory.',
    type:'textarea', placeholder:'List what will NOT be delivered in this project.\n\ne.g.\n• Desktop or web version (mobile only)\n• Integration with third-party CRM (Phase 2)\n• Offline mode for poor connectivity areas\n• Multi-language support',
    field:'outOfScope', required:false},
 
-  {id:7, conv:'Foundation — The Why', q:'Has a similar project been done before — in your organisation or elsewhere?',
+  {id:7, conv:'Conversation 1 — Foundation', q:'Has a similar project been done before — in your organisation or elsewhere?',
    why:'Starting with institutional knowledge prevents repeating the same mistakes. VeloClear will surface relevant learnings from the library automatically.',
    type:'options', field:'similarProject', options:[
      {value:'yes_internal', icon:'✅', title:'Yes — we have done this before internally', desc:'I can reference what we learned last time.'},
@@ -4884,7 +4912,7 @@ const WIZ_QUESTIONS = [
    ]},
 
   // ── CONVERSATION 2: CONSTRAINTS ──
-  {id:8, conv:'Constraints — The Limits', q:'What is the target delivery date — and what type of deadline is it?',
+  {id:8, conv:'Conversation 2 — Constraints', q:'What is the target delivery date — and what type of deadline is it?',
    why:'A date with a reason is a constraint. A date without a reason is a guess. VeloClear will flag if your team capacity makes the date unrealistic before you commit to it publicly.',
    type:'date_with_type', field:'targetDate', dateField:'deliveryDate', typeField:'dateType',
    dateLabel:'Target delivery date',
@@ -4895,37 +4923,37 @@ const WIZ_QUESTIONS = [
      {value:'estimated', label:'Estimated — Based on team capacity (flexible)'}
    ]},
 
-  {id:9, conv:'Constraints — The Limits', q:'What is the approved budget for this project?',
+  {id:9, conv:'Conversation 2 — Constraints', q:'What is the approved budget for this project?',
    why:'This is your BAC — Budget at Completion. It becomes the baseline for all EVM calculations. CPI, EAC, and VAC all derive from this number. Enter 0 if budget is not yet approved.',
    type:'currency', field:'bac', placeholder:'e.g. 3000000', label:'Budget at Completion (₹)',
    hint:'Enter in Rupees. e.g. ₹30 Lakhs = 3000000'},
 
-  {id:10, conv:'Constraints — The Limits', q:'Of these three — scope, schedule, cost — which ONE is fixed and which can flex?',
+  {id:10, conv:'Conversation 2 — Constraints', q:'Of these three — scope, schedule, cost — which ONE is fixed and which can flex?',
    why:'No project can fix all three. Making this explicit at the start prevents the most common argument in delivery. When something goes wrong, this decision tells you which lever to pull.',
    type:'triple_constraint', field:'fixedConstraint'},
 
-  {id:11, conv:'Constraints — The Limits', q:'What quality standard must this project meet?',
+  {id:11, conv:'Conversation 2 — Constraints', q:'What quality standard must this project meet?',
    why:'Quality is the constraint that gets sacrificed when the other three are all "fixed." Making it explicit prevents this. A specific standard also defines your Definition of Done.',
    type:'textarea', placeholder:'Be specific. Not "high quality" but measurable standards.\n\ne.g.\n• SEBI AMFI compliance (mandatory)\n• App performance: load time < 3 seconds on 4G\n• Security: no critical vulnerabilities (OWASP Top 10)\n• Test coverage: > 85% unit test coverage',
    field:'qualityStandard'},
 
-  {id:12, conv:'Constraints — The Limits', q:'Are there any other non-negotiable constraints I have not mentioned?',
+  {id:12, conv:'Conversation 2 — Constraints', q:'Are there any other non-negotiable constraints I have not mentioned?',
    why:'Every project has at least one unique constraint that does not fit a standard category. This is where you capture it — before it surprises you mid-delivery.',
    type:'textarea', placeholder:'e.g. Must use existing on-premise server (no cloud). All data must remain within India. Procurement process requires 6-week vendor onboarding.',
    field:'otherConstraints', required:false},
 
   // ── CONVERSATION 3: PEOPLE ──
-  {id:13, conv:'People — Through Whom', q:'Who is the sponsor — the single person accountable if this project fails?',
+  {id:13, conv:'Conversation 3 — People', q:'Who is the sponsor — the single person accountable if this project fails?',
    why:'If the answer is "a steering committee" — that is governance, not sponsorship. One person must own the outcome. Without a named sponsor, escalations have no destination and decisions take forever.',
    type:'person', field:'sponsor',
    nameField:'sponsorName', roleField:'sponsorRole', emailField:'sponsorEmail',
    hint:'One person. Not a team. The person who will stand in front of the client or board and say "this is my project."'},
 
-  {id:14, conv:'People — Through Whom', q:'How will this project be delivered?',
+  {id:14, conv:'Conversation 3 — People', q:'How will this project be delivered?',
    why:'Your delivery method determines every subsequent question in this wizard, the modules VeloClear activates, and the governance framework it sets up.',
    type:'method_select', field:'method'},
 
-  {id:15, conv:'People — Through Whom', q:'How large is the project team?',
+  {id:15, conv:'Conversation 3 — People', q:'How large is the project team?',
    why:'Team size determines the complexity of your RACI, governance model, and communication plan. A 3-person team and a 50-person team have very different coordination needs.',
    type:'options', field:'teamSize', options:[
      {value:'solo', icon:'👤', title:'Solo — Just me', desc:'You are the PM and the doer. Lightweight tracking.'},
@@ -4935,41 +4963,41 @@ const WIZ_QUESTIONS = [
      {value:'programme', icon:'🏛️', title:'Programme — 100+ people', desc:'Multiple projects or teams. ART-level coordination. PI Planning.'}
    ]},
 
-  {id:16, conv:'People — Through Whom', q:'Are any team members shared with other active projects?',
+  {id:16, conv:'Conversation 3 — People', q:'Are any team members shared with other active projects?',
    why:'Shared resources are the most common untracked cause of sprint delays. If two projects share a QA lead and both reach UAT at the same time, one of them will slip. VeloClear flags this conflict before it happens.',
    type:'yesno_detail', field:'sharedResources',
    yesPrompt:'Name the shared team members and their other projects. VeloClear will flag capacity conflicts.',
    yesPlaceholder:'e.g. QA Lead (Meena) — also on Nexus Compliance Portal\nDevOps Engineer (Rohit) — shared across all 3 projects'},
 
-  {id:17, conv:'People — Through Whom', q:'Does this project depend on any external vendors, contractors, or other teams?',
+  {id:17, conv:'Conversation 3 — People', q:'Does this project depend on any external vendors, contractors, or other teams?',
    why:'External dependencies immediately pre-populate your Dependencies register in the RAID log. Every external dependency needs an owner, a delivery date, and a risk rating.',
    type:'yesno_detail', field:'externalDeps',
    yesPrompt:'List what you depend on externally, who provides it, and when you need it.',
    yesPlaceholder:'e.g. Vendor API documentation — TechBridge Systems — needed by Sprint 2 Day 1\nUAT test data — Client IT Team — needed by Sprint 4'},
 
-  {id:18, conv:'People — Through Whom', q:'Is there a key person whose absence would stop this project?',
+  {id:18, conv:'Conversation 3 — People', q:'Is there a key person whose absence would stop this project?',
    why:'This is the People risk that gets missed most often. The developer who knows the legacy system. The compliance officer who is the only one who can sign off. Document it now.',
    type:'yesno_detail', field:'keyPerson',
    yesPrompt:'Who is this person, what do they uniquely own, and what is the backup plan?',
    yesPlaceholder:'e.g. Arjun Kumar (Tech Lead) — only person who knows the vendor API integration design. Backup: document all integration decisions daily in Confluence.'},
 
   // ── CONVERSATION 4: RISKS ──
-  {id:19, conv:'Risks — What Could Go Wrong', q:'What is the single biggest thing that could prevent this project from delivering on time?',
+  {id:19, conv:'Conversation 4 — Risks', q:'What is the single biggest thing that could prevent this project from delivering on time?',
    why:'Your gut is usually right. This becomes Risk R001 — the primary risk — and gets the most attention in your RAID log. Write it as a specific scenario, not a vague concern.',
    type:'textarea', field:'biggestRisk', required:true,
    placeholder:'Write as a specific scenario.\n\ne.g. "The third-party API vendor may fail to deliver the sandbox environment before Sprint 2, blocking all integration work and delaying go-live by 3–4 weeks."'},
 
-  {id:20, conv:'Risks — What Could Go Wrong', q:'Which of these risk categories apply to your project?',
+  {id:20, conv:'Conversation 4 — Risks', q:'Which of these risk categories apply to your project?',
    why:'Each selection pre-populates your RAID log with a complete risk entry — description, probability, impact, trigger, and mitigation. You review and adjust. You do not start from zero.',
    type:'risk_checklist', field:'riskCategories'},
 
-  {id:21, conv:'Risks — What Could Go Wrong', q:'What assumptions are you making that, if wrong, would significantly change this project?',
+  {id:21, conv:'Conversation 4 — Risks', q:'What assumptions are you making that, if wrong, would significantly change this project?',
    why:'Most projects fail this question and spend months arguing about assumptions that were never documented. Name them now. Set a validation date for each one.',
    type:'textarea', field:'assumptions', required:false,
    placeholder:'List assumptions that must be true for this project to succeed.\n\ne.g.\n• Compliance team will complete reviews within 5 working days\n• Client will provide access to test environment by Sprint 1 Day 3\n• Budget approval will be confirmed before Sprint 2 starts'},
 
   // ── CONVERSATION 5: GOVERNANCE ──
-  {id:22, conv:'Governance — Who Decides', q:'How often will you report project status to your sponsor or steering committee?',
+  {id:22, conv:'Conversation 5 — Governance', q:'How often will you report project status to your sponsor or steering committee?',
    why:'This sets your communication cadence automatically. Governance without a regular cadence is just bureaucracy. Governance with a cadence is accountability.',
    type:'options', field:'reportingCadence', options:[
      {value:'weekly', icon:'📅', title:'Weekly', desc:'Active projects with high risk or stakeholder complexity'},
@@ -4978,16 +5006,16 @@ const WIZ_QUESTIONS = [
      {value:'milestone', icon:'🏁', title:'Milestone-based', desc:'Waterfall projects. Report at phase gates.'}
    ]},
 
-  {id:23, conv:'Governance — Who Decides', q:'Who needs to approve budget changes — and at what threshold?',
+  {id:23, conv:'Conversation 5 — Governance', q:'Who needs to approve budget changes — and at what threshold?',
    why:'Without documented decision rights, every decision becomes a negotiation. These thresholds drive automatic CR routing in VeloClear.',
    type:'decision_rights', field:'decisionRights'},
 
-  {id:24, conv:'Governance — Who Decides', q:'Who are your escalation contacts at each stage?',
+  {id:24, conv:'Conversation 5 — Governance', q:'Who are your escalation contacts at each stage?',
    why:'Who do you call at 9pm when a critical risk fires? Escalation contacts defined now mean you never have to search for a phone number in a crisis.',
    type:'escalation_contacts', field:'escalationContacts'},
 
   // ── CONVERSATION 6: MEASUREMENT ──
-  {id:25, conv:'Measurement — How You Track', q:'How long is each sprint or delivery cycle?',
+  {id:25, conv:'Conversation 6 — Measurement', q:'How long is each sprint or delivery cycle?',
    why:'Your sprint length sets the heartbeat of the project. Two weeks is the most common for Agile. Waterfall projects use phase gate milestones instead.',
    type:'options', field:'sprintDays', options:[
      {value:7, icon:'⚡', title:'1 week', desc:'High urgency, frequent feedback, very short cycles'},
@@ -4997,21 +5025,21 @@ const WIZ_QUESTIONS = [
      {value:0, icon:'🏁', title:'Milestone-based (Waterfall)', desc:'No sprints — delivery tracked by phase gate completion'}
    ]},
 
-  {id:26, conv:'Measurement — How You Track', q:'What is your team\'s estimated sprint velocity — story points per sprint?',
+  {id:26, conv:'Conversation 6 — Measurement', q:'What is your team\'s estimated sprint velocity — story points per sprint?',
    why:'This is the number VeloClear uses to forecast your delivery date. If you do not know yet, it will calibrate automatically after Sprint 1 and Sprint 2 using your actual delivery data.',
    type:'velocity_input', field:'velocity'},
 
-  {id:27, conv:'Measurement — How You Track', q:'What does "Done" mean for this project?',
+  {id:27, conv:'Conversation 6 — Measurement', q:'What does "Done" mean for this project?',
    why:'Without a Definition of Done, "90% complete" is the status that never becomes 100%. Every story on your sprint board must meet every criterion on this list before it can be marked Done.',
    type:'dod_builder', field:'definitionOfDone'},
 
-  {id:28, conv:'Measurement — How You Track', q:'How will you measure whether this project delivered real value — not just on time and on budget?',
+  {id:28, conv:'Conversation 6 — Measurement', q:'How will you measure whether this project delivered real value — not just on time and on budget?',
    why:'This is the difference between delivering the project and delivering the outcome. Tied to your success criteria from Question 5. Most projects never measure this. Yours will.',
    type:'textarea', field:'valueMeasurement', required:false,
    placeholder:'Link your success criteria to a measurement plan.\n\ne.g.\n• Response time drop: measured by ops team at Day 30 and Day 90 post-launch using existing monitoring tool\n• App adoption: tracked via app analytics dashboard — PM reviews monthly for 6 months\n• User satisfaction: NPS survey at 60 days post-launch'},
 
   // ── CONVERSATION 7: LEARNING ──
-  {id:29, conv:'Learning — Build on the Past', q:'Has this team worked together before?',
+  {id:29, conv:'Conversation 7 — Learning', q:'Has this team worked together before?',
    why:'A team that has worked together has established rhythms. A new team needs explicit working agreements, a team charter, and more structured communication in the first two sprints.',
    type:'options', field:'teamHistory', options:[
      {value:'same', icon:'✅', title:'Same team as last project', desc:'We know each other. Established working patterns.'},
@@ -5020,20 +5048,20 @@ const WIZ_QUESTIONS = [
      {value:'new', icon:'🆕', title:'New team — we have not worked together', desc:'Everything needs to be established from scratch. Allow extra time in Sprint 1.'}
    ]},
 
-  {id:30, conv:'Learning — Build on the Past', q:'What went wrong on the last similar project you were involved in?',
+  {id:30, conv:'Conversation 7 — Learning', q:'What went wrong on the last similar project you were involved in?',
    why:'Starting with institutional knowledge prevents repeating history. Your answer pre-populates the RAID log with lessons-learned risks. The most accurate risk register is one built from real experience.',
    type:'textarea', field:'pastLessons', required:false,
    placeholder:'What do you wish you had known at the start of your last project?\n\ne.g. "Compliance reviews always take longer than estimated. We should have built a 7-day buffer in every sprint. Instead we found out in Sprint 4 and had to replan."\n\nIf this is your first project, leave blank.'},
 
-  {id:31, conv:'Learning — Build on the Past', q:'What is the one thing you are most worried about on this project?',
+  {id:31, conv:'Conversation 7 — Learning', q:'What is the one thing you are most worried about on this project?',
    why:'The honest answer. This goes into your PM Notes — visible only to you. It is not governance. It is self-awareness. And it is often the most accurate early warning signal in the entire project.',
    type:'textarea', field:'pmWorry', required:false,
    placeholder:'Be honest. This is private — only you can see it.\n\ne.g. "The client has a history of adding scope at the last minute and then blaming us for being late. I am worried we will agree to too many CRs under pressure."'},
 
   // ── FINAL REVIEW ──
-  {id:32, conv:'Final Review', q:'Review: Project Identity', type:'review_identity', field:'review1'},
-  {id:33, conv:'Final Review', q:'Review: Constraints & Risks', type:'review_constraints', field:'review2'},
-  {id:34, conv:'Final Review', q:'Your project is ready. Here is what VeloClear built from your answers.', type:'wizard_complete', field:'complete'}
+  {id:32, conv:'Conversation 8 — Final Review', q:'Review: Project Identity', type:'review_identity', field:'review1'},
+  {id:33, conv:'Conversation 8 — Final Review', q:'Review: Constraints & Risks', type:'review_constraints', field:'review2'},
+  {id:34, conv:'Conversation 8 — Final Review', q:'Your project is ready. Here is what VeloClear built from your answers.', type:'wizard_complete', field:'complete'}
 ];
 
 let wizStep = 1;
@@ -6408,6 +6436,110 @@ function initScrollReveal() {
   document.querySelectorAll('.vc-reveal').forEach(el => obs.observe(el));
 }
 
+
+function rReports() {
+  const el = document.getElementById('s-reports');
+  if (!el) return;
+  const reports = [
+    {id:'RPT001',name:'Portfolio RAG Summary',type:'Governance',freq:'Weekly',lastRun:'2024-03-15',owner:'TM001',format:'PDF'},
+    {id:'RPT002',name:'EVM Performance Dashboard',type:'Financial',freq:'Fortnightly',lastRun:'2024-03-08',owner:'TM001',format:'Excel'},
+    {id:'RPT003',name:'Sprint Velocity Tracker',type:'Agile',freq:'Per Sprint',lastRun:'2024-03-10',owner:'TM001',format:'PDF'},
+    {id:'RPT004',name:'Risk & Issue Register',type:'Risk',freq:'Weekly',lastRun:'2024-03-14',owner:'TM001',format:'PDF'},
+    {id:'RPT005',name:'Steering Committee Pack',type:'Executive',freq:'Fortnightly',lastRun:'2024-03-08',owner:'TM001',format:'PPT'},
+    {id:'RPT006',name:'Delay Trace Report',type:'Intelligence',freq:'On demand',lastRun:'2024-03-12',owner:'TM001',format:'PDF'},
+    {id:'RPT007',name:'Learning Library Export',type:'Intelligence',freq:'Monthly',lastRun:'2024-03-01',owner:'TM001',format:'PDF'},
+    {id:'RPT008',name:'Team Capacity Report',type:'Resource',freq:'Per Sprint',lastRun:'2024-03-10',owner:'TM001',format:'Excel'},
+  ];
+  const typeCol = {Governance:'var(--indigo)',Financial:'var(--emerald)',Agile:'var(--teal)',
+    Risk:'var(--amber)',Executive:'var(--purple)',Intelligence:'#00D4AA',Resource:'var(--blue)'};
+  const cards = reports.map(r => `
+    <div class="card vc-enter" style="margin-bottom:12px;">
+      <div class="card-body" style="padding:16px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+        <div>
+          <div style="font-size:13px;font-weight:700;color:var(--ink);margin-bottom:4px;">${r.name}</div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;">
+            <span style="font-size:10px;font-weight:600;padding:2px 8px;border-radius:50px;background:${typeCol[r.type]||'var(--muted)'};color:#fff;">${r.type}</span>
+            <span style="font-size:11px;color:var(--muted);">📅 ${r.freq}</span>
+            <span style="font-size:11px;color:var(--muted);">Last: ${r.lastRun}</span>
+            <span style="font-size:11px;color:var(--muted);">📄 ${r.format}</span>
+          </div>
+        </div>
+        <div style="display:flex;gap:8px;">
+          <button class="btn btn-ghost btn-sm" onclick="toast('Generating ${r.name}...','info')">▶ Run Now</button>
+          <button class="btn btn-ghost btn-sm" onclick="toast('${r.name} scheduled','success')">🔔 Schedule</button>
+          <button class="btn btn-primary btn-sm" onclick="toast('Downloading ${r.name}','success')">⬇ Download</button>
+        </div>
+      </div>
+    </div>`).join('');
+
+  const body = el.querySelector('.page-content') || el;
+  const existing = el.querySelector('#reports-list');
+  if (existing) existing.innerHTML = cards;
+  else {
+    const div = document.createElement('div');
+    div.id = 'reports-list';
+    div.innerHTML = cards;
+    body.appendChild(div);
+  }
+}
+
+function rImport() {
+  const el = document.getElementById('s-import');
+  if (!el) return;
+  const integrations = [
+    {name:'Jira',icon:'🔵',status:'Connected',lastSync:'2 mins ago',records:'847 stories synced'},
+    {name:'Azure DevOps',icon:'🟣',status:'Connected',lastSync:'5 mins ago',records:'312 work items'},
+    {name:'MS Project',icon:'🟦',status:'Not connected',lastSync:'—',records:'—'},
+    {name:'Excel / CSV',icon:'🟢',status:'Ready',lastSync:'—',records:'Upload to import'},
+    {name:'Confluence',icon:'🔷',status:'Connected',lastSync:'1 hr ago',records:'24 pages synced'},
+    {name:'Slack',icon:'🟡',status:'Connected',lastSync:'Live',records:'Notifications active'},
+  ];
+  const cards = integrations.map(i => `
+    <div class="card vc-enter" style="margin-bottom:12px;">
+      <div class="card-body" style="padding:16px;display:flex;align-items:center;justify-content:space-between;gap:12px;">
+        <div style="display:flex;align-items:center;gap:12px;">
+          <span style="font-size:28px;">${i.icon}</span>
+          <div>
+            <div style="font-size:13px;font-weight:700;color:var(--ink);">${i.name}</div>
+            <div style="font-size:11px;color:var(--muted);">${i.records}</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;">
+          <div style="text-align:right;">
+            <div style="font-size:10px;font-weight:700;color:${i.status==='Connected'?'var(--emerald)':i.status==='Ready'?'var(--blue)':'var(--muted)'};">${i.status.toUpperCase()}</div>
+            <div style="font-size:10px;color:var(--muted);">Last sync: ${i.lastSync}</div>
+          </div>
+          <button class="btn btn-${i.status==='Connected'?'ghost':'primary'} btn-sm"
+            onclick="toast('${i.name} ${i.status==='Connected'?'sync triggered':'connection initiated'}','${i.status==='Connected'?'success':'info'}')">
+            ${i.status==='Connected'?'⟳ Sync':'Connect'}
+          </button>
+        </div>
+      </div>
+    </div>`).join('');
+
+  const existing = el.querySelector('#import-list');
+  if (existing) existing.innerHTML = cards;
+  else {
+    const div = document.createElement('div');
+    div.id = 'import-list';
+    div.innerHTML = cards;
+    el.querySelector('.page-content') ? el.querySelector('.page-content').appendChild(div) : el.appendChild(div);
+  }
+}
+
+
+function saveEscalation() {
+  const title = document.getElementById('esc-title').value.trim();
+  if (!title) { toast('Please enter an escalation title', 'warning'); return; }
+  const stage = document.getElementById('esc-stage').value;
+  const priority = document.getElementById('esc-priority').value;
+  const id = 'ESC' + String(Date.now()).slice(-4);
+  DB.escalations.push({ id, title, stage: parseInt(stage), priority,
+    status: 'Open', raised: new Date().toISOString().split('T')[0] });
+  closeM('m-escalation');
+  toast('Escalation ' + id + ' raised — Stage ' + stage, 'warning');
+  if (typeof rEscalation === 'function') rEscalation();
+}
 window.onload = () => {
   autoRAG(); updateBadges();
   initPhase7();
@@ -6646,6 +6778,50 @@ window.onload = () => {
   <div class="pi-actions">
     <button class="pi-install" onclick="installPWA()">Install App</button>
     <button class="pi-dismiss" onclick="dismissPWA()">Not now</button>
+  </div>
+</div>
+
+<!-- ═══ MODAL: ADD ESCALATION ═══ -->
+<div id="m-escalation" class="modal-backdrop" onclick="if(event.target===this)closeM('m-escalation')">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">🚨 Raise Escalation</div>
+      <button class="modal-close" onclick="closeM('m-escalation')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label class="form-label">Escalation Title</label>
+        <input id="esc-title" class="form-input" type="text" placeholder="Describe the escalation clearly">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Stage</label>
+        <select id="esc-stage" class="form-input">
+          <option value="1">Stage 1 — PM to Team Lead</option>
+          <option value="2">Stage 2 — PM to Sponsor</option>
+          <option value="3">Stage 3 — Sponsor to Client</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Priority</label>
+        <select id="esc-priority" class="form-input">
+          <option value="critical">Critical — response within 2 hours</option>
+          <option value="high">High — response within 24 hours</option>
+          <option value="medium">Medium — response within 48 hours</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Linked Issue / Risk (optional)</label>
+        <input id="esc-linked" class="form-input" type="text" placeholder="e.g. I003 or R006">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Action Required</label>
+        <textarea id="esc-action" class="form-input" rows="3" placeholder="What decision or resource is needed?"></textarea>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeM('m-escalation')">Cancel</button>
+      <button class="btn btn-primary" onclick="saveEscalation()">Raise Escalation</button>
+    </div>
   </div>
 </div>
 </body>

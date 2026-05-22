@@ -1056,7 +1056,7 @@ footer {
         </p>
         <div class="hero-cta-row">
           <a class="btn-hero-primary" href="VeloClear_v2.html?mode=demo&section=timeline">🗓️ See the Programme Timeline →</a>
-          <button class="btn-hero-secondary" onclick="window.open('VeloClear_v2.html?mode=demo&section=timeline','_self')">▶ Watch the portfolio view</button>
+          <button class="btn-hero-secondary" onclick="window.location.href='VeloClear_v2.html?mode=demo&section=timeline'">▶ Watch the portfolio view</button>
         </div>
         <div class="hero-proof">
           <div class="proof-item"><div class="proof-num">20+</div><div class="proof-label">Projects tracked simultaneously</div></div>
@@ -1547,12 +1547,9 @@ document.querySelectorAll('.challenge-card').forEach((card, i) => {
 
 // ── INIT ─────────────────────────────────────────────────
 window.addEventListener('DOMContentLoaded', () => {
-  // Check if returning visitor with saved preference
-  const saved = localStorage.getItem('vc_audience');
-  if (saved && AUDIENCES[saved]) {
-    // Show gate briefly then auto-select
-    setTimeout(() => selectAudience(saved), 200);
-  }
+  // Always show the gate fresh - don't auto-restore
+  // Users should always make a conscious choice
+  localStorage.removeItem('vc_audience');
   // Init counter animation
   initCounters();
 });
