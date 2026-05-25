@@ -7,6 +7,20 @@
 <meta name="description" content="Delivery intelligence platform for programme managers.">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css">
 <link rel="stylesheet" href="style.css">
+<style>
+/* Critical fixes */
+.sec { display: none !important; }
+.sec.active { display: block !important; }
+.modal-overlay { display:none; position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(15,23,42,.5); z-index:500; align-items:center; justify-content:center; backdrop-filter:blur(3px); }
+.modal-overlay.open { display:flex; }
+.modal { background:#fff; border-radius:12px; width:min(600px,94vw); max-height:90vh; overflow-y:auto; box-shadow:0 24px 64px rgba(15,23,42,.25); }
+.modal-header { display:flex; align-items:flex-start; justify-content:space-between; padding:18px 20px; border-bottom:1px solid #E8EEF4; }
+.modal-title { font-size:15px; font-weight:700; color:#0F172A; }
+.modal-body { padding:20px; }
+.modal-footer { padding:14px 20px; border-top:1px solid #E8EEF4; display:flex; justify-content:flex-end; gap:8px; }
+.modal-close { width:30px; height:30px; border-radius:6px; border:none; background:#F8FAFC; cursor:pointer; font-size:16px; display:flex; align-items:center; justify-content:center; color:#64748B; }
+.modal-close:hover { background:#E8EEF4; }
+</style>
 </head>
 <body>
 
@@ -1222,73 +1236,17 @@ RD (quick add to sprint) ═══ -->
 <!-- ══════════════════════════════════════════════════════════════
      SECTION: CREATE / SELECT PROJECT (dashboard addition)
 ══════════════════════════════════════════════════════════════ -->
-<section id="s-newproject" class="sec" style="display:none;">
-  <div class="page-header">
-    <div class="breadcrumb">VeloClear <span>›</span> Projects</div>
-    <div class="page-title">Start a New Project</div>
-    <div class="page-desc">The wizard guides you through 34 questions across 7 conversations. By the end, your RAID log, stakeholder register, governance framework, and sprint calendar are all set up automatically. Experienced PM? Use a template to get started in under 5 minutes.</div>
-  </div>
 
-  <!-- Template selection -->
-  <div style="margin-bottom:24px;">
-    <div style="font-size:11px;font-weight:700;color:var(--indigo);text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--border);">Start from a Template (optional)</div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px;margin-bottom:14px;" id="template-grid"></div>
-    <div style="font-size:12px;color:var(--muted);text-align:center;">or</div>
-  </div>
-
-  <!-- Start fresh -->
-  <div style="max-width:400px;margin:0 auto;text-align:center;">
-    <button class="new-project-btn" onclick="startWizard(null)">
-      <span style="font-size:20px;">🎯</span>
-      <div style="text-align:left;">
-        <div>Start from scratch</div>
-        <div style="font-size:11px;font-weight:400;opacity:.8">The wizard guides you through every step</div>
-      </div>
-    </button>
-    <div style="margin-top:20px;font-size:12px;color:var(--muted);">
-      ⏱ Takes 20–25 minutes for a new PM · 5–8 minutes with a template
-    </div>
-  </div>
-</section>
 
 <!-- ══════════════════════════════════════════════════════════════
      SECTION: DELIVERY ANSWER ENGINE
 ══════════════════════════════════════════════════════════════ -->
-<section id="s-delivery-answer" class="sec" style="display:none;">
-  <div class="page-header">
-    <div class="breadcrumb">VeloClear <span>›</span> Delivery Answer</div>
-    <div class="page-title">Did This Project Deliver?</div>
-    <div class="page-desc">Three levels of answer. The client gets the binary answer. The steering committee gets the intelligence answer. The organisation gets the learning answer.</div>
-  </div>
-  <div id="delivery-answer-container"></div>
-</section>
+
 
 <!-- ══════════════════════════════════════════════════════════════
      SECTION: LEARNING LIBRARY
 ══════════════════════════════════════════════════════════════ -->
-<section id="s-learning" class="sec" style="display:none;">
-  <div class="page-header">
-    <div class="breadcrumb">VeloClear <span>›</span> Learning Library</div>
-    <div class="page-title">Learning Library</div>
-    <div class="page-desc">Every lesson captured from every project. Searchable, filterable, and surfaced automatically when you start a similar project. This is your organisation's institutional memory — it grows with every project you close.</div>
-  </div>
-  <div style="display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap;">
-    <input class="form-input" id="ll-search" placeholder="Search learnings..." style="max-width:280px;" oninput="rLearning()">
-    <select class="form-select" id="ll-category" style="width:auto;" onchange="rLearning()">
-      <option value="">All Categories</option>
-      <option>Vendor Management</option><option>Stakeholder Engagement</option>
-      <option>Technical</option><option>Process</option><option>People</option>
-      <option>Governance</option><option>Scope Management</option>
-    </select>
-    <select class="form-select" id="ll-outcome" style="width:auto;" onchange="rLearning()">
-      <option value="">All Outcomes</option>
-      <option value="prevented">✓ Prevented Recurrence</option>
-      <option value="recurred">⚠ Recurred</option>
-      <option value="pending">⏳ Not Yet Verified</option>
-    </select>
-  </div>
-  <div id="learning-library-container"></div>
-</section>
+
 <div <div id="vc-setup-overlay" class="setup-ov">
   <div class="setup-card">
     <div style="text-align:center;margin-bottom:28px">
@@ -1370,73 +1328,17 @@ RD (quick add to sprint) ═══ -->
 <!-- ══════════════════════════════════════════════════════════════
      SECTION: CREATE / SELECT PROJECT (dashboard addition)
 ══════════════════════════════════════════════════════════════ -->
-<section id="s-newproject" class="sec" style="display:none;">
-  <div class="page-header">
-    <div class="breadcrumb">VeloClear <span>›</span> Projects</div>
-    <div class="page-title">Start a New Project</div>
-    <div class="page-desc">The wizard guides you through 34 questions across 7 conversations. By the end, your RAID log, stakeholder register, governance framework, and sprint calendar are all set up automatically. Experienced PM? Use a template to get started in under 5 minutes.</div>
-  </div>
 
-  <!-- Template selection -->
-  <div style="margin-bottom:24px;">
-    <div style="font-size:11px;font-weight:700;color:var(--indigo);text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--border);">Start from a Template (optional)</div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px;margin-bottom:14px;" id="template-grid"></div>
-    <div style="font-size:12px;color:var(--muted);text-align:center;">or</div>
-  </div>
-
-  <!-- Start fresh -->
-  <div style="max-width:400px;margin:0 auto;text-align:center;">
-    <button class="new-project-btn" onclick="startWizard(null)">
-      <span style="font-size:20px;">🎯</span>
-      <div style="text-align:left;">
-        <div>Start from scratch</div>
-        <div style="font-size:11px;font-weight:400;opacity:.8">The wizard guides you through every step</div>
-      </div>
-    </button>
-    <div style="margin-top:20px;font-size:12px;color:var(--muted);">
-      ⏱ Takes 20–25 minutes for a new PM · 5–8 minutes with a template
-    </div>
-  </div>
-</section>
 
 <!-- ══════════════════════════════════════════════════════════════
      SECTION: DELIVERY ANSWER ENGINE
 ══════════════════════════════════════════════════════════════ -->
-<section id="s-delivery-answer" class="sec" style="display:none;">
-  <div class="page-header">
-    <div class="breadcrumb">VeloClear <span>›</span> Delivery Answer</div>
-    <div class="page-title">Did This Project Deliver?</div>
-    <div class="page-desc">Three levels of answer. The client gets the binary answer. The steering committee gets the intelligence answer. The organisation gets the learning answer.</div>
-  </div>
-  <div id="delivery-answer-container"></div>
-</section>
+
 
 <!-- ══════════════════════════════════════════════════════════════
      SECTION: LEARNING LIBRARY
 ══════════════════════════════════════════════════════════════ -->
-<section id="s-learning" class="sec" style="display:none;">
-  <div class="page-header">
-    <div class="breadcrumb">VeloClear <span>›</span> Learning Library</div>
-    <div class="page-title">Learning Library</div>
-    <div class="page-desc">Every lesson captured from every project. Searchable, filterable, and surfaced automatically when you start a similar project. This is your organisation's institutional memory — it grows with every project you close.</div>
-  </div>
-  <div style="display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap;">
-    <input class="form-input" id="ll-search" placeholder="Search learnings..." style="max-width:280px;" oninput="rLearning()">
-    <select class="form-select" id="ll-category" style="width:auto;" onchange="rLearning()">
-      <option value="">All Categories</option>
-      <option>Vendor Management</option><option>Stakeholder Engagement</option>
-      <option>Technical</option><option>Process</option><option>People</option>
-      <option>Governance</option><option>Scope Management</option>
-    </select>
-    <select class="form-select" id="ll-outcome" style="width:auto;" onchange="rLearning()">
-      <option value="">All Outcomes</option>
-      <option value="prevented">✓ Prevented Recurrence</option>
-      <option value="recurred">⚠ Recurred</option>
-      <option value="pending">⏳ Not Yet Verified</option>
-    </select>
-  </div>
-  <div id="learning-library-container"></div>
-</section>
+
 <div id="drawer-overlay" class="drawer-overlay" onclick="closeDrawer()"></div>
 <div id="sprint-drawer" class="drawer">
   <div class="drawer-hd">
@@ -4455,26 +4357,33 @@ function completeSetup() {
 window.onload = function() {
   var today = new Date().toISOString().split('T')[0];
   document.querySelectorAll('input[type="date"]').forEach(function(i){ i.value = today; });
-
   var params = new URLSearchParams(window.location.search);
   var mode = params.get('mode'), section = params.get('section');
   var ov = document.getElementById('vc-setup-overlay');
 
+  function initApp(targetSec) {
+    document.querySelectorAll('.sec').forEach(function(s){ s.classList.remove('active'); });
+    var dash = document.getElementById('s-dashboard');
+    if (dash) dash.classList.add('active');
+    try { rDash(); } catch(e) { console.error('rDash error:', e); }
+    if (targetSec && targetSec !== 'dashboard') {
+      setTimeout(function(){ go(targetSec); }, 150);
+    }
+  }
+
   if (mode === 'demo') {
     if (ov) ov.classList.remove('open');
     VC.org.setupDone = true;
-    rDash();
-    if (section && section !== 'dashboard') go(section);
-    setTimeout(function(){ toast('Welcome to VeloClear — demo mode', 'info'); }, 600);
+    initApp(section);
+    setTimeout(function(){ toast('Welcome to VeloClear', 'info'); }, 800);
   } else if (mode === 'wizard') {
     if (ov) ov.classList.remove('open');
     VC.org.setupDone = true;
-    rDash();
-    setTimeout(function(){ startWizard(null); }, 200);
+    initApp(null);
+    setTimeout(function(){ startWizard(null); }, 300);
   } else {
     if (ov) ov.classList.add('open');
   }
-
   var so = document.getElementById('sb-overlay');
   if (so) so.addEventListener('click', toggleSidebar);
 };
