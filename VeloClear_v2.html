@@ -1278,15 +1278,7 @@ RD (quick add to sprint) ═══ -->
 <!-- ══════════════════════════════════════════════════════════════
      ROLE SWITCHER (demo all views)
 ══════════════════════════════════════════════════════════════ -->
-<div class="role-switcher" id="role-switcher">
-  <div style="font-size:9px;font-weight:700;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:1px;padding:6px 8px;white-space:nowrap;">View as:</div>
-  <button class="role-btn active" onclick="switchRole('pm',this)">👔 PM</button>
-  <button class="role-btn" onclick="switchRole('team',this)">💻 Team</button>
-  <button class="role-btn" onclick="switchRole('stakeholder',this)">👁 Stakeholder</button>
-  <button class="role-btn" onclick="switchRole('sponsor',this)">⭐ Sponsor</button>
-  <button class="role-btn" onclick="switchRole('pmo',this)">🏛 PMO</button>
-  <button class="role-btn" onclick="switchRole('auditor',this)">🔏 Auditor</button>
-</div>
+
 
 <!-- ══════════════════════════════════════════════════════════════
      SECTION: CREATE / SELECT PROJECT (dashboard addition)
@@ -1358,136 +1350,47 @@ RD (quick add to sprint) ═══ -->
   </div>
   <div id="learning-library-container"></div>
 </section>
-<div id="vc-setup-overlay" class="setup-ov">
-  <div class="vc-setup-card">
-    <div class="vc-brand">
-      <div class="vc-logo-big" style="display:flex;align-items:center;justify-content:center;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" style="width:64px;height:64px;flex-shrink:0"><defs><linearGradient id="mg64a" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#4F46E5"/><stop offset="100%" stop-color="#00D4AA"/></linearGradient></defs><rect width="64" height="64" rx="14" fill="url(#mg64a)"/><polygon points="10,14 22,14 32,42 29,48 26,48" fill="white"/><polygon points="26,48 32,42 54,14 51,14" fill="white" opacity="0.88"/><polygon points="25,47 32,35 39,47 32,50" fill="#00D4AA" opacity="0.85"/></svg></div>
-      <h1 style="font-family:Syne,sans-serif;font-size:28px;font-weight:800;letter-spacing:-.04em;"><span style="color:#fff">Velo</span><span style="color:#00D4AA">Clear</span></h1>
-      <p style="font-size:12px;color:rgba(255,255,255,.45);font-style:italic;letter-spacing:.02em;margin-bottom:6px;">Track every project. Trace every delay. Learn from everything.</p><p style="color:rgba(255,255,255,.5);font-size:13px;">Let's set up your workspace in under 5 minutes.</p>
+<div <div id="vc-setup-overlay" class="setup-ov">
+  <div class="setup-card">
+    <div style="text-align:center;margin-bottom:28px">
+      <div style="display:inline-flex;align-items:center;gap:10px;margin-bottom:8px">
+        <div class="sb-logo-mark">VC</div>
+        <div style="font-size:22px;font-weight:700;color:var(--ink)">Velo<span style="color:#818CF8">Clear</span></div>
+      </div>
+      <div style="font-size:14px;color:var(--muted)">Track &middot; Trace &middot; Learn</div>
     </div>
-
-    <!-- Step 1: Organisation -->
     <div id="setup-step-1">
-      <div style="margin-bottom:20px;">
-        <div style="font-size:11px;font-weight:700;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:6px;">Step 1 of 4 — Your Organisation</div>
-        <div style="font-size:18px;font-weight:700;color:#fff;margin-bottom:14px;">What is your organisation called?</div>
-        <input class="conv-input" id="setup-org-name" placeholder="e.g. Acme Group, Apex Solutions Ltd, Nexus Financial Services" style="background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.15);color:#fff;">
-        <div style="font-size:11px;color:rgba(255,255,255,.35);margin-top:6px;">This appears on all reports and dashboards. You can change it later in Settings.</div>
-      </div>
-      <div style="margin-bottom:20px;">
-        <div style="font-size:14px;font-weight:600;color:rgba(255,255,255,.7);margin-bottom:10px;">What best describes your organisation?</div>
-        <div class="setup-option active" id="orgtype-consulting" onclick="selectOrgType('consulting',this)">
-          <div class="so-icon">🏢</div>
-          <div class="so-body">
-            <div class="so-title">Consulting / Services Firm</div>
-            <div class="so-desc">You manage projects for multiple clients. Each client has separate projects, budgets, and governance.</div>
-          </div>
+      <div style="font-size:18px;font-weight:700;color:var(--ink);margin-bottom:6px">What type of organisation are you?</div>
+      <div style="font-size:13px;color:var(--muted);margin-bottom:20px">This helps VeloClear configure the right defaults for your portfolio.</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:24px">
+        <div class="setup-option" onclick="selectOrgType('consulting',this)" style="padding:16px;border:2px solid var(--border);border-radius:10px;cursor:pointer;transition:all .15s">
+          <div style="font-size:20px;margin-bottom:6px">🏢</div>
+          <div style="font-weight:600;color:var(--ink);margin-bottom:3px">Consulting / Services</div>
+          <div style="font-size:12px;color:var(--muted)">Multiple client projects with separate governance</div>
         </div>
-        <div class="setup-option" id="orgtype-enterprise" onclick="selectOrgType('enterprise',this)">
-          <div class="so-icon">🏗️</div>
-          <div class="so-body">
-            <div class="so-title">Enterprise / Group Company</div>
-            <div class="so-desc">Multiple business verticals or divisions. Projects run across the organisation and need portfolio visibility.</div>
-          </div>
+        <div class="setup-option" onclick="selectOrgType('enterprise',this)" style="padding:16px;border:2px solid var(--border);border-radius:10px;cursor:pointer;transition:all .15s">
+          <div style="font-size:20px;margin-bottom:6px">🏗</div>
+          <div style="font-weight:600;color:var(--ink);margin-bottom:3px">Enterprise / Group</div>
+          <div style="font-size:12px;color:var(--muted)">Multiple business verticals needing portfolio visibility</div>
         </div>
-        <div class="setup-option" id="orgtype-startup" onclick="selectOrgType('startup',this)">
-          <div class="so-icon">🚀</div>
-          <div class="so-body">
-            <div class="so-title">Startup / Growing Business</div>
-            <div class="so-desc">Small team, multiple initiatives. Need lightweight tracking that grows with you.</div>
-          </div>
+        <div class="setup-option" onclick="selectOrgType('startup',this)" style="padding:16px;border:2px solid var(--border);border-radius:10px;cursor:pointer;transition:all .15s">
+          <div style="font-size:20px;margin-bottom:6px">🚀</div>
+          <div style="font-weight:600;color:var(--ink);margin-bottom:3px">Startup / Growing</div>
+          <div style="font-size:12px;color:var(--muted)">Small team, multiple initiatives, lightweight tracking</div>
         </div>
-        <div class="setup-option" id="orgtype-solo" onclick="selectOrgType('solo',this)">
-          <div class="so-icon">👤</div>
-          <div class="so-body">
-            <div class="so-title">Independent PM / Freelancer</div>
-            <div class="so-desc">You manage projects independently for different clients. Need a personal delivery intelligence hub.</div>
-          </div>
+        <div class="setup-option" onclick="selectOrgType('freelance',this)" style="padding:16px;border:2px solid var(--border);border-radius:10px;cursor:pointer;transition:all .15s">
+          <div style="font-size:20px;margin-bottom:6px">👤</div>
+          <div style="font-weight:600;color:var(--ink);margin-bottom:3px">Independent PM</div>
+          <div style="font-size:12px;color:var(--muted)">Personal delivery intelligence hub for freelancers</div>
         </div>
       </div>
-      <button class="btn-wizard-next" style="width:100%;justify-content:center;" onclick="setupNext(2)">Continue →</button>
-    </div>
-
-    <!-- Step 2: Methodology -->
-    <div id="setup-step-2" style="display:none;">
-      <div style="font-size:11px;font-weight:700;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:6px;">Step 2 of 4 — How You Work</div>
-      <div style="font-size:18px;font-weight:700;color:#fff;margin-bottom:6px;">How do your projects get delivered?</div>
-      <div style="font-size:12px;color:rgba(255,255,255,.4);margin-bottom:16px;">Select all that apply. VeloClear activates only the modules you need.</div>
-      <div id="method-options" style="display:flex;flex-direction:column;gap:6px;margin-bottom:20px;">
-        <div class="setup-option" id="method-agile" onclick="toggleMethod('agile',this)">
-          <div class="so-icon">🏃</div>
-          <div class="so-body"><div class="so-title">Agile / Scrum</div><div class="so-desc">Sprint boards, backlog, velocity, burn-down, retrospectives</div></div>
-          <div id="method-agile-check" style="width:20px;height:20px;border-radius:50%;border:2px solid rgba(255,255,255,.3);flex-shrink:0;display:flex;align-items:center;justify-content:center;"></div>
-        </div>
-        <div class="setup-option" id="method-waterfall" onclick="toggleMethod('waterfall',this)">
-          <div class="so-icon">📋</div>
-          <div class="so-body"><div class="so-title">Predictive / Waterfall</div><div class="so-desc">Phase gates, WBS, Gantt, milestone tracking, formal change control</div></div>
-          <div id="method-waterfall-check" style="width:20px;height:20px;border-radius:50%;border:2px solid rgba(255,255,255,.3);flex-shrink:0;display:flex;align-items:center;justify-content:center;"></div>
-        </div>
-        <div class="setup-option active" id="method-hybrid" onclick="toggleMethod('hybrid',this)">
-          <div class="so-icon">🔀</div>
-          <div class="so-body"><div class="so-title">Hybrid (Recommended)</div><div class="so-desc">PMBOK 8 governance with Agile delivery. Most real-world projects.</div></div>
-          <div id="method-hybrid-check" style="width:20px;height:20px;border-radius:50%;border:2px solid #4F46E5;background:#4F46E5;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:11px;color:#fff;">✓</div>
-        </div>
-        <div class="setup-option" id="method-safe" onclick="toggleMethod('safe',this)">
-          <div class="so-icon">🏛️</div>
-          <div class="so-body"><div class="so-title">SAFe / Scaled Agile</div><div class="so-desc">ART, PI Planning, Programme Board, multiple teams</div></div>
-          <div id="method-safe-check" style="width:20px;height:20px;border-radius:50%;border:2px solid rgba(255,255,255,.3);flex-shrink:0;display:flex;align-items:center;justify-content:center;"></div>
-        </div>
-        <div class="setup-option" id="method-ld" onclick="toggleMethod('ld',this)">
-          <div class="so-icon">🎓</div>
-          <div class="so-body"><div class="so-title">L&D Programme</div><div class="so-desc">ADDIE lifecycle, Bloom's objectives, Kirkpatrick measurement</div></div>
-          <div id="method-ld-check" style="width:20px;height:20px;border-radius:50%;border:2px solid rgba(255,255,255,.3);flex-shrink:0;display:flex;align-items:center;justify-content:center;"></div>
-        </div>
-      </div>
-      <div style="display:flex;gap:10px;">
-        <button class="btn-wizard-back" onclick="setupNext(1)" style="color:rgba(255,255,255,.5);border-color:rgba(255,255,255,.2);">← Back</button>
-        <button class="btn-wizard-next" style="flex:1;justify-content:center;" onclick="setupNext(3)">Continue →</button>
-      </div>
-    </div>
-
-    <!-- Step 3: Your Role -->
-    <div id="setup-step-3" style="display:none;">
-      <div style="font-size:11px;font-weight:700;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:6px;">Step 3 of 4 — Your Role</div>
-      <div style="font-size:18px;font-weight:700;color:#fff;margin-bottom:14px;">What is your role?</div>
-      <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:20px;">
-        <div class="setup-option active" id="role-pm" onclick="selectSetupRole('pm',this)"><div class="so-icon">👔</div><div class="so-body"><div class="so-title">Project / Programme Manager</div><div class="so-desc">You own delivery. Full access to all modules.</div></div></div>
-        <div class="setup-option" id="role-pmo" onclick="selectSetupRole('pmo',this)"><div class="so-icon">🏛️</div><div class="so-body"><div class="so-title">PMO Head / Portfolio Manager</div><div class="so-desc">You oversee multiple PMs and projects. Portfolio visibility.</div></div></div>
-        <div class="setup-option" id="role-lead" onclick="selectSetupRole('lead',this)"><div class="so-icon">💻</div><div class="so-body"><div class="so-title">Team Lead / Tech Lead</div><div class="so-desc">You lead delivery within a project. Sprint and backlog access.</div></div></div>
-        <div class="setup-option" id="role-member" onclick="selectSetupRole('member',this)"><div class="so-icon">🙋</div><div class="so-body"><div class="so-title">Team Member</div><div class="so-desc">You execute tasks. Card updates, retro items, blocker logging.</div></div></div>
-        <div class="setup-option" id="role-sponsor" onclick="selectSetupRole('sponsor',this)"><div class="so-icon">⭐</div><div class="so-body"><div class="so-title">Sponsor / Executive</div><div class="so-desc">You approve and oversee. RAG dashboards, EVM, CR approvals.</div></div></div>
-      </div>
-      <div style="display:flex;gap:10px;">
-        <button class="btn-wizard-back" onclick="setupNext(2)" style="color:rgba(255,255,255,.5);border-color:rgba(255,255,255,.2);">← Back</button>
-        <button class="btn-wizard-next" style="flex:1;justify-content:center;" onclick="setupNext(4)">Continue →</button>
-      </div>
-    </div>
-
-    <!-- Step 4: Complete -->
-    <div id="setup-step-4" style="display:none;">
-      <div style="text-align:center;padding:10px 0;">
-        <div style="font-size:48px;margin-bottom:12px;">🎉</div>
-        <div style="font-size:22px;font-weight:800;color:#fff;margin-bottom:8px;">You're all set.</div>
-        <div style="font-size:13px;color:rgba(255,255,255,.5);margin-bottom:24px;line-height:1.6;">VeloClear is configured for <strong id="setup-org-display" style="color:#fff">your organisation</strong>. Start by creating your first project — the wizard will guide you through every step.</div>
-        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:24px;">
-          <div style="background:rgba(255,255,255,.06);border-radius:10px;padding:14px;text-align:center;">
-            <div style="font-size:24px;font-weight:800;color:#4F46E5;font-family:'JetBrains Mono',monospace;">34</div>
-            <div style="font-size:9px;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.5px;margin-top:3px;">Guided Questions</div>
-          </div>
-          <div style="background:rgba(255,255,255,.06);border-radius:10px;padding:14px;text-align:center;">
-            <div style="font-size:24px;font-weight:800;color:#10B981;font-family:'JetBrains Mono',monospace;">0</div>
-            <div style="font-size:9px;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.5px;margin-top:3px;">Manual Setup Required</div>
-          </div>
-          <div style="background:rgba(255,255,255,.06);border-radius:10px;padding:14px;text-align:center;">
-            <div style="font-size:24px;font-weight:800;color:#F59E0B;font-family:'JetBrains Mono',monospace;">5min</div>
-            <div style="font-size:9px;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.5px;margin-top:3px;">To First Project</div>
-          </div>
-        </div>
-        <button class="btn-wizard-next" style="width:100%;justify-content:center;font-size:15px;padding:14px;" onclick="completeSetup()">🎯 Create My First Project →</button>
-        <button onclick="skipSetupToApp()" style="background:transparent;border:none;color:rgba(255,255,255,.3);font-family:inherit;font-size:11px;cursor:pointer;margin-top:12px;display:block;width:100%;">Skip — take me to the dashboard first</button>
+      <div style="display:flex;gap:10px">
+        <button class="btn btn-primary" style="flex:1" onclick="completeSetup()">Continue &rarr;</button>
+        <button class="btn btn-ghost" onclick="skipSetup()">Skip &rarr; Demo</button>
       </div>
     </div>
   </div>
+</div>
 </div>
 
 <!-- ══════════════════════════════════════════════════════════════
@@ -1523,15 +1426,7 @@ RD (quick add to sprint) ═══ -->
 <!-- ══════════════════════════════════════════════════════════════
      ROLE SWITCHER (demo all views)
 ══════════════════════════════════════════════════════════════ -->
-<div class="role-switcher" id="role-switcher">
-  <div style="font-size:9px;font-weight:700;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:1px;padding:6px 8px;white-space:nowrap;">View as:</div>
-  <button class="role-btn active" onclick="switchRole('pm',this)">👔 PM</button>
-  <button class="role-btn" onclick="switchRole('team',this)">💻 Team</button>
-  <button class="role-btn" onclick="switchRole('stakeholder',this)">👁 Stakeholder</button>
-  <button class="role-btn" onclick="switchRole('sponsor',this)">⭐ Sponsor</button>
-  <button class="role-btn" onclick="switchRole('pmo',this)">🏛 PMO</button>
-  <button class="role-btn" onclick="switchRole('auditor',this)">🔏 Auditor</button>
-</div>
+
 
 <!-- ══════════════════════════════════════════════════════════════
      SECTION: CREATE / SELECT PROJECT (dashboard addition)
@@ -1628,6 +1523,7 @@ RD (quick add to sprint) ═══ -->
 
 
 <script>
+
 /* ── DATA — loaded first, always available ─────────────── */
 // VeloClear Data Layer — loads first, defines all data before any function
 
@@ -1703,6 +1599,383 @@ const DB = {
   raciRoles:['PM (Alex)','Tech Lead','BA Lead','QA Lead','Sponsor'],
   raciMatrix:[['A','C','C','C','I'],['A','R','C','I','I'],['C','A','R','C','I'],['C','A','C','R','I'],['A','R','R','I','I'],['A','C','C','I','C'],['A','R','C','C','I'],['C','C','C','A','I']]
 }
+
+// Missing data — projects, delay traces, learnings, sprint intelligence
+DB.projects = [
+  {
+    id:'P001',name:'Apex Mobile Platform',client:'Apex Solutions Ltd',
+    pm:'TM001',sponsor:'TM002',
+    status:'Active',phase:'Executing',
+    start:'2024-01-02',end:'2024-04-30',
+    bac:3000000,ev:1620000,pv:1650000,ac:1500000,
+    ragOverall:'amber',
+    team:['TM001','TM002','TM003','TM004','TM005','TM008','TM009','TM010','TM015','TM017','TM019'],
+    priority:'High',
+    description:'End-to-end mobile application with vendor API integration for branch operations',
+    currentSprint:'S3',completedSprints:2,totalSprints:10,
+    epicIds:['E001','E002','E003','E004'],
+    tags:['Mobile','Integration','API']
+  },
+  {
+    id:'P002',name:'Nexus Compliance Portal',client:'Nexus Financial Services',
+    pm:'TM001',sponsor:'TM014',
+    status:'Active',phase:'Executing',
+    start:'2023-11-01',end:'2024-03-31',
+    bac:2000000,ev:1600000,pv:1550000,ac:1480000,
+    ragOverall:'green',
+    team:['TM001','TM003','TM006','TM007','TM008','TM009','TM011','TM014','TM015','TM016','TM018','TM019'],
+    priority:'High',
+    description:'SEBI-compliant compliance certification portal with automated assessment and compliance tracking',
+    currentSprint:'S6',completedSprints:5,totalSprints:8,
+    epicIds:['E005','E006','E007'],
+    tags:['Compliance','L&D','Portal']
+  },
+  {
+    id:'P003',name:'Meridian Training Rollout',client:'Meridian Global Services',
+    pm:'TM001',sponsor:'TM002',
+    status:'Active',phase:'Executing',
+    start:'2024-01-15',end:'2024-05-31',
+    bac:1500000,ev:300000,pv:450000,ac:350000,
+    ragOverall:'red',
+    team:['TM001','TM005','TM007','TM008','TM011','TM012','TM013','TM017','TM020'],
+    priority:'Medium',
+    description:'Global training rollout across 5 locations — 17 trainers, 3 international accounts',
+    currentSprint:'S2',completedSprints:1,totalSprints:12,
+    epicIds:['E008','E009'],
+    tags:['Training','GDM','Multi-location']
+  }
+,
+  {id:'P004',name:'Pinnacle Data Migration',client:'Pinnacle Finance Group',
+  pm:'TM001',sponsor:'TM002',status:'Closed',phase:'Closed',
+  start:'2023-08-01',end:'2023-11-30',
+  bac:2500000,ev:2625000,pv:2500000,ac:2500000,
+  ragOverall:'green',
+  team:['TM001','TM002','TM006','TM008','TM009','TM016','TM018'],
+  priority:'High',
+  description:'Full data migration of 12 years of financial records to cloud. Zero downtime. SEBI compliance mandatory.',
+  currentSprint:'S8',completedSprints:8,totalSprints:8,
+  epicIds:['E010','E011','E012'],tags:['Data Migration','Cloud','Compliance'],
+  closedDate:'2023-11-30',deliveryStatus:'on-time',
+  deliveryNotes:'Delivered on exact planned date. CPI 1.05 — 5% under budget. Zero data loss. All 4 compliance checkpoints cleared.'},
+  {id:'P005',name:'Orion Digital Platform',client:'Orion Global Services',
+  pm:'TM001',sponsor:'TM002',status:'Closed',phase:'Closed',
+  start:'2023-03-01',end:'2023-08-31',
+  bac:4000000,ev:3800000,pv:4000000,ac:3900000,
+  ragOverall:'amber',
+  team:['TM001','TM002','TM003','TM004','TM005','TM008','TM009','TM015','TM017','TM019'],
+  priority:'High',
+  description:'End-to-end digital platform — customer portal, internal dashboard, API gateway. 6-month programme.',
+  currentSprint:'S12',completedSprints:12,totalSprints:12,
+  epicIds:['E013','E014','E015','E016'],tags:['Digital','Platform','API'],
+  closedDate:'2023-09-05',deliveryStatus:'late',daysLate:5,
+  deliveryNotes:'Delivered 5 days late. Two delays traced — 12 combined days slipped, recovered to 5. CPI 0.97.'}
+];
+DB.sprints = [
+  {id:'S1',name:'Sprint 1 — Foundation',goal:'Set up CI/CD, build API wrapper skeleton, configure dev environment',start:'2024-01-02',end:'2024-01-15',capacity:40,days:14,status:'Closed',velocity:38},
+  {id:'S2',name:'Sprint 2 — Core Integration',goal:'Complete API wrapper, vendor integration, basic auth flow',start:'2024-01-16',end:'2024-01-29',capacity:42,days:14,status:'Closed',velocity:36},
+  {id:'S3',name:'Sprint 3 — Mobile App Integration',goal:'Complete vendor API wrapper and unit tests. Resolve blocker on push notification dependency.',start:'2024-01-30',end:'2024-02-12',capacity:42,days:14,status:'Active',velocity:null}
+];
+DB.sprintIntelligence = {
+  P001: [
+    {id:'SI-P001-S1',sprintId:'S1',projectId:'P001',name:'Sprint 1 — Foundation',
+     committed:40,completed:38,velocity:38,
+     ragAtClose:'green',
+     blockers:[],
+     keyDecisions:['API wrapper architecture approved','CI/CD pipeline established'],
+     retroSummary:'Strong start. Environment ready on Day 1. Team velocity higher than baseline.',
+     retroActions:[{text:'Add code review to DoD',owner:'TM004',status:'Done'}],
+     delayTraceIds:[]},
+    {id:'SI-P001-S2',sprintId:'S2',projectId:'P001',name:'Sprint 2 — Core Integration',
+     committed:42,completed:36,velocity:36,
+     ragAtClose:'amber',
+     blockers:['Vendor API documentation incomplete — 3 endpoints missing'],
+     keyDecisions:['Wrapper scope extended to cover missing endpoints','Sprint 3 capacity adjusted'],
+     retroSummary:'Vendor documentation gaps caused mid-sprint replanning. Team adapted well.',
+     retroActions:[
+       {text:'Request full API spec before sprint planning',owner:'TM001',status:'Done'},
+       {text:'WIP limit 2 per person in review column',owner:'TM019',status:'Done'}
+     ],
+     delayTraceIds:[]},
+    {id:'SI-P001-S3',sprintId:'S3',projectId:'P001',name:'Sprint 3 — Mobile Integration',
+     committed:42,completed:null,velocity:null,
+     ragAtClose:'in-progress',
+     blockers:['D001 — Vendor sandbox not delivered (ACTIVE — Stage 2 escalation)'],
+     keyDecisions:['Wrapper activated as primary path','3-day slip accepted and baselined'],
+     retroSummary:'In progress',
+     retroActions:[],
+     delayTraceIds:['DT001']}
+  ],
+  P002: [
+    {id:'SI-P002-S1',sprintId:'S1',projectId:'P002',name:'Sprint 1 — Portal Foundation',committed:38,completed:40,velocity:40,ragAtClose:'green',blockers:[],keyDecisions:['Framework selected — React + Django'],retroSummary:'Overdelivered. Team found 2 points of refactoring they completed ahead of schedule.',retroActions:[{text:'Add tech debt register',owner:'TM016',status:'Done'}],delayTraceIds:[]},
+    {id:'SI-P002-S2',sprintId:'S2',projectId:'P002',name:'Sprint 2 — Auth & Roles',committed:40,completed:38,velocity:38,ragAtClose:'green',blockers:['Minor: Compliance review took 3 extra days'],keyDecisions:['Parallel compliance track established'],retroSummary:'Minor compliance delay managed well. Parallel tracking works.',retroActions:[{text:'5-day review buffer in Sprint Planning',owner:'TM001',status:'Done'}],delayTraceIds:[]},
+    {id:'SI-P002-S3',sprintId:'S3',projectId:'P002',name:'Sprint 3 — Assessment Engine',committed:42,completed:44,velocity:44,ragAtClose:'green',blockers:[],keyDecisions:['Engine scope extended — extra capacity used for stretch goals'],retroSummary:'Best sprint to date. Stretch goals achieved. Morale high.',retroActions:[{text:'Document stretch goal process for future sprints',owner:'TM015',status:'Open'}],delayTraceIds:[]},
+    {id:'SI-P002-S4',sprintId:'S4',projectId:'P002',name:'Sprint 4 — Compliance Module',committed:40,completed:35,velocity:35,ragAtClose:'amber',blockers:['Compliance review 7-day cycle vs 5-day estimate'],keyDecisions:['Compliance review moved to async — PM approves before sprint starts'],retroSummary:'Compliance review cycle longer than planned. Process fix applied.',retroActions:[{text:'Pre-sprint compliance briefing',owner:'TM001',status:'Done'},{text:'Buffer 7 days not 5 in any sprint with compliance items',owner:'TM019',status:'Done'}],delayTraceIds:[]},
+    {id:'SI-P002-S5',sprintId:'S5',projectId:'P002',name:'Sprint 5 — Reporting',committed:38,completed:40,velocity:40,ragAtClose:'green',blockers:[],keyDecisions:['Analytics library changed to Chart.js for licence reasons'],retroSummary:'Compliance buffer working well. Clean sprint.',retroActions:[],delayTraceIds:[]},
+    {id:'SI-P002-S6',sprintId:'S6',projectId:'P002',name:'Sprint 6 — Current',committed:42,completed:null,velocity:null,ragAtClose:'in-progress',blockers:[],keyDecisions:[],retroSummary:'In progress',retroActions:[],delayTraceIds:[]}
+  ],
+  P003: [
+    {id:'SI-P003-S1',sprintId:'S1',projectId:'P003',name:'Sprint 1 — Meridian Foundation',committed:42,completed:24,velocity:24,ragAtClose:'red',blockers:['D002 — LMS access not provisioned across 5 locations (RESOLVED — 7-day delay)'],keyDecisions:['Sprint 0 gate added: environment verification before Sprint 1 starts'],retroSummary:'Severe LMS access issue. Escalated to steering. Resolved via account director. Key learning: environment must be confirmed before Sprint 1 starts.',retroActions:[{text:'Add environment gate to Sprint 0',owner:'TM001',status:'Done'},{text:'IT access raised as dependency at project initiation',owner:'TM008',status:'Done'}],delayTraceIds:['DT002']},
+    {id:'SI-P003-S2',sprintId:'S2',projectId:'P003',name:'Sprint 2 — Content Development',committed:42,completed:null,velocity:null,ragAtClose:'in-progress',blockers:['Carried 18 pts from S1'],keyDecisions:['S1 retro actions applied — no LMS issues'],retroSummary:'In progress',retroActions:[],delayTraceIds:[]}
+  ]
+,
+
+  P004:[
+    {id:'SI-P004-S1',sprintId:'S1',projectId:'P004',name:'Sprint 1 — Data Assessment',committed:38,completed:40,velocity:40,ragAtClose:'green',blockers:[],keyDecisions:['Contingency tool approved for S2 build'],retroSummary:'Strong start. Contingency tool scoped and approved.',retroActions:[{text:'Build contingency mapping tool in S2',owner:'TM018',status:'Done'}],delayTraceIds:[]},
+    {id:'SI-P004-S2',sprintId:'S2',projectId:'P004',name:'Sprint 2 — Tool Build',committed:40,completed:42,velocity:42,ragAtClose:'green',blockers:[],keyDecisions:['Contingency tool built and tested'],retroSummary:'Ahead of plan. Tool delivered.',retroActions:[{text:'Full dry-run migration in S3',owner:'TM006',status:'Done'}],delayTraceIds:[]},
+    {id:'SI-P004-S3',sprintId:'S3',projectId:'P004',name:'Sprint 3 — Dry Run',committed:42,completed:42,velocity:42,ragAtClose:'green',blockers:[],keyDecisions:['Dry run: 99.7% accuracy','Rollback tested'],retroSummary:'Dry run successful. Rollback confirmed.',retroActions:[],delayTraceIds:[]},
+    {id:'SI-P004-S4',sprintId:'S4',projectId:'P004',name:'Sprint 4 — Migration Engine',committed:42,completed:42,velocity:42,ragAtClose:'green',blockers:['R004 TRIGGER FIRED — undocumented schema columns. CONTAINED in 4 hours. ZERO sprint impact.'],keyDecisions:['Risk contained by contingency tool','Zero days slipped'],retroSummary:'Risk fired and was contained. Sprint on time. This is what good risk management looks like.',retroActions:[{text:'Document tool as reusable asset',owner:'TM018',status:'Done'}],delayTraceIds:['DT003']},
+    {id:'SI-P004-S5',sprintId:'S5',projectId:'P004',name:'Sprint 5 — Wave 1',committed:38,completed:40,velocity:40,ragAtClose:'green',blockers:[],keyDecisions:['Wave 1: 2.3M records at 99.8%'],retroSummary:'Wave 1 clean. S4 learning applied proactively.',retroActions:[],delayTraceIds:[]},
+    {id:'SI-P004-S6',sprintId:'S6',projectId:'P004',name:'Sprint 6 — Wave 2',committed:40,completed:40,velocity:40,ragAtClose:'green',blockers:[],keyDecisions:['4.1M total records','Compliance checkpoints 1 and 2 cleared'],retroSummary:'Wave 2 clean.',retroActions:[],delayTraceIds:[]},
+    {id:'SI-P004-S7',sprintId:'S7',projectId:'P004',name:'Sprint 7 — Wave 3',committed:40,completed:42,velocity:42,ragAtClose:'green',blockers:[],keyDecisions:['All records migrated','99.9% accuracy','Checkpoints 3 and 4 cleared'],retroSummary:'Above threshold. All compliance cleared.',retroActions:[],delayTraceIds:[]},
+    {id:'SI-P004-S8',sprintId:'S8',projectId:'P004',name:'Sprint 8 — Go-Live',committed:38,completed:40,velocity:40,ragAtClose:'green',blockers:[],keyDecisions:['Go-live on exact planned date','Zero downtime','Client accepted delivery'],retroSummary:'Perfect go-live. On time, under budget.',retroActions:[{text:'Submit contingency tool to Learning Library',owner:'TM018',status:'Done'}],delayTraceIds:[]}
+  ],
+  P005:[
+    {id:'SI-P005-S1',sprintId:'S1',projectId:'P005',name:'Sprint 1 — Foundation',committed:40,completed:40,velocity:40,ragAtClose:'green',blockers:[],keyDecisions:['Architecture approved'],retroSummary:'Clean foundation.',retroActions:[],delayTraceIds:[]},
+    {id:'SI-P005-S2',sprintId:'S2',projectId:'P005',name:'Sprint 2 — Portal Core',committed:42,completed:44,velocity:44,ragAtClose:'green',blockers:[],keyDecisions:['Component library approved'],retroSummary:'Overdelivered.',retroActions:[],delayTraceIds:[]},
+    {id:'SI-P005-S3',sprintId:'S3',projectId:'P005',name:'Sprint 3 — Authentication',committed:40,completed:40,velocity:40,ragAtClose:'green',blockers:[],keyDecisions:['Security review cleared'],retroSummary:'Clean sprint.',retroActions:[],delayTraceIds:[]},
+    {id:'SI-P005-S4',sprintId:'S4',projectId:'P005',name:'Sprint 4 — Dashboard',committed:42,completed:40,velocity:40,ragAtClose:'amber',blockers:['Design review took 3 extra days'],keyDecisions:['Async approval process established'],retroSummary:'Minor delay managed.',retroActions:[{text:'Pre-approve design patterns',owner:'TM017',status:'Done'}],delayTraceIds:[]},
+    {id:'SI-P005-S5',sprintId:'S5',projectId:'P005',name:'Sprint 5 — API Foundation',committed:40,completed:42,velocity:42,ragAtClose:'green',blockers:[],keyDecisions:['API versioning clause drafted'],retroSummary:'Recovered.',retroActions:[],delayTraceIds:[]},
+    {id:'SI-P005-S6',sprintId:'S6',projectId:'P005',name:'Sprint 6 — API Integration',committed:42,completed:42,velocity:42,ragAtClose:'green',blockers:[],keyDecisions:['v2.3 integration complete in staging'],retroSummary:'Integration complete.',retroActions:[],delayTraceIds:[]},
+    {id:'SI-P005-S7',sprintId:'S7',projectId:'P005',name:'Sprint 7 — API Production',committed:48,completed:34,velocity:34,ragAtClose:'red',blockers:['D004 — API BREAKING CHANGE v2.3 to v3.0 without notice — 3-day slip (contained from estimated 8)'],keyDecisions:['Vendor escalated','Sprint rebalanced — 14 stories deferred'],retroSummary:'Major blocker. Rapid escalation contained 8-day risk to 3-day slip.',retroActions:[{text:'90-day notice clause for all vendor API contracts',owner:'TM001',status:'Done'}],delayTraceIds:['DT004']},
+    {id:'SI-P005-S8',sprintId:'S8',projectId:'P005',name:'Sprint 8 — Recovery',committed:44,completed:46,velocity:46,ragAtClose:'green',blockers:[],keyDecisions:['S7 carry-over absorbed','API lock in planning'],retroSummary:'Full recovery. Overdelivered.',retroActions:[],delayTraceIds:[]},
+    {id:'SI-P005-S9',sprintId:'S9',projectId:'P005',name:'Sprint 9 — Testing 1',committed:40,completed:40,velocity:40,ragAtClose:'green',blockers:[],keyDecisions:['Vendor gave advance notice of update'],retroSummary:'Clean. Vendor coordination working.',retroActions:[],delayTraceIds:[]},
+    {id:'SI-P005-S10',sprintId:'S10',projectId:'P005',name:'Sprint 10 — UAT',committed:42,completed:36,velocity:36,ragAtClose:'amber',blockers:['D005 — CLIENT SCOPE CREEP: 14 new widgets requested in UAT — 2-day slip (contained from 9)'],keyDecisions:['CR-005 raised immediately','3 approved, 11 deferred to Phase 2','Phase 2 scope signed'],retroSummary:'Scope creep attempt. Change control invoked. 2-day slip only.',retroActions:[{text:'Add scope re-confirmation to UAT entry gate',owner:'TM001',status:'Done'}],delayTraceIds:['DT005']},
+    {id:'SI-P005-S11',sprintId:'S11',projectId:'P005',name:'Sprint 11 — UAT Phase 2',committed:38,completed:40,velocity:40,ragAtClose:'green',blockers:[],keyDecisions:['Scope re-confirmation gate — zero new requests','UAT certificate signed'],retroSummary:'Clean. S10 learning applied.',retroActions:[],delayTraceIds:[]},
+    {id:'SI-P005-S12',sprintId:'S12',projectId:'P005',name:'Sprint 12 — Go-Live',committed:30,completed:30,velocity:30,ragAtClose:'green',blockers:[],keyDecisions:['Go-live 5 days after plan — fully traced','Full acceptance received'],retroSummary:'Complete. 5-day slip traced end-to-end. Learnings captured and applied.',retroActions:[{text:'Submit all 3 learnings to Learning Library',owner:'TM001',status:'Done'}],delayTraceIds:[]}
+  ]
+};
+DB.delayTrace = [
+  {
+    id:'DT001',
+    projectId:'P001',
+    sprintId:'S3',
+    sprintName:'Sprint 3 — Mobile App Integration',
+    // What was delayed
+    storyId:'US002',
+    storyTitle:'Push notification — backend integration',
+    cardId:'SC004',
+    owner:'TM004', // Arjun Kumar
+    pointsAffected:5,
+    daysSlipped:3,
+    // Why it was delayed — chain
+    blockerId:'D001',
+    blockerType:'Dependency',
+    blockerDesc:'Vendor sandbox environment not delivered by Sprint 2 Day 1 as agreed',
+    // Risk that predicted this
+    linkedRiskId:'R001',
+    riskTrigger:'Vendor missed Sprint 2 milestone (due 20 Jan)',
+    triggerFired:true,
+    triggerFiredDate:'2024-01-20',
+    // Issue created
+    linkedIssueId:'I001',
+    issueCreatedBy:'TM001',
+    issueCreatedDate:'2024-01-18',
+    // Escalation path
+    escalationStages:[
+      {stage:1,date:'2024-01-18',owner:'TM001',action:'Activated API wrapper. Contacted vendor ×3. No response.',outcome:'No response from vendor project contact'},
+      {stage:2,date:'2024-01-19',owner:'TM001+TM002',action:'Briefed sponsor. Escalated to vendor account director.',outcome:'Vendor committed to sandbox delivery by Jan 22'}
+    ],
+    // Resolution
+    resolution:'Internal API wrapper activated immediately. Sprint recovered 6 of 8 points. Go-live adjusted by 3 days.',
+    resolvedBy:'TM004',
+    resolvedDate:'2024-01-22',
+    actualImpact:'3-day slip on push notification feature. No impact on overall go-live date.',
+    // Learning
+    retroSprint:'S3',
+    retroAction:'Escalate vendor non-response within 24 hours (not 48). Add dependency check to Sprint Planning.',
+    retroOwner:'TM001',
+    retroDueDate:'2024-02-14',
+    // Did the learning prevent recurrence?
+    recurrenceCheck:'S4',
+    recurrenceResult:'prevented',
+    recurrenceNote:'Sprint 4 dependency check in planning caught 2 vendor risks early. Zero vendor escalations in S4.'
+  },
+  {
+    id:'DT002',
+    projectId:'P003',
+    sprintId:'S1',
+    sprintName:'Sprint 1 — Meridian Foundation',
+    storyId:null,
+    storyTitle:'LMS Environment Setup',
+    cardId:null,
+    owner:'TM008', // Rohit Das
+    pointsAffected:8,
+    daysSlipped:7,
+    blockerId:'D002',
+    blockerType:'Dependency',
+    blockerDesc:'Meridian IT team did not provision LMS access for 5 locations by agreed date',
+    linkedRiskId:'R003',
+    riskTrigger:'LMS access not granted by Sprint 1 Day 5',
+    triggerFired:true,
+    triggerFiredDate:'2024-01-22',
+    linkedIssueId:null,
+    issueCreatedBy:'TM001',
+    issueCreatedDate:'2024-01-22',
+    escalationStages:[
+      {stage:1,date:'2024-01-22',owner:'TM001',action:'Raised with Meridian project contact.',outcome:'Delayed — IT change freeze in effect'},
+      {stage:2,date:'2024-01-23',owner:'TM001+TM002',action:'Escalated to Meridian Delivery Head.',outcome:'Change freeze lifted for LMS. Access granted Jan 26.'},
+      {stage:3,date:'2024-01-26',owner:'TM002',action:'Steering committee briefed. Sponsor called Meridian account director.',outcome:'Full access granted across all 5 locations.'}
+    ],
+    resolution:'LMS access granted after steering escalation. Sprint 1 velocity: 24/42 pts. Carried over 18 pts to Sprint 2.',
+    resolvedBy:'TM002',
+    resolvedDate:'2024-01-26',
+    actualImpact:'7-day delay. Sprint 2 capacity absorbed carried work. Overall programme timeline extended by 1 sprint.',
+    retroSprint:'S1',
+    retroAction:'Add LMS access as Sprint 0 activity. Never start Sprint 1 without environment confirmed.',
+    retroOwner:'TM001',
+    retroDueDate:'2024-01-31',
+    recurrenceCheck:'S2',
+    recurrenceResult:'prevented',
+    recurrenceNote:'Sprint 2 planning included environment verification gate. No LMS issues in S2.'
+  }
+,
+  {id:'DT003',projectId:'P004',sprintId:'S4',sprintName:'Sprint 4 — Migration Engine',
+   storyTitle:'Legacy schema mapping — financial instruments',owner:'TM018',
+   pointsAffected:0,daysSlipped:0,
+   blockerId:'D003',blockerType:'Technical',
+   blockerDesc:'847 undocumented columns discovered in legacy schema mid-sprint',
+   linkedRiskId:'R004',riskTrigger:'Data profiling reveals >5% unmapped fields',
+   triggerFired:true,triggerFiredDate:'2023-09-18',
+   linkedIssueId:'I003',issueCreatedBy:'TM001',issueCreatedDate:'2023-09-18',
+   escalationStages:[
+     {stage:1,date:'2023-09-18',owner:'TM018',action:'Activated contingency tool within 1 hour of discovery.',outcome:'90% of unmapped columns automated in 4 hours. Zero sprint impact.'},
+     {stage:2,date:'2023-09-18',owner:'TM001',action:'Sponsor informed. No further escalation required.',outcome:'Sprint delivered on time. Mitigation plan worked as designed.'}
+   ],
+   resolution:'Contingency schema mapping tool (built in Sprint 2 specifically for this risk) handled 90% automatically. Sprint delivered on time.',
+   resolvedBy:'TM018',resolvedDate:'2023-09-19',
+   actualImpact:'ZERO days slipped. Risk trigger fired and was contained by pre-built mitigation. This is why we write mitigation plans before we need them.',
+   retroSprint:'S4',retroAction:'Document contingency tool as reusable asset. Add to all data migration project templates.',
+   retroOwner:'TM001',retroDueDate:'2023-10-02',
+   recurrenceCheck:'S5',recurrenceResult:'prevented',
+   recurrenceNote:'Tool used proactively in S5-S8. Zero schema issues in remaining 4 sprints.'},
+  {id:'DT004',projectId:'P005',sprintId:'S7',sprintName:'Sprint 7 — API Gateway Production',
+   storyTitle:'Payment gateway API — production endpoint',owner:'TM004',
+   pointsAffected:13,daysSlipped:3,
+   blockerId:'D004',blockerType:'Technical',
+   blockerDesc:'Payment gateway vendor released breaking API change v2.3 to v3.0 without notice — all integration code invalidated',
+   linkedRiskId:'R006',riskTrigger:'Any third-party API version change during active sprint',
+   triggerFired:true,triggerFiredDate:'2023-07-03',
+   linkedIssueId:'I004',issueCreatedBy:'TM001',issueCreatedDate:'2023-07-03',
+   escalationStages:[
+     {stage:1,date:'2023-07-03',owner:'TM004',action:'Identified at sprint start. Raised issue immediately. Rebalanced sprint.',outcome:'14 non-critical stories deferred to S8. Migration scope: 3 days.'},
+     {stage:2,date:'2023-07-03',owner:'TM001+TM002',action:'Briefed sponsor. Formally escalated to vendor.',outcome:'Vendor provided v3.0 migration guide within 24hrs.'},
+     {stage:3,date:'2023-07-04',owner:'TM002',action:'Formal complaint to vendor account director.',outcome:'Vendor: 3 months free support + 90-day notice commitment for future changes.'}
+   ],
+   resolution:'Integration layer rewritten in 3 days. Original estimate 8 days — team focused effort reduced to 3. 14 non-critical stories carried to S8.',
+   resolvedBy:'TM004',resolvedDate:'2023-07-06',
+   actualImpact:'3-day sprint slip. 14 non-critical pts to S8. No programme go-live impact — absorbed by float.',
+   retroSprint:'S7',retroAction:'Add 90-day API breaking-change notice clause to all vendor agreements. Non-negotiable procurement requirement.',
+   retroOwner:'TM001',retroDueDate:'2023-07-20',
+   recurrenceCheck:'S8',recurrenceResult:'prevented',
+   recurrenceNote:'Vendor gave advance notice of all S8-S12 updates. Zero unannounced breaking changes.'},
+  {id:'DT005',projectId:'P005',sprintId:'S10',sprintName:'Sprint 10 — UAT',
+   storyTitle:'Customer portal UAT — dashboard reporting module',owner:'TM003',
+   pointsAffected:8,daysSlipped:2,
+   blockerId:'D005',blockerType:'Scope',
+   blockerDesc:'Client requested 14 new dashboard widgets during UAT as mandatory for sign-off. None were in agreed scope.',
+   linkedRiskId:'R007',riskTrigger:'Any scope addition request during UAT phase',
+   triggerFired:true,triggerFiredDate:'2023-08-14',
+   linkedIssueId:'I005',issueCreatedBy:'TM001',issueCreatedDate:'2023-08-14',
+   escalationStages:[
+     {stage:1,date:'2023-08-14',owner:'TM001',action:'CR-005 raised immediately. All 14 widgets logged as out-of-scope. CCB scheduled.',outcome:'CCB convened within 48 hours.'},
+     {stage:2,date:'2023-08-15',owner:'TM001+TM002+CLIENT',action:'CCB: 3 critical approved, 11 deferred to Phase 2.',outcome:'Sprint unblocked. Phase 2 scope boundary agreed.'},
+     {stage:3,date:'2023-08-16',owner:'TM002',action:'Sponsor-to-sponsor call. Phase 2 document signed.',outcome:'Client formally signed Phase 2 scope boundary.'}
+   ],
+   resolution:'Change control contained scope to 3 critical widgets. 11 deferred with formal sign-off. Only 2-day slip.',
+   resolvedBy:'TM003',resolvedDate:'2023-08-18',
+   actualImpact:'2-day UAT slip. 3 widgets built. 11 deferred to Phase 2 — formally signed. Minimal programme impact.',
+   retroSprint:'S10',retroAction:'Re-sign out-of-scope boundary document at UAT entry gate — not just at kickoff.',
+   retroOwner:'TM001',retroDueDate:'2023-08-25',
+   recurrenceCheck:'S11',recurrenceResult:'prevented',
+   recurrenceNote:'S11 UAT gate re-confirmation: zero new scope requests in S11-S12.'}
+];
+DB.learnings = [
+  {id:'L001',category:'Vendor Management',project:'Apex Mobile App',sprint:'S3',
+   lesson:'Escalate vendor non-response within 24 hours, not 48. Add dependency verification as first agenda item in Sprint Planning.',
+   context:'Vendor sandbox delivery missed by 3 days. Waiting 48hrs to escalate cost 1 additional day of recovery time.',
+   outcome:'prevented',outcomeEvidence:'Sprint 4 had zero vendor escalations — dependency check caught 2 vendor risks early.',
+   addedBy:'TM001',date:'2024-02-14',usedInTemplates:['T001']},
+  {id:'L002',category:'Process',project:'Nexus Compliance Portal',sprint:'S4',
+   lesson:'Buffer 7 working days (not 5) for compliance review in any sprint containing regulatory content.',
+   context:'Compliance review estimated at 5 days, actual was 12 days in 2 consecutive sprints.',
+   outcome:'prevented',outcomeEvidence:'Sprint 5 planning included 7-day buffer. Zero compliance delays in S5 and S6.',
+   addedBy:'TM001',date:'2024-01-31',usedInTemplates:['T002']},
+  {id:'L003',category:'Technical',project:'Meridian Training Rollout',sprint:'S1',
+   lesson:'LMS environment access must be confirmed and tested BEFORE Sprint 1 starts. Add as Sprint 0 gate.',
+   context:'LMS access not provisioned across 5 locations. Sprint 1 velocity: 24/42 pts. 7-day delay.',
+   outcome:'prevented',outcomeEvidence:'Sprint 2 had full LMS access from Day 1. No environment issues.',
+   addedBy:'TM001',date:'2024-01-31',usedInTemplates:['T003']},
+  {id:'L004',category:'Stakeholder Engagement',project:'Nexus Compliance Portal',sprint:'S2',
+   lesson:'WIP limit of 2 items per person in the In Review column prevents review bottlenecks.',
+   context:'Multiple stories in review simultaneously created a quality bottleneck in Sprint 2.',
+   outcome:'prevented',outcomeEvidence:'Sprint 3 introduced WIP limits. No review bottleneck in S3–S6.',
+   addedBy:'TM019',date:'2024-01-31',usedInTemplates:[]},
+  {id:'L005',category:'Scope Management',project:'Apex Mobile App',sprint:'S2',
+   lesson:'Request complete API specification (all endpoints) before Sprint Planning, not during development.',
+   context:'3 missing API endpoints discovered mid-sprint. Required replanning and partial scope deferral.',
+   outcome:'prevented',outcomeEvidence:'Full API spec confirmed before Sprint 3 planning. Zero mid-sprint API surprises.',
+   addedBy:'TM004',date:'2024-01-29',usedInTemplates:['T001']}
+,
+  {id:'L006',category:'Technical',project:'Pinnacle Data Migration',sprint:'S4',
+   lesson:'Build contingency plans as working code BEFORE the risk fires. A contingency tool built in Sprint 2 contained a Sprint 4 risk trigger with ZERO days slipped.',
+   context:'R004 triggered — 847 unmapped columns mid-sprint. Tool activated in 1 hour. Sprint on time.',
+   outcome:'prevented',outcomeEvidence:'Tool used proactively S5-S8. Zero schema issues. Zero days slipped on a risk estimated at 8+ days.',
+   addedBy:'TM018',date:'2023-11-30',usedInTemplates:['T005']},
+  {id:'L007',category:'Vendor Management',project:'Orion Digital Platform',sprint:'S7',
+   lesson:'All API vendor contracts must include a 90-day advance notice clause for breaking changes. Add to procurement checklist — non-negotiable.',
+   context:'Vendor released v3.0 breaking change without notice. 8-day impact contained to 3 days through rapid escalation.',
+   outcome:'prevented',outcomeEvidence:'Vendor gave advance notice for all S8-S12 updates. Zero unannounced breaking changes.',
+   addedBy:'TM004',date:'2023-09-05',usedInTemplates:['T001','T002']},
+  {id:'L008',category:'Scope Management',project:'Orion Digital Platform',sprint:'S10',
+   lesson:'Re-sign the out-of-scope boundary document at UAT entry gate — not just at kickoff. Clients forget. Get the signature again.',
+   context:'14 new widgets demanded during UAT. Change control invoked. 2-day slip only.',
+   outcome:'prevented',outcomeEvidence:'S11 UAT gate re-confirmation: zero new scope requests.',
+   addedBy:'TM003',date:'2023-09-05',usedInTemplates:['T001','T002','T003']}
+];
+DB.portfolioEpics = [
+  {id:'E005',projectId:'P002',name:'Assessment Engine',colour:'#10B981',stories:12,done:10,inSprint:2,points:48,pointsDone:42},
+  {id:'E006',projectId:'P002',name:'Compliance Compliance Module',colour:'#EF4444',stories:8,done:6,inSprint:2,points:35,pointsDone:28},
+  {id:'E007',projectId:'P002',name:'Reporting & Analytics',colour:'#F59E0B',stories:6,done:2,inSprint:2,points:22,pointsDone:8},
+  {id:'E008',projectId:'P003',name:'LMS Configuration',colour:'#7C3AED',stories:10,done:3,inSprint:3,points:40,pointsDone:12},
+  {id:'E009',projectId:'P003',name:'Content Development',colour:'#0EA5E9',stories:15,done:2,inSprint:5,points:60,pointsDone:8}
+,
+  {id:'E010',projectId:'P004',name:'Data Assessment',colour:'#10B981',stories:8,done:8,inSprint:0,points:32,pointsDone:32},
+  {id:'E011',projectId:'P004',name:'Migration Engine',colour:'#4F46E5',stories:12,done:12,inSprint:0,points:48,pointsDone:48},
+  {id:'E012',projectId:'P004',name:'Validation & Go-Live',colour:'#F59E0B',stories:6,done:6,inSprint:0,points:24,pointsDone:24},
+  {id:'E013',projectId:'P005',name:'Customer Portal',colour:'#7C3AED',stories:15,done:15,inSprint:0,points:60,pointsDone:60},
+  {id:'E014',projectId:'P005',name:'Internal Dashboard',colour:'#0EA5E9',stories:12,done:12,inSprint:0,points:48,pointsDone:48},
+  {id:'E015',projectId:'P005',name:'API Gateway',colour:'#EF4444',stories:10,done:10,inSprint:0,points:40,pointsDone:40},
+  {id:'E016',projectId:'P005',name:'Integration & Testing',colour:'#10B981',stories:8,done:8,inSprint:0,points:32,pointsDone:32}
+];
+DB.team = [
+  // Senior Leadership
+  {id:'TM001',name:'Alex Morgan',role:'Senior PM / Programme Manager',dept:'PMO',email:'amorgan@apexsolutions.com',avatar:'SA',colour:'#4F46E5',skills:['PMBOK','SAFe','Scrum','EVM','Stakeholder Mgmt'],projects:['P001','P002','P003'],utilisation:85,capacity:42,status:'Active'},
+  {id:'TM002',name:'Jordan Chen',role:'CTO / Sponsor',dept:'Leadership',email:'jchen@apexsolutions.com',avatar:'RM',colour:'#7C3AED',skills:['Strategy','Architecture','Budget'],projects:['P001','P002','P003'],utilisation:40,capacity:20,status:'Active'},
+  {id:'TM003',name:'Priya Sharma',role:'Senior Business Analyst',dept:'BA',email:'priya@apexsolutions.com',avatar:'PS',colour:'#10B981',skills:['Requirements','UAT','BRD','Gap Analysis'],projects:['P001','P002'],utilisation:90,capacity:38,status:'Active'},
+  // Development Teams
+  {id:'TM004',name:'Arjun Kumar',role:'Tech Lead',dept:'Engineering',email:'arjun@apexsolutions.com',avatar:'AK',colour:'#EF4444',skills:['Node.js','React','API Design','CI/CD'],projects:['P001'],utilisation:95,capacity:40,status:'Active'},
+  {id:'TM005',name:'Deepa Nair',role:'Senior Developer',dept:'Engineering',email:'deepa@apexsolutions.com',avatar:'DN',colour:'#F59E0B',skills:['React Native','iOS','Android'],projects:['P001','P003'],utilisation:88,capacity:38,status:'Active'},
+  {id:'TM006',name:'Vikram Singh',role:'Full Stack Developer',dept:'Engineering',email:'vikram@apexsolutions.com',avatar:'VS',colour:'#0EA5E9',skills:['Python','Django','PostgreSQL'],projects:['P002'],utilisation:92,capacity:40,status:'Active'},
+  {id:'TM007',name:'Anjali Patel',role:'Frontend Developer',dept:'Engineering',email:'anjali@apexsolutions.com',avatar:'AP',colour:'#10B981',skills:['Vue.js','TypeScript','CSS'],projects:['P002','P003'],utilisation:75,capacity:36,status:'Active'},
+  {id:'TM008',name:'Rohit Das',role:'DevOps Engineer',dept:'Engineering',email:'rohit@apexsolutions.com',avatar:'RD',colour:'#8B5CF6',skills:['AWS','Docker','Kubernetes','CI/CD'],projects:['P001','P002','P003'],utilisation:80,capacity:38,status:'Active'},
+  // QA Team
+  {id:'TM009',name:'Meena Krishnan',role:'QA Lead',dept:'Quality',email:'meena@apexsolutions.com',avatar:'MK',colour:'#EF4444',skills:['Test Strategy','Automation','UAT','Performance Testing'],projects:['P001','P002'],utilisation:85,capacity:40,status:'Active'},
+  {id:'TM010',name:'Suresh Babu',role:'QA Engineer',dept:'Quality',email:'suresh@apexsolutions.com',avatar:'SB',colour:'#F59E0B',skills:['Selenium','Jest','API Testing'],projects:['P001'],utilisation:78,capacity:38,status:'Active'},
+  {id:'TM011',name:'Kavitha Reddy',role:'QA Engineer',dept:'Quality',email:'kavitha@apexsolutions.com',avatar:'KR',colour:'#10B981',skills:['Manual Testing','UAT','Regression'],projects:['P002','P003'],utilisation:72,capacity:36,status:'Active'},
+  // L&D / Training Team
+  {id:'TM012',name:'Lakshmi Iyer',role:'Learning Designer',dept:'L&D',email:'lakshmi@apexsolutions.com',avatar:'LI',colour:'#7C3AED',skills:['ADDIE','Bloom\'s','Articulate','LMS'],projects:['P003'],utilisation:88,capacity:38,status:'Active'},
+  {id:'TM013',name:'Mohan Pillai',role:'Training Coordinator',dept:'L&D',email:'mohan@apexsolutions.com',avatar:'MP',colour:'#0EA5E9',skills:['LMS Admin','Assessment Design','Scheduling'],projects:['P003'],utilisation:65,capacity:30,status:'Active'},
+  // Business & Compliance
+  {id:'TM014',name:'Compliance Director',role:'Head of Compliance',dept:'Compliance',email:'compliance@nexusfinancial.com',avatar:'CH',colour:'#EF4444',skills:['Regulatory Review','SEBI','AMFI'],projects:['P002'],utilisation:30,capacity:12,status:'External'},
+  {id:'TM015',name:'Nisha Thomas',role:'Product Owner',dept:'Product',email:'nisha@apexsolutions.com',avatar:'NT',colour:'#10B981',skills:['Product Roadmap','Backlog Grooming','Stakeholder Comms'],projects:['P001','P002'],utilisation:85,capacity:40,status:'Active'},
+  // Extended team placeholders (simulating 200-member org)
+  {id:'TM016',name:'Arun Mehta',role:'Senior Developer',dept:'Engineering',email:'arun@apexsolutions.com',avatar:'AM',colour:'#4F46E5',skills:['Java','Spring Boot','Microservices'],projects:['P002'],utilisation:90,capacity:40,status:'Active'},
+  {id:'TM017',name:'Divya Pillai',role:'UX Designer',dept:'Design',email:'divya@apexsolutions.com',avatar:'DP',colour:'#F59E0B',skills:['Figma','UX Research','Prototyping'],projects:['P001','P003'],utilisation:70,capacity:34,status:'Active'},
+  {id:'TM018',name:'Karthik Rajan',role:'Data Engineer',dept:'Engineering',email:'karthik@apexsolutions.com',avatar:'KJ',colour:'#8B5CF6',skills:['Python','Spark','Data Pipelines'],projects:['P002'],utilisation:82,capacity:38,status:'Active'},
+  {id:'TM019',name:'Swathi Naidu',role:'Scrum Master',dept:'PMO',email:'swathi@apexsolutions.com',avatar:'SN',colour:'#10B981',skills:['Scrum','Kanban','Facilitation','Impediment Removal'],projects:['P001','P002'],utilisation:75,capacity:36,status:'Active'},
+  {id:'TM020',name:'Balaji Kumar',role:'Infrastructure Architect',dept:'Engineering',email:'balaji@apexsolutions.com',avatar:'BK',colour:'#EF4444',skills:['AWS','GCP','Network','Security'],projects:['P001','P002','P003'],utilisation:60,capacity:28,status:'Active'}
+];
+
 
 DB.sprints = [
   {id:'S1',name:'Sprint 1 — Foundation',goal:'Set up CI/CD, build API wrapper skeleton, configure dev environment',start:'2024-01-02',end:'2024-01-15',capacity:40,days:14,status:'Closed',velocity:38},
@@ -4216,6 +4489,32 @@ var RENDER = {
   integrations: rIntegrations
 };
 
+
+function skipSetup() {
+  var ov = document.getElementById('vc-setup-overlay');
+  if (ov) ov.classList.remove('open');
+  VC.org.setupDone = true;
+  rDash();
+  toast('Demo mode — explore VeloClear with sample data', 'info');
+}
+function selectOrgType(type, el) {
+  document.querySelectorAll('.setup-option').forEach(function(o){ 
+    o.style.borderColor = 'var(--border)'; 
+    o.style.background = ''; 
+  });
+  el.style.borderColor = 'var(--accent)';
+  el.style.background = 'var(--accent-l)';
+  VC.org.type = type;
+}
+function completeSetup() {
+  var ov = document.getElementById('vc-setup-overlay');
+  if (ov) ov.classList.remove('open');
+  VC.org.setupDone = true;
+  localStorage.setItem('vc_setup_done','1');
+  rDash();
+  toast('Setup complete — welcome to VeloClear', 'success');
+}
+
 /* ── INIT ───────────────────────────────────────────────── */
 window.onload = function() {
   var today = new Date().toISOString().split('T')[0];
@@ -4243,6 +4542,7 @@ window.onload = function() {
   var so = document.getElementById('sb-overlay');
   if (so) so.addEventListener('click', toggleSidebar);
 };
+
 </script>
 </body>
 </html>
