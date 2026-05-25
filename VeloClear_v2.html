@@ -20,6 +20,51 @@
 .modal-footer { padding:14px 20px; border-top:1px solid #E8EEF4; display:flex; justify-content:flex-end; gap:8px; }
 .modal-close { width:30px; height:30px; border-radius:6px; border:none; background:#F8FAFC; cursor:pointer; font-size:16px; display:flex; align-items:center; justify-content:center; color:#64748B; }
 .modal-close:hover { background:#E8EEF4; }
+
+/* SECTION VISIBILITY */
+.sec { display: none !important; }
+.sec.active { display: block !important; }
+
+/* MODAL OVERLAY */
+.modal-overlay {
+  display: none; position: fixed;
+  top:0; left:0; right:0; bottom:0;
+  background: rgba(15,23,42,.5);
+  z-index: 500;
+  align-items: center; justify-content: center;
+  backdrop-filter: blur(3px);
+}
+.modal-overlay.open { display: flex; }
+.modal {
+  background: #fff; border-radius: 12px;
+  width: min(600px, 94vw); max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 24px 64px rgba(15,23,42,.25);
+  animation: modal-in .2s cubic-bezier(.34,1.2,.64,1) both;
+}
+@keyframes modal-in {
+  from { opacity:0; transform:scale(.95) translateY(8px); }
+  to { opacity:1; transform:none; }
+}
+.modal-header { display:flex; align-items:flex-start; justify-content:space-between; padding:18px 20px; border-bottom:1px solid #E8EEF4; }
+.modal-title { font-size:15px; font-weight:700; color:#0F172A; }
+.modal-body { padding:20px; }
+.modal-footer { padding:14px 20px; border-top:1px solid #E8EEF4; display:flex; justify-content:flex-end; gap:8px; }
+.modal-close { width:30px; height:30px; border-radius:6px; border:none; background:#F8FAFC; cursor:pointer; font-size:16px; display:flex; align-items:center; justify-content:center; color:#64748B; }
+.modal-close:hover { background:#E8EEF4; }
+
+
+.heat-cell{display:flex;align-items:center;justify-content:center;border-radius:6px;cursor:pointer;font-weight:700;position:relative;transition:transform .15s,box-shadow .15s;}
+.heat-cell:hover{transform:scale(1.12);box-shadow:0 4px 12px rgba(0,0,0,.3);z-index:1;}
+.heat-cell.low{background:#DCFCE7;color:#15803D;}
+.heat-cell.med-low{background:#FEF9C3;color:#854D0E;}
+.heat-cell.med{background:#FEF3C7;color:#92400E;}
+.heat-cell.med-high{background:#FEE2E2;color:#991B1B;}
+.heat-cell.high{background:#EF4444;color:#fff;}
+.heat-cell.very-high{background:#DC2626;color:#fff;}
+.heat-cell.extreme{background:#7F1D1D;color:#fff;}
+.heat-cell.plotted{outline:3px solid #0F172A;outline-offset:1px;}
+
 </style>
 </head>
 <body>
@@ -832,36 +877,7 @@
 
 
 
-<!-- ═══ MAIN ═══ -->
-<div class="main">
-  <div class="topbar">
-    <span class="topbar-title" id="tb-title">Portfolio Dashboard</span>
-    <span class="topbar-sub" id="tb-sub">· Auto-updating · All metrics calculated from your inputs</span>
-    <div class="topbar-actions">
-      <a href="index.html" style="display:inline-flex;align-items:center;gap:5px;padding:6px 12px;border-radius:8px;font-size:11px;font-weight:600;color:rgba(255,255,255,.4);text-decoration:none;border:1px solid rgba(255,255,255,.08);transition:all .2s;font-family:inherit;" onmouseover="this.style.color='#00D4AA';this.style.borderColor='rgba(0,212,170,.3)'" onmouseout="this.style.color='rgba(255,255,255,.4)';this.style.borderColor='rgba(255,255,255,.08)'">← Home</a>
-      <button class="btn btn-ghost btn-sm" onclick="go('learning')">📚 Learnings</button>
-      <button class="btn btn-ghost btn-sm" onclick="go('import')">⬆️ Import</button>
-      <button class="btn btn-secondary btn-sm" onclick="go('reports');setTimeout(()=>genReport('steering'),100)">📄 Steering Pack</button>
-      <button class="btn btn-primary btn-sm" id="tb-add-btn" onclick="tbAdd()">➕ Add</button>
-    </div>
-  </div>
-  <div class="content" id="app">
 
-<!-- ═══ SECTION: DASHBOARD ═══ --></section>
-<section id="s-integrations" class="sec" style="display:none">
-<div class="page-header">
-  <div class="breadcrumb">VeloClear <span>›</span> Pro</div>
-  <div class="page-title">Integrations Hub</div>
-  <div class="page-desc">Connect your existing tools so VeloClear becomes your single view of everything. Data flows in automatically — your teams keep using the tools they know, you see the complete picture here.</div>
-</div>
-
-<div class="alert info">
-  <span class="alert-icon">💡</span>
-  <div><strong>How integration works:</strong> VeloClear pulls data from your connected tools and maps it to the right module automatically. Your Jira backlog appears in the Product Backlog. Your MS Project schedule appears in the Programme Timeline. Your Slack alerts appear in the Escalation Tracker. <strong>You enter data once — it shows everywhere.</strong></div>
-</div></section>
-
-
-</div><!-- /.main -->
 </div><!-- /.app -->
 
 <!-- ═══ MODAL: ADD RISK ═══ -->
@@ -1363,7 +1379,21 @@ RD (quick add to sprint) ═══ -->
 
 
 
+
+<section id="s-integrations" class="sec" style="display:none">
+<div class="page-header">
+  <div class="breadcrumb">VeloClear <span>›</span> Pro</div>
+  <div class="page-title">Integrations Hub</div>
+  <div class="page-desc">Connect your existing tools so VeloClear becomes your single view of everything. Data flows in automatically — your teams keep using the tools they know, you see the complete picture here.</div>
+</div>
+
+<div class="alert info">
+  <span class="alert-icon">💡</span>
+  <div><strong>How integration works:</strong> VeloClear pulls data from your connected tools and maps it to the right module automatically. Your Jira backlog appears in the Product Backlog. Your MS Project schedule appears in the Programme Timeline. Your Slack alerts appear in the Escalation Tracker. <strong>You enter data once — it shows everywhere.</strong></div>
+</div></section>
+
 <script>
+
 
 /* ── DATA — loaded first, always available ─────────────── */
 // VeloClear Data Layer — loads first, defines all data before any function
@@ -3700,12 +3730,20 @@ function completeSetup() {
   }, 150);
 }
 function skipSetupToApp() {
+  var ov = document.getElementById('vc-setup-overlay');
+  if (ov) ov.classList.remove('open');
   VC.org.setupDone = true;
-  markSetupDone();
-  document.getElementById('vc-setup-overlay').style.display = 'none';
+  if (typeof markSetupDone === 'function') markSetupDone();
   updateRoleView('pm');
-  logAudit('Setup', 'Enterprise setup completed — skipped to dashboard');
+  if (typeof logAudit === 'function') logAudit('Setup', 'Setup skipped — demo mode');
+  document.querySelectorAll('.sec').forEach(function(s){ s.classList.remove('active'); });
+  var dash = document.getElementById('s-dashboard');
+  if (dash) dash.classList.add('active');
+  try { rDash(); } catch(e) { console.error('rDash:', e); }
+  toast('Demo mode active — explore with sample data', 'info');
 }
+
+function skipSetup() { skipSetupToApp(); }
 function markSetupDone() {
   localStorage.setItem('vc_setup_done', '1');
 }
@@ -4386,7 +4424,8 @@ window.onload = function() {
   }
   var so = document.getElementById('sb-overlay');
   if (so) so.addEventListener('click', toggleSidebar);
-};
+};;
+
 
 </script>
 </body>
