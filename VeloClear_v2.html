@@ -1358,7 +1358,7 @@ RD (quick add to sprint) ═══ -->
   </div>
   <div id="learning-library-container"></div>
 </section>
-<div id="vc-setup-overlay" style="display:flex;">
+<div id="vc-setup-overlay" class="setup-ov">
   <div class="vc-setup-card">
     <div class="vc-brand">
       <div class="vc-logo-big" style="display:flex;align-items:center;justify-content:center;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" style="width:64px;height:64px;flex-shrink:0"><defs><linearGradient id="mg64a" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#4F46E5"/><stop offset="100%" stop-color="#00D4AA"/></linearGradient></defs><rect width="64" height="64" rx="14" fill="url(#mg64a)"/><polygon points="10,14 22,14 32,42 29,48 26,48" fill="white"/><polygon points="26,48 32,42 54,14 51,14" fill="white" opacity="0.88"/><polygon points="25,47 32,35 39,47 32,50" fill="#00D4AA" opacity="0.85"/></svg></div>
@@ -1625,8 +1625,8 @@ RD (quick add to sprint) ═══ -->
   <button class="role-btn" data-role="auditor" onclick="switchRole('auditor',this)"><i class="ti ti-lock"></i>Auditor</button>
 </div>
 
-<script src="data.js"></script>
-<script src="app.js"></script>
+<script src="data.js" defer></script>
+<script src="app.js" defer></script>
 <script>
 window.onload = function() {
   var today = new Date().toISOString().split('T')[0];
