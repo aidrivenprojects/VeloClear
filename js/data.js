@@ -14,7 +14,8 @@ const NAV = [
   ['GOVERNANCE',[['rag','RAG','ti-traffic-lights'],['change','Change Control','ti-git-pull-request'],['escalations','Escalations','ti-urgent'],['decisions','Decisions','ti-scale']]],
   ['PEOPLE',[['stakeholders','Stakeholders','ti-users'],['engagement','Engagement','ti-chart-grid-dots'],['raci','RACI','ti-table'],['capacity','Capacity','ti-users-group']]],
   ['INTELLIGENCE',[['impact','Impact Trace','ti-route-alt-left'],['learning','Learning Engine','ti-books'],['insights','Cross-Project Insights','ti-brain'],['narratives','Delivery Narratives','ti-file-text-ai']]],
-  ['REPORTS',[['steering','Steering Packs','ti-report'],['exec-summaries','Executive Summaries','ti-file-description'],['exports','Exports','ti-download']]]
+  ['REPORTS',[['steering','Steering Packs','ti-report'],['exec-summaries','Executive Summaries','ti-file-description'],['exports','Exports','ti-download']]],
+  ['PLATFORM',[['integrations','Integrations','ti-plug-connected'],['data-management','Data Management','ti-database'],['settings','Settings','ti-settings']]]
 ];
 
 const projects = [
@@ -25,13 +26,13 @@ const projects = [
 ];
 
 const risks = [
-  ['R001','Vendor API delay','Critical','Trigger fired','Sarah Chen'],
-  ['R002','Resource gap in integration team','High','Monitoring','Anil Kumar'],
-  ['R003','Stakeholder sign-off delay','Medium','Mitigation active','Priya Menon']
+  ['R001','Vendor API delay','Critical','Trigger fired','Integration Lead'],
+  ['R002','Resource gap in integration team','High','Monitoring','Delivery Manager'],
+  ['R003','Stakeholder sign-off delay','Medium','Mitigation active','Business Owner']
 ];
 
 const traceSteps = [
-  ['red','Step 1 — Blocker','Third-party API vendor missed the sprint 3 milestone. Reported by Sarah Chen on 15 Jan.'],
+  ['red','Step 1 — Blocker','Third-party API vendor missed the sprint 3 milestone. Reported by the delivery lead on 15 Jan.'],
   ['amber','Step 2 — Risk Triggered','Risk R001 activated automatically because the observable trigger condition was met.'],
   ['red','Step 3 — Issue Created','Issue I001 created and linked to the risk, dependency and affected sprint.'],
   ['amber','Step 4 — Escalation Routed','Sponsor notified because the issue crossed the 48-hour threshold without confirmed recovery.'],

@@ -28,8 +28,15 @@
     <div class="intent-bg"></div>
     <section class="intent-shell">
       <div class="brand-row">
-        <div class="brand-mark">VC</div>
-        <div><strong>Velo<span>Clear</span></strong><small>Track · Trace · Learn</small></div>
+        <div class="brand-lockup">
+          <div class="brand-mark">VC</div>
+          <div><strong>Velo<span>Clear</span></strong><small>Track · Trace · Learn</small></div>
+        </div>
+        <div class="workspace-meta" aria-label="Generic workspace context">
+          <div class="meta-item"><i class="ti ti-user-screen"></i><span>Role</span><strong>Programme Workspace</strong></div>
+          <div class="meta-item"><i class="ti ti-building"></i><span>Environment</span><strong>Portfolio Demo</strong></div>
+          <div class="meta-pill"><i class="ti ti-sparkles"></i> 3 insights ready</div>
+        </div>
       </div>
       <div class="intent-grid">
         <div class="intent-copy">
@@ -42,7 +49,46 @@
             <span><i class="ti ti-brain"></i> Learn patterns</span>
           </div>
         </div>
-        <div class="intent-cards" id="intent-cards"></div>
+        <div class="intent-right">
+          <div class="pulse-strip" aria-label="Delivery pulse preview">
+            <div class="pulse-title"><i class="ti ti-activity"></i><div><strong>Delivery Pulse</strong><span>Live portfolio preview</span></div></div>
+            <div class="pulse-metric"><span>Overall Health</span><strong>72%</strong><small>↓ 8% vs last sprint</small></div>
+            <div class="pulse-metric danger"><span>At-risk Projects</span><strong>4</strong><small>↑ 1 vs last sprint</small></div>
+            <div class="pulse-metric danger"><span>Overdue Milestones</span><strong>7</strong><small>↓ 2 vs last sprint</small></div>
+            <div class="pulse-metric amber"><span>Active Risks</span><strong>23</strong><small>↑ 5 vs last sprint</small></div>
+            <div class="pulse-action"><span>Embedded insights</span><button onclick="selectRole('portfolio')">View workspace</button></div>
+          </div>
+          <div class="intent-cards" id="intent-cards"></div>
+        </div>
+      </div>
+      <section class="import-connect" aria-label="Bring existing projects into VeloClear">
+        <div class="import-card">
+          <div class="import-head"><div><strong>Bring your projects in</strong><span>Upload files or connect tools to get started quickly</span></div><i class="ti ti-cloud-upload"></i></div>
+          <div class="drop-zone" onclick="selectRole('programme')">
+            <i class="ti ti-upload"></i>
+            <strong>Drag & drop files here or click to browse</strong>
+            <span>Excel, MS Project, CSV, PDF, Jira export, Smartsheet · max 100MB</span>
+          </div>
+          <div class="extract-list"><strong>What we extract</strong><span><i class="ti ti-circle-check-filled"></i> Tasks, milestones & dependencies</span><span><i class="ti ti-circle-check-filled"></i> Risks, issues & actions</span><span><i class="ti ti-circle-check-filled"></i> Resources & assignments</span><span><i class="ti ti-circle-check-filled"></i> Baselines & progress</span></div>
+        </div>
+        <div class="connect-card">
+          <div class="import-head"><div><strong>Connect your tools</strong><span>Secure connections keep project data in sync</span></div><i class="ti ti-plug-connected"></i></div>
+          <div class="connector-grid">
+            <button onclick="selectRole('programme')"><i class="ti ti-brand-office"></i>Microsoft Project</button>
+            <button onclick="selectRole('pm')"><i class="ti ti-brand-jira"></i>Jira</button>
+            <button onclick="selectRole('programme')"><i class="ti ti-brand-azure"></i>Azure DevOps</button>
+            <button onclick="selectRole('portfolio')"><i class="ti ti-checkbox"></i>Smartsheet</button>
+            <button onclick="selectRole('team')"><i class="ti ti-brand-asana"></i>Asana</button>
+            <button onclick="selectRole('newpm')"><i class="ti ti-file-spreadsheet"></i>Excel</button>
+            <button onclick="selectRole('portfolio')"><i class="ti ti-chart-dots"></i>Power BI</button>
+            <button onclick="selectRole('pm')"><i class="ti ti-lifebuoy"></i>ServiceNow</button>
+          </div>
+        </div>
+      </section>
+      <div class="trust-row">
+        <span><i class="ti ti-shield-lock"></i> Enterprise-grade security</span>
+        <span><i class="ti ti-lock"></i> Your data stays yours</span>
+        <span><i class="ti ti-users"></i> Built for delivery teams</span>
       </div>
     </section>
   </main>
@@ -104,6 +150,9 @@
         <section id="s-steering" class="sec"></section>
         <section id="s-exec-summaries" class="sec"></section>
         <section id="s-exports" class="sec"></section>
+        <section id="s-integrations" class="sec"></section>
+        <section id="s-data-management" class="sec"></section>
+        <section id="s-settings" class="sec"></section>
       </div>
     </section>
 

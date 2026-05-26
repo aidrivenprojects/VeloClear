@@ -6,3 +6,5 @@
 .form-control::placeholder{color:var(--placeholder)}
 .tiny-radius{border-radius:var(--radius-xs)}
 .premium-shadow{box-shadow:var(--deep-shadow)}
+
+.intent-card footer{display:flex;align-items:center;justify-content:space-between;gap:10px}.intent-card footer i{font-size:15px;color:var(--accent)}.app-import{margin-top:0}
