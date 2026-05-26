@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VeloClear — Track · Trace · Learn</title>
+  <meta name="description" content="A guided delivery intelligence workspace for project, programme and portfolio teams." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400;1,9..40,700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css">
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/screens.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body>
+  <div id="setupOverlay" class="setup-ov open" aria-modal="true" role="dialog">
+    <div class="setup-card">
+      <div class="brand-centre">
+        <div class="mark-lg">VC</div>
+        <div>
+          <div class="brand-title">Velo<span>Clear</span></div>
+          <div class="brand-kicker">Track · Trace · Learn</div>
+        </div>
+      </div>
+      <h1 class="setup-heading">What are you trying to deliver?</h1>
+      <p class="setup-copy">Choose the closest starting point. VeloClear will shape the workspace, project setup and guidance around the role.</p>
+      <div class="setup-grid" id="roleCards"></div>
+      <div class="setup-actions">
+        <button class="btn btn-primary" id="continueRole"><i class="ti ti-arrow-right"></i> Continue</button>
+        <button class="btn btn-ghost" onclick="enterApp('portfolio')">Skip → demo workspace</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="mobile-head">
+    <button class="icon-btn" onclick="toggleSidebar()"><i class="ti ti-menu-2"></i></button>
+    <div class="mobile-brand"><strong>Velo<span>Clear</span></strong></div>
+  </div>
+
+  <div id="sidebarShade" class="sidebar-shade" onclick="toggleSidebar(false)"></div>
+  <aside id="sidebar" class="sidebar">
+    <a class="sb-logo" onclick="go('dashboard')">
+      <div class="sb-logo-mark">VC</div>
+      <div>
+        <div class="sb-logo-name">Velo<span>Clear</span></div>
+        <div class="sb-logo-tag">Track · Trace · Learn</div>
+      </div>
+    </a>
+    <div id="navGroups" class="sb-scroll"></div>
+  </aside>
+
+  <main class="main">
+    <section id="s-dashboard" class="sec active"></section>
+    <section id="s-setup" class="sec"></section>
+    <section id="s-project" class="sec"></section>
+    <section id="s-delivery" class="sec"></section>
+    <section id="s-governance" class="sec"></section>
+    <section id="s-people" class="sec"></section>
+    <section id="s-intelligence" class="sec"></section>
+    <section id="s-reports" class="sec"></section>
+    <section id="s-library" class="sec"></section>
+  </main>
+
+  <div class="role-bar" id="roleBar"></div>
+
+  <div id="modalOverlay" class="modal-overlay" onclick="closeModal(event)">
+    <div class="modal" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <div>
+          <div id="modalTitle" class="modal-title">Modal</div>
+          <div id="modalSub" class="modal-sub">Details</div>
+        </div>
+        <button class="modal-close" onclick="hideModal()"><i class="ti ti-x"></i></button>
+      </div>
+      <div id="modalBody" class="modal-body"></div>
+      <div class="modal-footer">
+        <button class="btn btn-ghost" onclick="hideModal()">Close</button>
+        <button class="btn btn-primary" onclick="hideModal()">Save demo change</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="drawerOverlay" class="drawer-overlay" onclick="closeDrawer()"></div>
+  <aside id="drawer" class="drawer"></aside>
+
+  <script src="js/data.js"></script>
+  <script src="js/navigation.js"></script>
+  <script src="js/wizard.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
