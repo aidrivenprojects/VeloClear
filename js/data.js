@@ -1,70 +1,40 @@
-const roles = [
-  { id:'newpm', emoji:'🙋', title:'New PM', desc:'Build a project workspace with guided prompts, starter RAID and coaching.' },
-  { id:'pm', emoji:'👔', title:'Project Manager', desc:'Run delivery, risks, stakeholders, changes and sprint health.' },
-  { id:'programme', emoji:'🧭', title:'Programme Manager', desc:'See timeline, dependencies, escalation flow and cross-project delivery health.' },
-  { id:'portfolio', emoji:'📊', title:'Portfolio Lead', desc:'Track portfolio health, systemic risk, patterns and executive decisions.' },
-  { id:'sponsor', emoji:'🏛️', title:'Sponsor / Stakeholder', desc:'Receive concise narratives, decisions needed and escalation summaries.' },
-  { id:'team', emoji:'🛠️', title:'Team Member', desc:'Focus on work, blockers, dependencies, sprint commitments and actions.' }
+const ROLES = [
+  {id:'newpm', icon:'ti-compass', title:'I need help structuring and running a project', role:'New PM', sub:'Generate phases, risks, stakeholders, governance and a starter delivery rhythm automatically.', preview:'RAID · Timeline · Stakeholders · Governance'},
+  {id:'pm', icon:'ti-shield-check', title:'I need visibility into delivery risk and execution', role:'Project Manager', sub:'Focus on RAID, blockers, sprint health, RAG and active mitigation actions.', preview:'Risks · Issues · Sprint · RAG'},
+  {id:'programme', icon:'ti-timeline-event', title:'I need to coordinate dependencies across teams', role:'Programme Manager', sub:'See cross-team dependencies, milestones, sprint drift and escalation paths in one place.', preview:'Timeline · Dependencies · EVM · Escalations'},
+  {id:'portfolio', icon:'ti-chart-grid-dots', title:'I need portfolio-level intelligence and trends', role:'Portfolio Lead', sub:'Prioritise portfolio health, systemic risk, patterns and cross-project learning.', preview:'Health · Patterns · Learning · Reports'},
+  {id:'sponsor', icon:'ti-briefcase', title:'I need concise delivery insights and decisions', role:'Sponsor', sub:'Read executive-grade narratives, decisions required, escalations and commercial impact.', preview:'Narratives · Decisions · Steering'},
+  {id:'team', icon:'ti-users-group', title:'I need visibility into sprint work and blockers', role:'Team Member', sub:'See current sprint work, ownership, blockers and dependencies without PMO noise.', preview:'Sprint · Blockers · Capacity · Dependencies'}
 ];
 
-const nav = [
-  { label:'Home', items:[
-    { id:'dashboard', icon:'ti-layout-dashboard', name:'Portfolio Dashboard' },
-    { id:'project', icon:'ti-briefcase', name:'Project Workspace' }
-  ]},
-  { label:'Start', items:[
-    { id:'setup', icon:'ti-sparkles', name:'Guided Setup' },
-    { id:'library', icon:'ti-template', name:'Templates' }
-  ]},
-  { label:'Delivery', items:[
-    { id:'delivery', icon:'ti-timeline', name:'Timeline · RAID · Sprint', badge:'1' }
-  ]},
-  { label:'Governance', items:[
-    { id:'governance', icon:'ti-shield-check', name:'RAG · Change · Decisions', badge:'2', badgeClass:'amber' }
-  ]},
-  { label:'People', items:[
-    { id:'people', icon:'ti-users', name:'Stakeholders · RACI · Capacity' }
-  ]},
-  { label:'Intelligence', items:[
-    { id:'intelligence', icon:'ti-route', name:'Trace · Learning · Patterns' }
-  ]},
-  { label:'Reports', items:[
-    { id:'reports', icon:'ti-report-analytics', name:'Narratives · Exports' }
-  ]}
+const NAV = [
+  ['HOME',[['dashboard','Portfolio Dashboard','ti-layout-dashboard'],['executive','Executive Health','ti-presentation-analytics']]],
+  ['START',[['guided-setup','Guided Setup','ti-sparkles'],['templates','Templates','ti-template'],['new-project','New Project','ti-circle-plus']]],
+  ['DELIVERY',[['timeline','Programme Timeline','ti-timeline'],['raid','RAID','ti-shield-exclamation'],['sprint','Sprint Workspace','ti-layout-kanban'],['dependencies','Dependencies','ti-route']]],
+  ['GOVERNANCE',[['rag','RAG','ti-traffic-lights'],['change','Change Control','ti-git-pull-request'],['escalations','Escalations','ti-urgent'],['decisions','Decisions','ti-scale']]],
+  ['PEOPLE',[['stakeholders','Stakeholders','ti-users'],['engagement','Engagement','ti-chart-grid-dots'],['raci','RACI','ti-table'],['capacity','Capacity','ti-users-group']]],
+  ['INTELLIGENCE',[['impact','Impact Trace','ti-route-alt-left'],['learning','Learning Engine','ti-books'],['insights','Cross-Project Insights','ti-brain'],['narratives','Delivery Narratives','ti-file-text-ai']]],
+  ['REPORTS',[['steering','Steering Packs','ti-report'],['exec-summaries','Executive Summaries','ti-file-description'],['exports','Exports','ti-download']]]
 ];
 
 const projects = [
-  { name:'Apex Mobile', rag:'amber', status:'Vendor dependency active', sprint:'S3', cpi:1.08, spi:.97, owner:'Sarah Chen' },
-  { name:'Nexus Compliance', rag:'green', status:'On track', sprint:'S5', cpi:1.10, spi:1.02, owner:'Raj Patel' },
-  { name:'Meridian Training', rag:'red', status:'Testing blocked', sprint:'S2', cpi:.88, spi:.67, owner:'Mia Torres' },
-  { name:'Atlas Payroll', rag:'slate', status:'Closed', sprint:'Done', cpi:1.04, spi:1.00, owner:'Lena Gray' }
+  {name:'Apex Mobile Platform', rag:'amber', cpi:1.08, spi:.97, sprint:'S3', note:'Vendor API milestone slipped; fallback plan active.'},
+  {name:'Nexus Compliance', rag:'green', cpi:1.10, spi:1.02, sprint:'S5', note:'Controls mapping completed ahead of steering review.'},
+  {name:'Meridian Training', rag:'red', cpi:.88, spi:.67, sprint:'S2', note:'Capacity gap causing rollout delay; sponsor decision needed.'},
+  {name:'Orion Data Migration', rag:'green', cpi:1.04, spi:1.00, sprint:'S4', note:'Cutover rehearsal passed with minor defects.'}
 ];
 
-const features = [
-  { group:'Delivery', icon:'ti-shield-exclamation', title:'RAID Log', desc:'Risks, assumptions, issues and dependencies with trigger-based escalation.', tags:['Risks','Assumptions','Issues','Dependencies'] },
-  { group:'Delivery', icon:'ti-timeline-event', title:'Programme Timeline', desc:'Sprint and milestone view across projects with clickable delivery detail.', tags:['Sprints','Milestones','Blockers'] },
-  { group:'Delivery', icon:'ti-layout-kanban', title:'Sprint Workspace', desc:'Backlog, board, burndown, velocity and retrospective in one guided view.', tags:['Backlog','Board','Retro'] },
-  { group:'Governance', icon:'ti-traffic-lights', title:'RAG Dashboard', desc:'Auto-calculated RAG across scope, schedule, budget, quality and risk.', tags:['RAG','Commentary','Overrides'] },
-  { group:'Governance', icon:'ti-git-pull-request', title:'Change Control', desc:'Integrated CR workflow with schedule, cost, quality and scope impact.', tags:['CR','CCB','Rebaseline'] },
-  { group:'Governance', icon:'ti-scale', title:'Decision Rights', desc:'Approval thresholds and decision ownership for faster governance.', tags:['Thresholds','Audit','Routing'] },
-  { group:'People', icon:'ti-users-group', title:'Stakeholders', desc:'Register, power-interest grid, engagement matrix and communications plan.', tags:['Stakeholders','Comms','Engagement'] },
-  { group:'People', icon:'ti-table', title:'RACI & Capacity', desc:'Ownership clarity plus people capacity signals across delivery teams.', tags:['RACI','Capacity','Ownership'] },
-  { group:'Intelligence', icon:'ti-route', title:'Impact Trace', desc:'Visual cause-and-effect chain from blocker to decision to learning.', tags:['Trace','Cause','Learning'] },
-  { group:'Intelligence', icon:'ti-brain', title:'Learning Engine', desc:'Cross-project memory that detects patterns and reuses lessons.', tags:['Patterns','Memory','Insights'] },
-  { group:'Reports', icon:'ti-file-analytics', title:'Executive Narratives', desc:'Plain-English delivery health, decisions needed and steering packs.', tags:['Narrative','Steering','Export'] },
-  { group:'Start', icon:'ti-circle-plus', title:'Project Setup Intelligence', desc:'Generate phases, RAID starters, milestones, stakeholders and governance defaults.', tags:['Wizard','Templates','Coaching'] }
+const risks = [
+  ['R001','Vendor API delay','Critical','Trigger fired','Sarah Chen'],
+  ['R002','Resource gap in integration team','High','Monitoring','Anil Kumar'],
+  ['R003','Stakeholder sign-off delay','Medium','Mitigation active','Priya Menon']
 ];
 
 const traceSteps = [
-  ['blocker','STEP 1 — BLOCKER','Third-party API vendor missed sprint 3 milestone.','15 Jan · Reported by Sarah Chen'],
-  ['risk','STEP 2 — RISK TRIGGERED','Risk R001 activated: vendor dependency risk. Score 15 → active.','Auto-created from RAID trigger'],
-  ['blocker','STEP 3 — ISSUE CREATED','Issue I001 opened and linked to integration testing delay.','Owner assigned · 48h clock started'],
-  ['decision','STEP 4 — DECISION NEEDED','Sponsor must approve fallback vendor support or timeline rebaseline.','Decision due before Friday steering'],
-  ['learning','STEP 5 — LEARNING CAPTURED','Future vendor integrations require fallback plan approval before Phase 3.','Added to cross-project library']
-];
-
-const insights = [
-  { title:'Vendor dependency pattern', body:'4 of 6 delayed projects share late external API handoff. Average impact: +18 days.', badge:'Recurring pattern', type:'red' },
-  { title:'Testing bottleneck emerging', body:'UAT defects increased across mobile projects after sprint 2. Add test readiness checkpoint.', badge:'Emerging risk', type:'amber' },
-  { title:'Governance working', body:'Projects with weekly decision review close CRs 42% faster in this demo dataset.', badge:'Positive pattern', type:'green' }
+  ['red','Step 1 — Blocker','Third-party API vendor missed the sprint 3 milestone. Reported by Sarah Chen on 15 Jan.'],
+  ['amber','Step 2 — Risk Triggered','Risk R001 activated automatically because the observable trigger condition was met.'],
+  ['red','Step 3 — Issue Created','Issue I001 created and linked to the risk, dependency and affected sprint.'],
+  ['amber','Step 4 — Escalation Routed','Sponsor notified because the issue crossed the 48-hour threshold without confirmed recovery.'],
+  ['green','Step 5 — Decision Logged','Fallback internal integration approach approved by steering committee.'],
+  ['green glow','Step 6 — Learning Captured','Future vendor integrations must have internal fallback owner approved before Phase 3.']
 ];

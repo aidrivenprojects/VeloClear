@@ -3,92 +3,132 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>VeloClear — Track · Trace · Learn</title>
-  <meta name="description" content="A guided delivery intelligence workspace for project, programme and portfolio teams." />
+  <title>VeloClear — Delivery Intelligence OS</title>
+  <meta name="description" content="A calm delivery intelligence operating system for PMs, programmes, portfolios and sponsors." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400;1,9..40,700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css">
   <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/base.css" />
   <link rel="stylesheet" href="css/layout.css" />
   <link rel="stylesheet" href="css/components.css" />
   <link rel="stylesheet" href="css/screens.css" />
-  <link rel="stylesheet" href="css/responsive.css" />
 </head>
 <body>
-  <div id="setupOverlay" class="setup-ov open" aria-modal="true" role="dialog">
-    <div class="setup-card">
-      <div class="brand-centre">
-        <div class="mark-lg">VC</div>
-        <div>
-          <div class="brand-title">Velo<span>Clear</span></div>
-          <div class="brand-kicker">Track · Trace · Learn</div>
+  <div id="intro" class="intro open" aria-live="polite">
+    <div class="intro-orb orb-a"></div>
+    <div class="intro-orb orb-b"></div>
+    <div class="intro-mark">VC</div>
+    <div class="intro-name">Velo<span>Clear</span></div>
+    <div id="intro-line" class="intro-line">Track delivery.</div>
+  </div>
+
+  <main id="intent-screen" class="intent-screen" aria-label="VeloClear onboarding">
+    <div class="intent-bg"></div>
+    <section class="intent-shell">
+      <div class="brand-row">
+        <div class="brand-mark">VC</div>
+        <div><strong>Velo<span>Clear</span></strong><small>Track · Trace · Learn</small></div>
+      </div>
+      <div class="intent-grid">
+        <div class="intent-copy">
+          <div class="eyebrow">Delivery intelligence OS</div>
+          <h1>What are you trying to achieve today?</h1>
+          <p>VeloClear adapts the workspace to your role, delivery environment and current challenge — without making you configure a maze first.</p>
+          <div class="intent-proof">
+            <span><i class="ti ti-route"></i> Trace causes</span>
+            <span><i class="ti ti-shield-check"></i> Trigger governance</span>
+            <span><i class="ti ti-brain"></i> Learn patterns</span>
+          </div>
         </div>
+        <div class="intent-cards" id="intent-cards"></div>
       </div>
-      <h1 class="setup-heading">What are you trying to deliver?</h1>
-      <p class="setup-copy">Choose the closest starting point. VeloClear will shape the workspace, project setup and guidance around the role.</p>
-      <div class="setup-grid" id="roleCards"></div>
-      <div class="setup-actions">
-        <button class="btn btn-primary" id="continueRole"><i class="ti ti-arrow-right"></i> Continue</button>
-        <button class="btn btn-ghost" onclick="enterApp('portfolio')">Skip → demo workspace</button>
-      </div>
-    </div>
-  </div>
-
-  <div class="mobile-head">
-    <button class="icon-btn" onclick="toggleSidebar()"><i class="ti ti-menu-2"></i></button>
-    <div class="mobile-brand"><strong>Velo<span>Clear</span></strong></div>
-  </div>
-
-  <div id="sidebarShade" class="sidebar-shade" onclick="toggleSidebar(false)"></div>
-  <aside id="sidebar" class="sidebar">
-    <a class="sb-logo" onclick="go('dashboard')">
-      <div class="sb-logo-mark">VC</div>
-      <div>
-        <div class="sb-logo-name">Velo<span>Clear</span></div>
-        <div class="sb-logo-tag">Track · Trace · Learn</div>
-      </div>
-    </a>
-    <div id="navGroups" class="sb-scroll"></div>
-  </aside>
-
-  <main class="main">
-    <section id="s-dashboard" class="sec active"></section>
-    <section id="s-setup" class="sec"></section>
-    <section id="s-project" class="sec"></section>
-    <section id="s-delivery" class="sec"></section>
-    <section id="s-governance" class="sec"></section>
-    <section id="s-people" class="sec"></section>
-    <section id="s-intelligence" class="sec"></section>
-    <section id="s-reports" class="sec"></section>
-    <section id="s-library" class="sec"></section>
+    </section>
   </main>
 
-  <div class="role-bar" id="roleBar"></div>
+  <div id="build-screen" class="build-screen">
+    <div class="build-card">
+      <div class="build-logo">VC</div>
+      <h2>Building your delivery workspace…</h2>
+      <p id="build-copy">Selecting role-aware navigation.</p>
+      <div class="build-steps" id="build-steps"></div>
+    </div>
+  </div>
 
-  <div id="modalOverlay" class="modal-overlay" onclick="closeModal(event)">
-    <div class="modal" onclick="event.stopPropagation()">
-      <div class="modal-header">
+  <div id="app" class="app hidden">
+    <button class="mobile-menu" onclick="toggleSidebar()"><i class="ti ti-menu-2"></i></button>
+    <aside id="sidebar" class="sidebar">
+      <a class="sb-logo" onclick="resetExperience()">
+        <div class="sb-logo-mark">VC</div>
+        <div class="sb-logo-copy"><strong>Velo<span>Clear</span></strong><small>Track · Trace · Learn</small></div>
+      </a>
+      <div id="role-chip" class="role-chip"><span></span><strong>Workspace</strong></div>
+      <nav id="nav-list" class="nav-list"></nav>
+    </aside>
+
+    <section class="workspace">
+      <header class="topbar">
         <div>
-          <div id="modalTitle" class="modal-title">Modal</div>
-          <div id="modalSub" class="modal-sub">Details</div>
+          <div id="section-kicker" class="top-kicker">Home</div>
+          <h2 id="section-title">Portfolio Dashboard</h2>
         </div>
-        <button class="modal-close" onclick="hideModal()"><i class="ti ti-x"></i></button>
+        <div class="top-actions">
+          <button class="btn ghost" onclick="openModal('narrative-modal')"><i class="ti ti-file-text-ai"></i> Narrative</button>
+          <button class="btn primary" onclick="go('guided-setup')"><i class="ti ti-sparkles"></i> Guided Setup</button>
+        </div>
+      </header>
+
+      <div class="content">
+        <section id="s-dashboard" class="sec active"></section>
+        <section id="s-executive" class="sec"></section>
+        <section id="s-guided-setup" class="sec"></section>
+        <section id="s-templates" class="sec"></section>
+        <section id="s-new-project" class="sec"></section>
+        <section id="s-timeline" class="sec"></section>
+        <section id="s-raid" class="sec"></section>
+        <section id="s-sprint" class="sec"></section>
+        <section id="s-dependencies" class="sec"></section>
+        <section id="s-rag" class="sec"></section>
+        <section id="s-change" class="sec"></section>
+        <section id="s-escalations" class="sec"></section>
+        <section id="s-decisions" class="sec"></section>
+        <section id="s-stakeholders" class="sec"></section>
+        <section id="s-engagement" class="sec"></section>
+        <section id="s-raci" class="sec"></section>
+        <section id="s-capacity" class="sec"></section>
+        <section id="s-impact" class="sec"></section>
+        <section id="s-learning" class="sec"></section>
+        <section id="s-insights" class="sec"></section>
+        <section id="s-narratives" class="sec"></section>
+        <section id="s-steering" class="sec"></section>
+        <section id="s-exec-summaries" class="sec"></section>
+        <section id="s-exports" class="sec"></section>
       </div>
-      <div id="modalBody" class="modal-body"></div>
-      <div class="modal-footer">
-        <button class="btn btn-ghost" onclick="hideModal()">Close</button>
-        <button class="btn btn-primary" onclick="hideModal()">Save demo change</button>
+    </section>
+
+    <div class="role-bar" id="role-bar"></div>
+  </div>
+
+  <div id="narrative-modal" class="modal-overlay" onclick="overlayClose(event, 'narrative-modal')">
+    <div class="modal">
+      <div class="modal-head"><strong>Executive delivery narrative</strong><button onclick="closeModal('narrative-modal')"><i class="ti ti-x"></i></button></div>
+      <div class="modal-body">
+        <p class="big-narrative">Portfolio health is stable, but dependency concentration is rising across two active programmes.</p>
+        <div class="mini-list">
+          <span>Primary driver: Vendor API milestone slippage</span>
+          <span>Decision needed: confirm fallback integration approach</span>
+          <span>Learning captured: supplier milestones now need internal fallback owners</span>
+        </div>
       </div>
     </div>
   </div>
 
-  <div id="drawerOverlay" class="drawer-overlay" onclick="closeDrawer()"></div>
+  <div id="drawer-overlay" class="drawer-overlay" onclick="closeDrawer()"></div>
   <aside id="drawer" class="drawer"></aside>
 
   <script src="js/data.js"></script>
-  <script src="js/navigation.js"></script>
-  <script src="js/wizard.js"></script>
+  <script src="js/render.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>
