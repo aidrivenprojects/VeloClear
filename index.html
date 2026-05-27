@@ -1,183 +1,140 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>VeloClear — Delivery Intelligence OS</title>
-  <meta name="description" content="A calm delivery intelligence operating system for PMs, programmes, portfolios and sponsors." />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>VeloClear — Guided Project Setup Intelligence</title>
+  <meta name="description" content="VeloClear guided project setup intelligence prototype." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400;1,9..40,700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,500;1,9..40,700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css">
-  <link rel="stylesheet" href="css/variables.css" />
-  <link rel="stylesheet" href="css/base.css" />
-  <link rel="stylesheet" href="css/layout.css" />
-  <link rel="stylesheet" href="css/components.css" />
-  <link rel="stylesheet" href="css/screens.css" />
+  <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
-  <div id="intro" class="intro open" aria-live="polite">
-    <div class="intro-orb orb-a"></div>
-    <div class="intro-orb orb-b"></div>
-    <div class="intro-mark">VC</div>
-    <div class="intro-name">Velo<span>Clear</span></div>
-    <div id="intro-line" class="intro-line">Track delivery.</div>
+  <div id="intro" class="intro open" aria-label="VeloClear intro">
+    <div class="orb orb-a"></div><div class="orb orb-b"></div><div class="gridwash"></div>
+    <div class="intro-card">
+      <div class="brand-mark">VC</div>
+      <h1>Velo<span>Clear</span></h1>
+      <p id="introLine">Track delivery.</p>
+    </div>
   </div>
 
-  <main id="intent-screen" class="intent-screen" aria-label="VeloClear onboarding">
-    <div class="intent-bg"></div>
-    <section class="intent-shell">
-      <div class="brand-row">
-        <div class="brand-lockup">
-          <div class="brand-mark">VC</div>
-          <div><strong>Velo<span>Clear</span></strong><small>Track · Trace · Learn</small></div>
-        </div>
-        <div class="workspace-meta" aria-label="Generic workspace context">
-          <div class="meta-item"><i class="ti ti-user-screen"></i><span>Role</span><strong>Programme Workspace</strong></div>
-          <div class="meta-item"><i class="ti ti-building"></i><span>Environment</span><strong>Portfolio Demo</strong></div>
-          <div class="meta-pill"><i class="ti ti-sparkles"></i> 3 insights ready</div>
-        </div>
-      </div>
-      <div class="intent-grid">
-        <div class="intent-copy">
-          <div class="eyebrow">Delivery intelligence OS</div>
-          <h1>What are you trying to achieve today?</h1>
-          <p>VeloClear adapts the workspace to your role, delivery environment and current challenge — without making you configure a maze first.</p>
-          <div class="intent-proof">
-            <span><i class="ti ti-route"></i> Trace causes</span>
-            <span><i class="ti ti-shield-check"></i> Trigger governance</span>
-            <span><i class="ti ti-brain"></i> Learn patterns</span>
-          </div>
-        </div>
-        <div class="intent-right">
-          <div class="pulse-strip" aria-label="Delivery pulse preview">
-            <div class="pulse-title"><i class="ti ti-activity"></i><div><strong>Delivery Pulse</strong><span>Live portfolio preview</span></div></div>
-            <div class="pulse-metric"><span>Overall Health</span><strong>72%</strong><small>↓ 8% vs last sprint</small></div>
-            <div class="pulse-metric danger"><span>At-risk Projects</span><strong>4</strong><small>↑ 1 vs last sprint</small></div>
-            <div class="pulse-metric danger"><span>Overdue Milestones</span><strong>7</strong><small>↓ 2 vs last sprint</small></div>
-            <div class="pulse-metric amber"><span>Active Risks</span><strong>23</strong><small>↑ 5 vs last sprint</small></div>
-            <div class="pulse-action"><span>Embedded insights</span><button onclick="selectRole('portfolio')">View workspace</button></div>
-          </div>
-          <div class="intent-cards" id="intent-cards"></div>
-        </div>
-      </div>
-      <section class="import-connect" aria-label="Bring existing projects into VeloClear">
-        <div class="import-card">
-          <div class="import-head"><div><strong>Bring your projects in</strong><span>Upload files or connect tools to get started quickly</span></div><i class="ti ti-cloud-upload"></i></div>
-          <div class="drop-zone" onclick="selectRole('programme')">
-            <i class="ti ti-upload"></i>
-            <strong>Drag & drop files here or click to browse</strong>
-            <span>Excel, MS Project, CSV, PDF, Jira export, Smartsheet · max 100MB</span>
-          </div>
-          <div class="extract-list"><strong>What we extract</strong><span><i class="ti ti-circle-check-filled"></i> Tasks, milestones & dependencies</span><span><i class="ti ti-circle-check-filled"></i> Risks, issues & actions</span><span><i class="ti ti-circle-check-filled"></i> Resources & assignments</span><span><i class="ti ti-circle-check-filled"></i> Baselines & progress</span></div>
-        </div>
-        <div class="connect-card">
-          <div class="import-head"><div><strong>Connect your tools</strong><span>Secure connections keep project data in sync</span></div><i class="ti ti-plug-connected"></i></div>
-          <div class="connector-grid">
-            <button onclick="selectRole('programme')"><i class="ti ti-brand-office"></i>Microsoft Project</button>
-            <button onclick="selectRole('pm')"><i class="ti ti-brand-jira"></i>Jira</button>
-            <button onclick="selectRole('programme')"><i class="ti ti-brand-azure"></i>Azure DevOps</button>
-            <button onclick="selectRole('portfolio')"><i class="ti ti-checkbox"></i>Smartsheet</button>
-            <button onclick="selectRole('team')"><i class="ti ti-brand-asana"></i>Asana</button>
-            <button onclick="selectRole('newpm')"><i class="ti ti-file-spreadsheet"></i>Excel</button>
-            <button onclick="selectRole('portfolio')"><i class="ti ti-chart-dots"></i>Power BI</button>
-            <button onclick="selectRole('pm')"><i class="ti ti-lifebuoy"></i>ServiceNow</button>
-          </div>
-        </div>
-      </section>
-      <div class="trust-row">
-        <span><i class="ti ti-shield-lock"></i> Enterprise-grade security</span>
-        <span><i class="ti ti-lock"></i> Your data stays yours</span>
-        <span><i class="ti ti-users"></i> Built for delivery teams</span>
+  <main id="entry" class="entry hidden">
+    <section class="entry-hero">
+      <div class="pill"><span></span> Delivery Intelligence OS</div>
+      <h1>What are you trying to achieve today?</h1>
+      <p>VeloClear adapts the workspace to your role, delivery environment, and current challenge.</p>
+      <div class="pulse-strip">
+        <div><strong>12</strong><span>templates ready</span></div>
+        <div><strong>4</strong><span>delivery models</span></div>
+        <div><strong>0</strong><span>setup required</span></div>
       </div>
     </section>
+    <section class="intent-grid" id="intentGrid"></section>
   </main>
 
-  <div id="build-screen" class="build-screen">
-    <div class="build-card">
-      <div class="build-logo">VC</div>
-      <h2>Building your delivery workspace…</h2>
-      <p id="build-copy">Selecting role-aware navigation.</p>
-      <div class="build-steps" id="build-steps"></div>
+  <section id="setup" class="setup hidden">
+    <aside class="setup-side">
+      <a class="logo" href="./"><div class="brand-mark small">VC</div><div><b>Velo<span>Clear</span></b><small>Track · Trace · Learn</small></div></a>
+      <div class="side-copy">
+        <p class="eyebrow">Guided Setup Intelligence</p>
+        <h2>Build a complete delivery workspace from one project idea.</h2>
+        <p>Answer four lightweight questions. VeloClear generates the starter timeline, RAID, governance cadence, stakeholders, and delivery narrative.</p>
+      </div>
+      <div class="side-stat"><b id="roleName">New PM</b><span>Workspace profile</span></div>
+    </aside>
+    <div class="setup-main">
+      <div class="stepper" id="stepper"></div>
+      <form id="wizard" class="wizard">
+        <div class="step active" data-step="0">
+          <p class="eyebrow">Step 1</p>
+          <h2>What are you delivering?</h2>
+          <p class="muted">Use plain language. VeloClear will infer the delivery shape.</p>
+          <input id="projectName" class="big-input" value="Mobile banking platform integration" />
+          <div class="chips">
+            <button type="button" data-project="SAP migration">SAP migration</button>
+            <button type="button" data-project="Insurance claims transformation">Insurance claims transformation</button>
+            <button type="button" data-project="Retail app rollout">Retail app rollout</button>
+          </div>
+        </div>
+        <div class="step" data-step="1">
+          <p class="eyebrow">Step 2</p>
+          <h2>How does your team work?</h2>
+          <div class="choice-grid" data-field="method">
+            <button type="button" class="choice selected" data-value="Hybrid"><i class="ti ti-arrows-split"></i><b>Hybrid</b><span>Agile delivery with formal governance</span></button>
+            <button type="button" class="choice" data-value="Agile"><i class="ti ti-circles"></i><b>Agile</b><span>Sprints, backlog, demos and retros</span></button>
+            <button type="button" class="choice" data-value="Waterfall"><i class="ti ti-stairs"></i><b>Waterfall</b><span>Phased delivery and sign-offs</span></button>
+            <button type="button" class="choice" data-value="SAFe"><i class="ti ti-building-bridge"></i><b>SAFe</b><span>Multi-team programme delivery</span></button>
+          </div>
+        </div>
+        <div class="step" data-step="2">
+          <p class="eyebrow">Step 3</p>
+          <h2>Where is delivery risk most likely?</h2>
+          <div class="choice-grid" data-field="risk">
+            <button type="button" class="choice selected" data-value="Vendor dependency"><i class="ti ti-plug-connected"></i><b>Vendor dependency</b><span>External teams, APIs, contracts or suppliers</span></button>
+            <button type="button" class="choice" data-value="Scope volatility"><i class="ti ti-arrows-random"></i><b>Scope volatility</b><span>Changing requirements and approvals</span></button>
+            <button type="button" class="choice" data-value="Capacity"><i class="ti ti-users-group"></i><b>Capacity</b><span>Team availability and specialist bottlenecks</span></button>
+            <button type="button" class="choice" data-value="Compliance"><i class="ti ti-shield-check"></i><b>Compliance</b><span>Audit, regulatory and control complexity</span></button>
+          </div>
+        </div>
+        <div class="step" data-step="3">
+          <p class="eyebrow">Step 4</p>
+          <h2>How complex is this initiative?</h2>
+          <div class="choice-grid" data-field="complexity">
+            <button type="button" class="choice" data-value="Small team"><i class="ti ti-user"></i><b>Small team</b><span>One team, light governance</span></button>
+            <button type="button" class="choice selected" data-value="Multi-team"><i class="ti ti-users"></i><b>Multi-team</b><span>Several squads and shared dependencies</span></button>
+            <button type="button" class="choice" data-value="Enterprise programme"><i class="ti ti-building"></i><b>Enterprise programme</b><span>Steering, PMO, audit and business change</span></button>
+            <button type="button" class="choice" data-value="Multi-vendor transformation"><i class="ti ti-network"></i><b>Multi-vendor transformation</b><span>Multiple external partners and contracts</span></button>
+          </div>
+        </div>
+      </form>
+      <div class="wizard-actions">
+        <button id="backBtn" class="btn ghost" type="button">Back</button>
+        <button id="nextBtn" class="btn primary" type="button">Continue</button>
+      </div>
     </div>
-  </div>
+  </section>
+
+  <section id="generate" class="generate hidden">
+    <div class="generate-card">
+      <div class="loader-ring"></div>
+      <h2>Building your delivery workspace...</h2>
+      <ul id="genList">
+        <li>Generating delivery phases</li>
+        <li>Creating starter RAID</li>
+        <li>Mapping stakeholders</li>
+        <li>Setting governance cadence</li>
+        <li>Writing delivery narrative</li>
+      </ul>
+    </div>
+  </section>
 
   <div id="app" class="app hidden">
-    <button class="mobile-menu" onclick="toggleSidebar()"><i class="ti ti-menu-2"></i></button>
-    <aside id="sidebar" class="sidebar">
-      <a class="sb-logo" onclick="resetExperience()">
-        <div class="sb-logo-mark">VC</div>
-        <div class="sb-logo-copy"><strong>Velo<span>Clear</span></strong><small>Track · Trace · Learn</small></div>
-      </a>
-      <div id="role-chip" class="role-chip"><span></span><strong>Workspace</strong></div>
-      <nav id="nav-list" class="nav-list"></nav>
+    <aside class="sidebar">
+      <a class="logo app-logo" href="./"><div class="brand-mark small">VC</div><div><b>Velo<span>Clear</span></b><small>Track · Trace · Learn</small></div></a>
+      <nav id="nav"></nav>
     </aside>
-
     <section class="workspace">
       <header class="topbar">
-        <div>
-          <div id="section-kicker" class="top-kicker">Home</div>
-          <h2 id="section-title">Portfolio Dashboard</h2>
-        </div>
-        <div class="top-actions">
-          <button class="btn ghost" onclick="openModal('narrative-modal')"><i class="ti ti-file-text-ai"></i> Narrative</button>
-          <button class="btn primary" onclick="go('guided-setup')"><i class="ti ti-sparkles"></i> Guided Setup</button>
-        </div>
+        <div><b id="workspaceTitle">Generated Workspace</b><span id="workspaceSub">Portfolio environment</span></div>
+        <div class="top-actions"><button class="btn ghost small" onclick="showSection('integrations')"><i class="ti ti-upload"></i> Import / Connect</button><button class="btn primary small" onclick="restart()"><i class="ti ti-sparkles"></i> New Setup</button></div>
       </header>
-
-      <div class="content">
-        <section id="s-dashboard" class="sec active"></section>
-        <section id="s-executive" class="sec"></section>
-        <section id="s-guided-setup" class="sec"></section>
-        <section id="s-templates" class="sec"></section>
-        <section id="s-new-project" class="sec"></section>
-        <section id="s-timeline" class="sec"></section>
-        <section id="s-raid" class="sec"></section>
-        <section id="s-sprint" class="sec"></section>
-        <section id="s-dependencies" class="sec"></section>
-        <section id="s-rag" class="sec"></section>
-        <section id="s-change" class="sec"></section>
-        <section id="s-escalations" class="sec"></section>
-        <section id="s-decisions" class="sec"></section>
-        <section id="s-stakeholders" class="sec"></section>
-        <section id="s-engagement" class="sec"></section>
-        <section id="s-raci" class="sec"></section>
-        <section id="s-capacity" class="sec"></section>
-        <section id="s-impact" class="sec"></section>
-        <section id="s-learning" class="sec"></section>
-        <section id="s-insights" class="sec"></section>
-        <section id="s-narratives" class="sec"></section>
-        <section id="s-steering" class="sec"></section>
-        <section id="s-exec-summaries" class="sec"></section>
-        <section id="s-exports" class="sec"></section>
-        <section id="s-integrations" class="sec"></section>
-        <section id="s-data-management" class="sec"></section>
-        <section id="s-settings" class="sec"></section>
-      </div>
+      <section id="dashboard" class="screen active"></section>
+      <section id="setup-output" class="screen"></section>
+      <section id="delivery" class="screen"></section>
+      <section id="raid" class="screen"></section>
+      <section id="governance" class="screen"></section>
+      <section id="people" class="screen"></section>
+      <section id="impact" class="screen"></section>
+      <section id="learning" class="screen"></section>
+      <section id="reports" class="screen"></section>
+      <section id="integrations" class="screen"></section>
     </section>
-
-    <div class="role-bar" id="role-bar"></div>
   </div>
-
-  <div id="narrative-modal" class="modal-overlay" onclick="overlayClose(event, 'narrative-modal')">
-    <div class="modal">
-      <div class="modal-head"><strong>Executive delivery narrative</strong><button onclick="closeModal('narrative-modal')"><i class="ti ti-x"></i></button></div>
-      <div class="modal-body">
-        <p class="big-narrative">Portfolio health is stable, but dependency concentration is rising across two active programmes.</p>
-        <div class="mini-list">
-          <span>Primary driver: Vendor API milestone slippage</span>
-          <span>Decision needed: confirm fallback integration approach</span>
-          <span>Learning captured: supplier milestones now need internal fallback owners</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div id="drawer-overlay" class="drawer-overlay" onclick="closeDrawer()"></div>
-  <aside id="drawer" class="drawer"></aside>
 
   <script src="js/data.js"></script>
-  <script src="js/render.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>
