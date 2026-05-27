@@ -1,140 +1,54 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>VeloClear — Guided Project Setup Intelligence</title>
-  <meta name="description" content="VeloClear guided project setup intelligence prototype." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,500;1,9..40,700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css">
-  <link rel="stylesheet" href="css/styles.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VeloClear</title>
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <div id="intro" class="intro open" aria-label="VeloClear intro">
-    <div class="orb orb-a"></div><div class="orb orb-b"></div><div class="gridwash"></div>
-    <div class="intro-card">
-      <div class="brand-mark">VC</div>
-      <h1>Velo<span>Clear</span></h1>
-      <p id="introLine">Track delivery.</p>
-    </div>
+<div class="hero">
+  <div class="left">
+    <div class="badge">DELIVERY INTELLIGENCE OS</div>
+    <h1>What are you trying to achieve today?</h1>
+    <p>VeloClear adapts the workspace to your role, delivery environment, and current challenge.</p>
   </div>
 
-  <main id="entry" class="entry hidden">
-    <section class="entry-hero">
-      <div class="pill"><span></span> Delivery Intelligence OS</div>
-      <h1>What are you trying to achieve today?</h1>
-      <p>VeloClear adapts the workspace to your role, delivery environment, and current challenge.</p>
-      <div class="pulse-strip">
-        <div><strong>12</strong><span>templates ready</span></div>
-        <div><strong>4</strong><span>delivery models</span></div>
-        <div><strong>0</strong><span>setup required</span></div>
-      </div>
-    </section>
-    <section class="intent-grid" id="intentGrid"></section>
-  </main>
-
-  <section id="setup" class="setup hidden">
-    <aside class="setup-side">
-      <a class="logo" href="./"><div class="brand-mark small">VC</div><div><b>Velo<span>Clear</span></b><small>Track · Trace · Learn</small></div></a>
-      <div class="side-copy">
-        <p class="eyebrow">Guided Setup Intelligence</p>
-        <h2>Build a complete delivery workspace from one project idea.</h2>
-        <p>Answer four lightweight questions. VeloClear generates the starter timeline, RAID, governance cadence, stakeholders, and delivery narrative.</p>
-      </div>
-      <div class="side-stat"><b id="roleName">New PM</b><span>Workspace profile</span></div>
-    </aside>
-    <div class="setup-main">
-      <div class="stepper" id="stepper"></div>
-      <form id="wizard" class="wizard">
-        <div class="step active" data-step="0">
-          <p class="eyebrow">Step 1</p>
-          <h2>What are you delivering?</h2>
-          <p class="muted">Use plain language. VeloClear will infer the delivery shape.</p>
-          <input id="projectName" class="big-input" value="Mobile banking platform integration" />
-          <div class="chips">
-            <button type="button" data-project="SAP migration">SAP migration</button>
-            <button type="button" data-project="Insurance claims transformation">Insurance claims transformation</button>
-            <button type="button" data-project="Retail app rollout">Retail app rollout</button>
-          </div>
-        </div>
-        <div class="step" data-step="1">
-          <p class="eyebrow">Step 2</p>
-          <h2>How does your team work?</h2>
-          <div class="choice-grid" data-field="method">
-            <button type="button" class="choice selected" data-value="Hybrid"><i class="ti ti-arrows-split"></i><b>Hybrid</b><span>Agile delivery with formal governance</span></button>
-            <button type="button" class="choice" data-value="Agile"><i class="ti ti-circles"></i><b>Agile</b><span>Sprints, backlog, demos and retros</span></button>
-            <button type="button" class="choice" data-value="Waterfall"><i class="ti ti-stairs"></i><b>Waterfall</b><span>Phased delivery and sign-offs</span></button>
-            <button type="button" class="choice" data-value="SAFe"><i class="ti ti-building-bridge"></i><b>SAFe</b><span>Multi-team programme delivery</span></button>
-          </div>
-        </div>
-        <div class="step" data-step="2">
-          <p class="eyebrow">Step 3</p>
-          <h2>Where is delivery risk most likely?</h2>
-          <div class="choice-grid" data-field="risk">
-            <button type="button" class="choice selected" data-value="Vendor dependency"><i class="ti ti-plug-connected"></i><b>Vendor dependency</b><span>External teams, APIs, contracts or suppliers</span></button>
-            <button type="button" class="choice" data-value="Scope volatility"><i class="ti ti-arrows-random"></i><b>Scope volatility</b><span>Changing requirements and approvals</span></button>
-            <button type="button" class="choice" data-value="Capacity"><i class="ti ti-users-group"></i><b>Capacity</b><span>Team availability and specialist bottlenecks</span></button>
-            <button type="button" class="choice" data-value="Compliance"><i class="ti ti-shield-check"></i><b>Compliance</b><span>Audit, regulatory and control complexity</span></button>
-          </div>
-        </div>
-        <div class="step" data-step="3">
-          <p class="eyebrow">Step 4</p>
-          <h2>How complex is this initiative?</h2>
-          <div class="choice-grid" data-field="complexity">
-            <button type="button" class="choice" data-value="Small team"><i class="ti ti-user"></i><b>Small team</b><span>One team, light governance</span></button>
-            <button type="button" class="choice selected" data-value="Multi-team"><i class="ti ti-users"></i><b>Multi-team</b><span>Several squads and shared dependencies</span></button>
-            <button type="button" class="choice" data-value="Enterprise programme"><i class="ti ti-building"></i><b>Enterprise programme</b><span>Steering, PMO, audit and business change</span></button>
-            <button type="button" class="choice" data-value="Multi-vendor transformation"><i class="ti ti-network"></i><b>Multi-vendor transformation</b><span>Multiple external partners and contracts</span></button>
-          </div>
-        </div>
-      </form>
-      <div class="wizard-actions">
-        <button id="backBtn" class="btn ghost" type="button">Back</button>
-        <button id="nextBtn" class="btn primary" type="button">Continue</button>
-      </div>
+  <div class="right">
+    <div class="card">
+      <h3>I need help structuring and running a project</h3>
+      <p>Generate phases, risks, stakeholders, governance and a starter timeline.</p>
     </div>
-  </section>
 
-  <section id="generate" class="generate hidden">
-    <div class="generate-card">
-      <div class="loader-ring"></div>
-      <h2>Building your delivery workspace...</h2>
-      <ul id="genList">
-        <li>Generating delivery phases</li>
-        <li>Creating starter RAID</li>
-        <li>Mapping stakeholders</li>
-        <li>Setting governance cadence</li>
-        <li>Writing delivery narrative</li>
-      </ul>
+    <div class="card">
+      <h3>I need visibility into delivery risk and execution</h3>
+      <p>Start with RAID, progress signals, blockers and delivery health.</p>
     </div>
-  </section>
 
-  <div id="app" class="app hidden">
-    <aside class="sidebar">
-      <a class="logo app-logo" href="./"><div class="brand-mark small">VC</div><div><b>Velo<span>Clear</span></b><small>Track · Trace · Learn</small></div></a>
-      <nav id="nav"></nav>
-    </aside>
-    <section class="workspace">
-      <header class="topbar">
-        <div><b id="workspaceTitle">Generated Workspace</b><span id="workspaceSub">Portfolio environment</span></div>
-        <div class="top-actions"><button class="btn ghost small" onclick="showSection('integrations')"><i class="ti ti-upload"></i> Import / Connect</button><button class="btn primary small" onclick="restart()"><i class="ti ti-sparkles"></i> New Setup</button></div>
-      </header>
-      <section id="dashboard" class="screen active"></section>
-      <section id="setup-output" class="screen"></section>
-      <section id="delivery" class="screen"></section>
-      <section id="raid" class="screen"></section>
-      <section id="governance" class="screen"></section>
-      <section id="people" class="screen"></section>
-      <section id="impact" class="screen"></section>
-      <section id="learning" class="screen"></section>
-      <section id="reports" class="screen"></section>
-      <section id="integrations" class="screen"></section>
-    </section>
+    <div class="card">
+      <h3>I need to coordinate dependencies across teams</h3>
+      <p>Build a programme view across milestones, vendors and cross-team blockers.</p>
+    </div>
+
+    <div class="card">
+      <h3>I need portfolio-level intelligence and trends</h3>
+      <p>Focus on cross-project risk, trends, patterns and executive decisions.</p>
+    </div>
   </div>
+</div>
 
-  <script src="js/data.js"></script>
-  <script src="js/app.js"></script>
+<div class="integrations">
+  <h2>Connect your tools</h2>
+  <div class="tool-grid">
+    <div class="tool">Jira</div>
+    <div class="tool">Azure DevOps</div>
+    <div class="tool">MS Project</div>
+    <div class="tool">Smartsheet</div>
+    <div class="tool">Excel</div>
+    <div class="tool">ServiceNow</div>
+  </div>
+</div>
+
+<script src="js/app.js"></script>
 </body>
 </html>
