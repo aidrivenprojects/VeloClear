@@ -1,1 +1,0 @@
-import {AppShell} from "@/components/layout/AppShell";import {RaidTable} from "@/components/raid/RaidTable";export default function Page(){return <AppShell title="RAID Workspace" kicker="Delivery"><RaidTable/></AppShell>}
