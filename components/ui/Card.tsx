@@ -1,1 +1,0 @@
-import {clsx} from "clsx"; export function Card({children,className}:{children:React.ReactNode;className?:string}){return <div className={clsx("rounded-[18px] border border-border bg-white shadow-soft",className)}>{children}</div>}
