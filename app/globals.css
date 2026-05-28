@@ -1,0 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,700&family=DM+Mono:wght@400;500&display=swap');
+@tailwind base; @tailwind components; @tailwind utilities;
+*{box-sizing:border-box} body{margin:0;background:#F0F4F8;color:#0F172A;font-family:'DM Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased} button,input,select{font-family:inherit} a{text-decoration:none;color:inherit}
+.focus-ring{@apply focus:outline-none focus:ring-2 focus:ring-accent/40 focus:ring-offset-2;}
