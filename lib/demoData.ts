@@ -55,3 +55,13 @@ export const intentRoles: IntentRole[] = [
     preview: "Sprint · Blockers"
   }
 ];
+
+
+// Compatibility export for legacy dashboard components still present in the app.
+// Step 6 uses live Supabase intelligence, but this keeps old imports from breaking production builds.
+export const demoProjects = [
+  ["Apex Mobile Platform", "AMBER", "Vendor API milestone slipped; fallback plan active.", "amber"],
+  ["Nexus Compliance", "GREEN", "Controls mapping completed ahead of steering review.", "green"],
+  ["Meridian Training", "RED", "Capacity gap causing rollout delay; sponsor decision needed.", "red"],
+  ["Orion Data Migration", "GREEN", "Cutover rehearsal passed with minor defects.", "green"]
+] as const;
