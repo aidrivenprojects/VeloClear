@@ -1,1 +1,10 @@
-import {AppShell} from "@/components/layout/AppShell";import {ImpactTraceTimeline} from "@/components/impact/ImpactTraceTimeline";export default function Page(){return <AppShell title="Impact Trace" kicker="Intelligence"><ImpactTraceTimeline/></AppShell>}
+import { AppShell } from "@/components/layout/AppShell";
+import { LiveImpactTrace } from "@/components/impact/LiveImpactTrace";
+
+export default function Page() {
+  return (
+    <AppShell title="Impact Trace" kicker="Intelligence">
+      <LiveImpactTrace />
+    </AppShell>
+  );
+}

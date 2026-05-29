@@ -57,6 +57,28 @@ export async function fetchProjects() {
   return data ?? [];
 }
 
+export async function fetchRaidItems() {
+  const supabase = getSupabaseClient();
+  const { data, error } = await supabase
+    .from("raid_items")
+    .select("*, projects(name, health_status, risk_focus)")
+    .order("created_at", { ascending: false });
+
+  if (error) throw error;
+  return data ?? [];
+}
+
+export async function fetchImpactEvents() {
+  const supabase = getSupabaseClient();
+  const { data, error } = await supabase
+    .from("impact_events")
+    .select("*, projects(name, health_status, risk_focus)")
+    .order("created_at", { ascending: false });
+
+  if (error) throw error;
+  return data ?? [];
+}
+
 export async function fetchProjectWithRaid(projectId: string) {
   const supabase = getSupabaseClient();
 
