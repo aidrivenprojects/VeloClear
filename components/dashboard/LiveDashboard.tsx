@@ -3,7 +3,9 @@
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { fetchProjects, fetchRaidItems } from "@/lib/projectPersistence";
+import { scorePortfolioHealth, detectPortfolioPatterns, generateExecutiveNarrative } from "@/lib/intelligenceEngine";
 import { Card } from "@/components/ui/Card";
+import { PhaseDistribution } from "@/components/dashboard/PhaseDistribution";
 import { Badge } from "@/components/ui/Badge";
 
 type ProjectRow = {
@@ -54,34 +56,13 @@ export function LiveDashboard() {
     loadData();
   }, []);
 
-  const metrics = useMemo(() => {
-    const highRisks = raidItems.filter((item) => Number(item.impact ?? 0) >= 15).length;
-    const amberProjects = projects.filter((project) => project.health_status === "amber").length;
-    const vendorProjects = projects.filter((project) => project.risk_focus === "vendor_dependency").length;
+  const intelligence = useMemo(() => {
+    const portfolio = scorePortfolioHealth(projects, raidItems);
+    const patterns = detectPortfolioPatterns(projects, raidItems);
+    const narrative = generateExecutiveNarrative(projects, raidItems);
 
-    return {
-      activeProjects: projects.length,
-      highRisks,
-      amberProjects,
-      vendorProjects
-    };
+    return { portfolio, patterns, narrative };
   }, [projects, raidItems]);
-
-  const pattern = useMemo(() => {
-    if (metrics.vendorProjects >= 2) {
-      return "Vendor dependency drift is recurring across saved workspaces. Recommended action: create a shared vendor milestone control.";
-    }
-
-    if (metrics.highRisks >= 3) {
-      return "High-risk RAID items are accumulating. Recommended action: schedule a governance checkpoint before the next steering cycle.";
-    }
-
-    if (projects.length > 0) {
-      return "Portfolio intelligence is active. Add more workspaces to detect cross-project delivery patterns.";
-    }
-
-    return "No saved workspaces yet. Generate a workspace to activate portfolio intelligence.";
-  }, [metrics, projects.length]);
 
   if (loading) {
     return <Card className="p-8"><div className="text-sm font-black text-muted">Loading live portfolio intelligence…</div></Card>;
@@ -101,34 +82,42 @@ export function LiveDashboard() {
       <section className="grid gap-5 xl:grid-cols-[1.2fr_.9fr]">
         <Card className="p-7">
           <div className="text-xs font-black uppercase tracking-wider text-accent">Live delivery narrative</div>
-          <h1 className="mt-4 max-w-4xl text-[46px] font-black leading-[0.98] tracking-[-0.06em] text-ink">
-            Portfolio intelligence is now connected to saved delivery workspaces.
+          <h1 className="mt-4 max-w-4xl text-[44px] font-black leading-[0.98] tracking-[-0.06em] text-ink">
+            {intelligence.narrative}
           </h1>
-          <p className="mt-5 max-w-3xl text-lg leading-8 text-ink2">
-            VeloClear is reading live projects, RAID items and generated workspace narratives from Supabase.
-          </p>
         </Card>
 
         <Card className="p-7">
           <div className="rounded-3xl bg-accentBg p-6 text-[#312E81]">
-            <div className="text-sm font-black">Emerging pattern</div>
-            <p className="mt-3 text-lg leading-8">{pattern}</p>
+            <div className="text-sm font-black">Emerging patterns</div>
+            <ul className="mt-3 grid gap-3 text-base leading-7">
+              {intelligence.patterns.slice(0, 3).map((pattern) => (
+                <li key={pattern}>• {pattern}</li>
+              ))}
+            </ul>
           </div>
         </Card>
       </section>
 
+      <PhaseDistribution projects={projects} raidItems={raidItems} />
+
       <section className="grid gap-4 md:grid-cols-4">
-        <MetricCard label="Saved Projects" value={metrics.activeProjects} />
-        <MetricCard label="High Risks" value={metrics.highRisks} tone="red" />
-        <MetricCard label="Amber Projects" value={metrics.amberProjects} tone="amber" />
-        <MetricCard label="Vendor Focus" value={metrics.vendorProjects} tone="green" />
+        <MetricCard label="Saved Projects" value={projects.length} />
+        <MetricCard label="High Risks" value={intelligence.portfolio.highRisks} tone="red" />
+        <MetricCard label="Amber Projects" value={intelligence.portfolio.amber} tone="amber" />
+        <MetricCard label="Red Projects" value={intelligence.portfolio.red} tone="red" />
       </section>
 
       <section className="grid gap-5 xl:grid-cols-[1.15fr_.85fr]">
         <Card>
-          <div className="border-b border-border p-5">
-            <h2 className="text-sm font-black">Live Portfolio Summary</h2>
-            <p className="text-xs text-muted">Pulled from Supabase projects</p>
+          <div className="flex items-center justify-between border-b border-border p-5">
+            <div>
+              <h2 className="text-sm font-black">Live Portfolio Summary</h2>
+              <p className="text-xs text-muted">Pulled from Supabase projects</p>
+            </div>
+            <Link href="/projects" className="rounded-xl border border-border bg-white px-3 py-2 text-xs font-black text-ink2 hover:text-accent">
+              View all projects
+            </Link>
           </div>
 
           {projects.length === 0 ? (
@@ -145,7 +134,7 @@ export function LiveDashboard() {
                     <div className="text-sm font-black text-ink">{project.name}</div>
                     <p className="mt-1 max-w-3xl text-xs leading-5 text-muted">{project.narrative}</p>
                   </div>
-                  <Badge tone={project.health_status === "green" ? "green" : "amber"}>{project.health_status}</Badge>
+                  <Badge tone="amber">{project.health_status}</Badge>
                 </div>
               </Link>
             ))

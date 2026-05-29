@@ -12,7 +12,10 @@ export async function saveGeneratedProject(project: GeneratedProject) {
       complexity: project.complexity,
       risk_focus: project.riskFocus,
       health_status: "amber",
-      narrative: project.narrative
+      narrative: project.narrative,
+      current_phase: project.complexity === "small" ? "Planning" : "Execution",
+      phase_status: "amber",
+      phase_completion: project.complexity === "multi_vendor" ? 45 : 55
     })
     .select()
     .single();
@@ -61,7 +64,7 @@ export async function fetchRaidItems() {
   const supabase = getSupabaseClient();
   const { data, error } = await supabase
     .from("raid_items")
-    .select("*, projects(name, health_status, risk_focus)")
+    .select("*, projects(name, health_status, risk_focus, current_phase)")
     .order("created_at", { ascending: false });
 
   if (error) throw error;
@@ -72,7 +75,7 @@ export async function fetchImpactEvents() {
   const supabase = getSupabaseClient();
   const { data, error } = await supabase
     .from("impact_events")
-    .select("*, projects(name, health_status, risk_focus)")
+    .select("*, projects(name, health_status, risk_focus, current_phase)")
     .order("created_at", { ascending: false });
 
   if (error) throw error;

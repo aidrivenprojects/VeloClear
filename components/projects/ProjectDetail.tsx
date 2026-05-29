@@ -6,6 +6,8 @@ import { AppShell } from "@/components/layout/AppShell";
 import { Card } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
 import { fetchProjectWithRaid } from "@/lib/projectPersistence";
+import { LifecycleTracker } from "@/components/lifecycle/LifecycleTracker";
+import { lifecycleIntelligence } from "@/lib/lifecycleEngine";
 
 type ProjectDetailData = {
   project: any;
@@ -23,6 +25,8 @@ export function ProjectDetail({ projectId }: { projectId: string }) {
       .catch((err) => setError(err instanceof Error ? err.message : "Could not load project."));
   }, [projectId]);
 
+  const lifecycle = data ? lifecycleIntelligence(data.project, data.raidItems) : null;
+
   return (
     <AppShell title="Project Workspace" kicker="Project">
       {error && (
@@ -34,7 +38,7 @@ export function ProjectDetail({ projectId }: { projectId: string }) {
 
       {!error && !data && <Card className="p-8"><div className="text-sm font-black text-muted">Loading project workspace…</div></Card>}
 
-      {data && (
+      {data && lifecycle && (
         <div className="space-y-5">
           <Card className="overflow-hidden">
             <div className="border-b border-border bg-[linear-gradient(135deg,#ffffff,#F8FAFC)] p-6">
@@ -44,15 +48,23 @@ export function ProjectDetail({ projectId }: { projectId: string }) {
                   <h1 className="mt-2 text-4xl font-black tracking-[-0.05em] text-ink">{data.project.name}</h1>
                   <p className="mt-3 max-w-3xl text-sm leading-6 text-ink2">{data.project.narrative}</p>
                 </div>
-                <Badge tone="amber">{data.project.health_status}</Badge>
+                <Badge tone={lifecycle.status === "red" ? "red" : lifecycle.status === "green" ? "green" : "amber"}>{lifecycle.status}</Badge>
               </div>
             </div>
 
             <div className="grid gap-3 p-6 md:grid-cols-3">
-              <Mini label="Delivery method" value={format(data.project.delivery_method)} />
-              <Mini label="Risk focus" value={format(data.project.risk_focus)} />
-              <Mini label="Complexity" value={format(data.project.complexity)} />
+              <Mini label="Current phase" value={lifecycle.phase} />
+              <Mini label="Phase completion" value={`${lifecycle.completion}%`} />
+              <Mini label="Governance status" value={lifecycle.status} />
             </div>
+          </Card>
+
+          <LifecycleTracker currentPhase={lifecycle.phase} completion={lifecycle.completion} status={lifecycle.status} />
+
+          <Card className="p-6">
+            <div className="text-xs font-black uppercase tracking-wider text-accent">Phase intelligence</div>
+            <h2 className="mt-2 text-2xl font-black tracking-[-0.04em] text-ink">{lifecycle.alert}</h2>
+            <p className="mt-3 max-w-4xl text-sm leading-6 text-ink2">{lifecycle.narrative}</p>
           </Card>
 
           <Card>
@@ -95,8 +107,4 @@ function Mini({ label, value }: { label: string; value: string }) {
       <div className="mt-1 text-sm font-black text-accent">{value}</div>
     </div>
   );
-}
-
-function format(value: string) {
-  return value.replaceAll("_", " ").replace("safe", "SAFe").replace(/\b\w/g, (char) => char.toUpperCase());
 }
