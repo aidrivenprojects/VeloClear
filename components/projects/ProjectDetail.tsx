@@ -8,6 +8,7 @@ import { Badge } from "@/components/ui/Badge";
 import { fetchProjectWithRaid } from "@/lib/projectPersistence";
 import { LifecycleTracker } from "@/components/lifecycle/LifecycleTracker";
 import { lifecycleIntelligence } from "@/lib/lifecycleEngine";
+import { LifecycleWorkbench } from "@/components/lifecycle/LifecycleWorkbench";
 
 type ProjectDetailData = {
   project: any;
@@ -45,7 +46,7 @@ export function ProjectDetail({ projectId }: { projectId: string }) {
               <div className="flex items-start justify-between gap-4">
                 <div>
                   <div className="text-xs font-black uppercase tracking-wider text-accent">Saved workspace</div>
-                  <h1 className="mt-2 text-4xl font-black tracking-[-0.05em] text-ink">{data.project.name}</h1>
+                  <h1 className="mt-2 text-3xl font-black tracking-[-0.05em] text-ink">{data.project.name}</h1>
                   <p className="mt-3 max-w-3xl text-sm leading-6 text-ink2">{data.project.narrative}</p>
                 </div>
                 <Badge tone={lifecycle.status === "red" ? "red" : lifecycle.status === "green" ? "green" : "amber"}>{lifecycle.status}</Badge>
@@ -60,6 +61,8 @@ export function ProjectDetail({ projectId }: { projectId: string }) {
           </Card>
 
           <LifecycleTracker currentPhase={lifecycle.phase} completion={lifecycle.completion} status={lifecycle.status} />
+
+          <LifecycleWorkbench project={data.project} raidItems={data.raidItems} />
 
           <Card className="p-6">
             <div className="text-xs font-black uppercase tracking-wider text-accent">Phase intelligence</div>

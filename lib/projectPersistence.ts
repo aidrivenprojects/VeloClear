@@ -111,3 +111,22 @@ export async function fetchProjectWithRaid(projectId: string) {
 
   return { project, raidItems: raidItems ?? [], impactEvents: impactEvents ?? [] };
 }
+
+
+export async function updateProjectLifecycle(projectId: string, updates: {
+  current_phase?: string;
+  phase_status?: string;
+  phase_completion?: number;
+}) {
+  const supabase = getSupabaseClient();
+
+  const { data, error } = await supabase
+    .from("projects")
+    .update(updates)
+    .eq("id", projectId)
+    .select()
+    .single();
+
+  if (error) throw error;
+  return data;
+}

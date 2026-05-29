@@ -82,7 +82,7 @@ export function LiveDashboard() {
       <section className="grid gap-5 xl:grid-cols-[1.2fr_.9fr]">
         <Card className="p-7">
           <div className="text-xs font-black uppercase tracking-wider text-accent">Live delivery narrative</div>
-          <h1 className="mt-4 max-w-4xl text-[44px] font-black leading-[0.98] tracking-[-0.06em] text-ink">
+          <h1 className="mt-4 max-w-4xl text-[28px] md:text-[34px] font-black leading-[1.08] tracking-[-0.06em] text-ink">
             {intelligence.narrative}
           </h1>
         </Card>
