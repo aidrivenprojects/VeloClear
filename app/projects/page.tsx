@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { AppShell } from "@/components/layout/AppShell";
 import { ProjectList } from "@/components/projects/ProjectList";
 

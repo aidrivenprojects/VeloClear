@@ -82,7 +82,7 @@ export function LiveDashboard() {
       <section className="grid gap-5 xl:grid-cols-[1.2fr_.9fr]">
         <Card className="p-7">
           <div className="text-xs font-black uppercase tracking-wider text-accent">Live delivery narrative</div>
-          <h1 className="mt-4 max-w-4xl text-[28px] md:text-[34px] font-black leading-[1.08] tracking-[-0.06em] text-ink">
+          <h1 className="mt-4 max-w-4xl text-[24px] md:text-[30px] font-black leading-[1.12] tracking-[-0.06em] text-ink">
             {intelligence.narrative}
           </h1>
         </Card>
@@ -100,6 +100,19 @@ export function LiveDashboard() {
       </section>
 
       <PhaseDistribution projects={projects} raidItems={raidItems} />
+
+      
+      <Card className="p-5">
+        <div className="text-xs font-black uppercase tracking-wider text-accent">How VeloClear tracks delivery</div>
+        <div className="mt-4 grid gap-3 md:grid-cols-5">
+          {["Discovery", "Formation", "Lifecycle", "Execution", "Intelligence"].map((item, index) => (
+            <div key={item} className="rounded-2xl border border-border bg-surface p-4">
+              <div className="text-lg font-black text-accent">{index + 1}</div>
+              <div className="mt-2 text-xs font-black text-ink">{item}</div>
+            </div>
+          ))}
+        </div>
+      </Card>
 
       <section className="grid gap-4 md:grid-cols-4">
         <MetricCard label="Saved Projects" value={projects.length} />

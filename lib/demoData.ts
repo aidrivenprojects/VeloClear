@@ -2,36 +2,41 @@ import type { IntentRole } from "./types";
 
 export const appNav = [
   ["Home", "/dashboard", "Dashboard"],
+  ["Start", "/discover", "Discovery"],
   ["Portfolio", "/projects", "Projects"],
-  ["Start", "/projects/new", "Guided Setup"],
+  ["Lifecycle", "/projects", "Initiation"],
+  ["Lifecycle", "/projects", "Planning"],
+  ["Lifecycle", "/projects", "Execution"],
+  ["Lifecycle", "/projects", "Monitoring"],
+  ["Lifecycle", "/projects", "Closure"],
   ["Delivery", "/raid", "RAID"],
   ["Intelligence", "/impact-trace", "Impact Trace"],
   ["Platform", "/integrations", "Integrations"]
 ] as const;
 
-export const connectors = ["Microsoft Project", "Jira", "Azure DevOps", "Smartsheet", "Excel", "ServiceNow"];
+export const connectors = ["Microsoft Project", "Jira", "Azure DevOps", "Smartsheet", "Excel", "ServiceNow", "Power BI", "Asana"];
 
 export const intentRoles: IntentRole[] = [
   {
     id: "newpm",
     role: "New PM",
     title: "I need help structuring and running a project",
-    description: "Generate phases, risks, stakeholders, governance and a starter delivery rhythm automatically.",
-    preview: "RAID · Timeline · Stakeholders"
+    description: "Use discovery to turn an idea into workflows, backlog, sprints, risks and governance.",
+    preview: "Discovery · Backlog · Sprints"
   },
   {
     id: "pm",
     role: "Project Manager",
     title: "I need visibility into delivery risk and execution",
-    description: "Focus on RAID, blockers, sprint health, RAG and active mitigation actions.",
-    preview: "Risks · Issues · Sprint"
+    description: "Focus on lifecycle progress, blockers, RAID, governance and delivery confidence.",
+    preview: "Lifecycle · RAID · Governance"
   },
   {
     id: "programme",
     role: "Programme Manager",
     title: "I need to coordinate dependencies across teams",
     description: "See cross-team dependencies, milestones, vendors and cross-team blockers.",
-    preview: "Timeline · Dependencies"
+    preview: "Dependencies · Sprints"
   },
   {
     id: "portfolio",
@@ -56,9 +61,6 @@ export const intentRoles: IntentRole[] = [
   }
 ];
 
-
-// Compatibility export for legacy dashboard components still present in the app.
-// Step 6 uses live Supabase intelligence, but this keeps old imports from breaking production builds.
 export const demoProjects = [
   ["Apex Mobile Platform", "AMBER", "Vendor API milestone slipped; fallback plan active.", "amber"],
   ["Nexus Compliance", "GREEN", "Controls mapping completed ahead of steering review.", "green"],

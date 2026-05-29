@@ -2,9 +2,9 @@ import Link from "next/link";
 import type { IntentRole } from "@/lib/types";
 
 function hrefForRole(id: IntentRole["id"]) {
-  if (id === "newpm") return "/projects/new";
+  if (id === "newpm") return "/discover";
   if (id === "pm") return "/raid";
-  if (id === "programme") return "/projects/new";
+  if (id === "programme") return "/discover";
   if (id === "portfolio") return "/dashboard";
   if (id === "sponsor") return "/dashboard";
   return "/dashboard";

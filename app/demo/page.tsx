@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import Link from "next/link";
 import { Brand } from "@/components/layout/Brand";
 import { DeliveryPulse } from "@/components/demo/DeliveryPulse";
@@ -13,10 +15,10 @@ export default function DemoPage() {
           <Brand />
           <div className="flex flex-wrap items-center gap-3">
             <Link
-              href="/projects/new"
+              href="/discover"
               className="rounded-full border border-border bg-white/85 px-4 py-2 text-xs font-black text-ink2 shadow-soft transition hover:-translate-y-0.5 hover:border-accent/40 hover:text-accent"
             >
-              Programme Workspace
+              Start Discovery
             </Link>
             <Link
               href="/dashboard"

@@ -9,6 +9,7 @@ import { fetchProjectWithRaid } from "@/lib/projectPersistence";
 import { LifecycleTracker } from "@/components/lifecycle/LifecycleTracker";
 import { lifecycleIntelligence } from "@/lib/lifecycleEngine";
 import { LifecycleWorkbench } from "@/components/lifecycle/LifecycleWorkbench";
+import { ProjectPhaseMap } from "@/components/lifecycle/ProjectPhaseMap";
 
 type ProjectDetailData = {
   project: any;
@@ -61,6 +62,8 @@ export function ProjectDetail({ projectId }: { projectId: string }) {
           </Card>
 
           <LifecycleTracker currentPhase={lifecycle.phase} completion={lifecycle.completion} status={lifecycle.status} />
+
+          <ProjectPhaseMap currentPhase={lifecycle.phase} />
 
           <LifecycleWorkbench project={data.project} raidItems={data.raidItems} />
 

@@ -1,12 +1,12 @@
 export const dynamic = "force-dynamic";
 
 import { AppShell } from "@/components/layout/AppShell";
-import { LiveRaidWorkspace } from "@/components/raid/LiveRaidWorkspace";
+import { DiscoveryIntake } from "@/components/discovery/DiscoveryIntake";
 
 export default function Page() {
   return (
-    <AppShell title="RAID Workspace" kicker="Delivery">
-      <LiveRaidWorkspace />
+    <AppShell title="Discovery" kicker="Start">
+      <DiscoveryIntake />
     </AppShell>
   );
 }

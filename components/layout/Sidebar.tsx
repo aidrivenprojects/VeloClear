@@ -36,7 +36,7 @@ export function Sidebar() {
               {items.map((item) => (
                 <Link key={item[1]} href={item[1]} className="group relative flex h-9 items-center justify-between rounded-xl px-3 text-sm font-bold text-white/50 transition hover:bg-white/5 hover:text-white">
                   <span>{item[2]}</span>
-                  {item[2] === "Guided Setup" && <span className="h-1.5 w-1.5 rounded-full bg-accent opacity-80" />}
+                  {item[2] === "Discovery" && <span className="h-1.5 w-1.5 rounded-full bg-accent opacity-80" />}
                 </Link>
               ))}
             </div>

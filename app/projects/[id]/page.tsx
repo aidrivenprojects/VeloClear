@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { ProjectDetail } from "@/components/projects/ProjectDetail";
 
 export default async function Page({
