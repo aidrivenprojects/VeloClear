@@ -48,7 +48,7 @@ export const intentRoles: IntentRole[] = [
     preview: "Narratives · Decisions"
   },
   {
-    id: "scrum",
+    id: "team",
     role: "Delivery Team",
     title: "I need visibility into sprint work and blockers",
     description: "See current sprint work, ownership, blockers and dependencies without PMO noise.",

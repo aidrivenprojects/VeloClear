@@ -2,11 +2,14 @@ import Link from "next/link";
 import { appNav } from "@/lib/demoData";
 import { Brand } from "./Brand";
 
+type NavItem = (typeof appNav)[number];
+
 export function Sidebar() {
-  const grouped = appNav.reduce<Record<string, typeof appNav>>((a, i) => {
-    a[i[0]] ||= [];
-    a[i[0]].push(i);
-    return a;
+  const grouped = appNav.reduce<Record<string, NavItem[]>>((acc, item) => {
+    const group = item[0];
+    if (!acc[group]) acc[group] = [];
+    acc[group].push(item);
+    return acc;
   }, {});
 
   return (
@@ -26,14 +29,14 @@ export function Sidebar() {
       </div>
 
       <nav className="space-y-5">
-        {Object.entries(grouped).map(([g, items]) => (
-          <div key={g}>
-            <div className="mb-2 px-2 text-[9px] font-black uppercase tracking-[0.14em] text-white/25">{g}</div>
+        {Object.entries(grouped).map(([group, items]) => (
+          <div key={group}>
+            <div className="mb-2 px-2 text-[9px] font-black uppercase tracking-[0.14em] text-white/25">{group}</div>
             <div className="grid gap-1">
-              {items.map((it) => (
-                <Link key={it[1]} href={it[1]} className="group relative flex h-9 items-center justify-between rounded-xl px-3 text-sm font-bold text-white/50 transition hover:bg-white/5 hover:text-white">
-                  <span>{it[2]}</span>
-                  {it[2] === "Guided Setup" && <span className="h-1.5 w-1.5 rounded-full bg-accent opacity-80" />}
+              {items.map((item) => (
+                <Link key={item[1]} href={item[1]} className="group relative flex h-9 items-center justify-between rounded-xl px-3 text-sm font-bold text-white/50 transition hover:bg-white/5 hover:text-white">
+                  <span>{item[2]}</span>
+                  {item[2] === "Guided Setup" && <span className="h-1.5 w-1.5 rounded-full bg-accent opacity-80" />}
                 </Link>
               ))}
             </div>
