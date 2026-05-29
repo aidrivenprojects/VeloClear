@@ -1,4 +1,10 @@
+import Link from "next/link";
 import { lifecyclePhases, normalizePhase, phaseIndex } from "@/lib/lifecycleEngine";
+
+function phaseHref(phase: string) {
+  if (phase === "Monitoring & Controlling") return "/lifecycle/monitoring";
+  return `/lifecycle/${phase.toLowerCase()}`;
+}
 
 export function LifecycleTracker({
   currentPhase,
@@ -29,21 +35,23 @@ export function LifecycleTracker({
           const isActive = index === activeIndex;
 
           return (
-            <div
+            <Link
               key={phase}
+              href={phaseHref(phase)}
               className={
                 isActive
-                  ? "rounded-2xl border border-accent bg-accentBg p-4"
+                  ? "rounded-2xl border border-accent bg-accentBg p-4 transition hover:-translate-y-0.5"
                   : isDone
-                    ? "rounded-2xl border border-green/20 bg-greenBg p-4"
-                    : "rounded-2xl border border-border bg-surface p-4"
+                    ? "rounded-2xl border border-green/20 bg-greenBg p-4 transition hover:-translate-y-0.5"
+                    : "rounded-2xl border border-border bg-surface p-4 transition hover:-translate-y-0.5"
               }
             >
               <div className={isActive ? "text-lg font-black text-accent" : isDone ? "text-lg font-black text-green" : "text-lg font-black text-muted"}>
                 {isDone ? "✓" : isActive ? "→" : "○"}
               </div>
               <div className="mt-2 text-xs font-black text-ink">{phase}</div>
-            </div>
+              <div className="mt-2 text-[10px] font-bold text-muted">Open workbench</div>
+            </Link>
           );
         })}
       </div>
