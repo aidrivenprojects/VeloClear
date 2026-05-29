@@ -1,8 +1,10 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { useRouter } from "next/navigation";
 import type { DeliveryMethod, ProjectComplexity, RiskFocus, GeneratedProject } from "@/lib/types";
 import { generateProjectSetup } from "@/lib/setupGenerator";
+import { saveGeneratedProject } from "@/lib/projectPersistence";
 import { Card } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
 import { GeneratedWorkspace } from "./GeneratedWorkspace";
@@ -23,12 +25,14 @@ const complexityOptions: { value: ProjectComplexity; label: string; note: string
 ];
 
 export function GuidedSetupForm() {
+  const router = useRouter();
   const [name, setName] = useState("Global CRM transformation");
   const [deliveryMethod, setDeliveryMethod] = useState<DeliveryMethod>("hybrid");
   const [riskFocus, setRiskFocus] = useState<RiskFocus>("vendor_dependency");
   const [complexity, setComplexity] = useState<ProjectComplexity>("multi_team");
   const [generated, setGenerated] = useState<GeneratedProject | null>(null);
   const [isGenerating, setIsGenerating] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const livePreview = useMemo(
     () => generateProjectSetup({ name: name || "New transformation initiative", deliveryMethod, riskFocus, complexity }),
@@ -47,13 +51,20 @@ export function GuidedSetupForm() {
     return signals.slice(0, 4);
   }, [complexity, riskFocus, deliveryMethod]);
 
-  function onGenerate() {
+  async function onGenerate() {
     setIsGenerating(true);
     setGenerated(null);
-    setTimeout(() => {
+    setError(null);
+
+    try {
+      await new Promise((resolve) => setTimeout(resolve, 900));
       setGenerated(livePreview);
+      const saved = await saveGeneratedProject(livePreview);
+      router.push(`/projects/${saved.id}`);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Could not save project.");
       setIsGenerating(false);
-    }, 1600);
+    }
   }
 
   return (
@@ -61,15 +72,9 @@ export function GuidedSetupForm() {
       <section className="overflow-hidden rounded-[28px] border border-border bg-[radial-gradient(circle_at_20%_10%,rgba(99,102,241,.16),transparent_36%),linear-gradient(135deg,#ffffff,#f8fafc)] p-6 shadow-soft">
         <div className="grid gap-6 xl:grid-cols-[0.86fr_1.14fr]">
           <div>
-            <div className="mb-4 inline-flex rounded-full border border-accent/20 bg-accentBg px-3 py-1 text-[10px] font-black uppercase tracking-[0.16em] text-accent">
-              Guided Project Setup Intelligence
-            </div>
-            <h2 className="max-w-xl text-[42px] font-black leading-[0.98] tracking-[-0.055em] text-ink">
-              Turn a project idea into a governed delivery workspace.
-            </h2>
-            <p className="mt-4 max-w-xl text-[15px] leading-7 text-ink2">
-              Answer a few delivery questions. VeloClear generates phases, RAID starters, governance cadence, stakeholder pulse and executive narrative.
-            </p>
+            <div className="mb-4 inline-flex rounded-full border border-accent/20 bg-accentBg px-3 py-1 text-[10px] font-black uppercase tracking-[0.16em] text-accent">Guided Project Setup Intelligence</div>
+            <h2 className="max-w-xl text-[42px] font-black leading-[0.98] tracking-[-0.055em] text-ink">Turn a project idea into a governed delivery workspace.</h2>
+            <p className="mt-4 max-w-xl text-[15px] leading-7 text-ink2">Answer a few delivery questions. VeloClear generates phases, RAID starters, governance cadence, stakeholder pulse and executive narrative.</p>
           </div>
 
           <div className="grid gap-3 rounded-3xl border border-border bg-white/70 p-4 shadow-soft backdrop-blur">
@@ -81,9 +86,7 @@ export function GuidedSetupForm() {
               <span className="rounded-full bg-greenBg px-3 py-1 text-[10px] font-black uppercase tracking-wider text-greenText">Updating live</span>
             </div>
             <div className="grid gap-2 sm:grid-cols-2">
-              {detectedSignals.map((signal) => (
-                <div key={signal} className="rounded-2xl border border-border bg-white px-4 py-3 text-xs font-bold text-ink2">✦ {signal}</div>
-              ))}
+              {detectedSignals.map((signal) => <div key={signal} className="rounded-2xl border border-border bg-white px-4 py-3 text-xs font-bold text-ink2">✦ {signal}</div>)}
             </div>
           </div>
         </div>
@@ -137,7 +140,11 @@ export function GuidedSetupForm() {
               </div>
             </div>
 
-            <Button onClick={onGenerate} className="h-12 w-full rounded-2xl">Generate governed workspace</Button>
+            {error && <div className="rounded-2xl border border-red/20 bg-redBg p-4 text-sm font-bold text-redText">{error}</div>}
+
+            <Button onClick={onGenerate} disabled={isGenerating} className="h-12 w-full rounded-2xl disabled:cursor-not-allowed disabled:opacity-60">
+              {isGenerating ? "Saving workspace..." : "Generate governed workspace"}
+            </Button>
           </div>
         </Card>
 
