@@ -1,28 +1,42 @@
-# VeloClear Complete Functional Package
+# VeloClear True Production-Grade Foundation
 
-This is a consolidated build from the clean architecture.
+This package is Supabase-first. It does not use localStorage as the source of truth.
 
-## What is included
+## Required setup
 
-- Auth gate
-- Portfolio dashboard
-- Project registry
-- New project creation
-- Correct project-context sidebar
-- 8 lifecycle phases
-- Nested phase tools
-- Tool-level records CRUD
-- Health recalculation
-- Signals
-- Operating System trace
-- Reports
-- Audit trail
-- Supabase-ready schema
-- Local fallback so the app works immediately without Supabase
+1. Create a Supabase project.
+2. Run `supabase/001_production_schema.sql` in Supabase SQL Editor.
+3. In Vercel, set:
+   - `NEXT_PUBLIC_SUPABASE_URL`
+   - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+4. Deploy this repository to Vercel.
+5. Open `/signup`, create an account, then sign in.
+
+## Production features included
+
+- Supabase Auth
+- Middleware route protection
+- Supabase Postgres persistence
+- Row Level Security
+- Organisation membership
+- Project membership
+- RBAC functions
+- Project creation writes to Supabase
+- Lifecycle phases generated in Supabase
+- Tools generated in Supabase
+- Records CRUD writes to Supabase
+- Audit events written by trigger
+- Project health recalculated by trigger
+- Red records generate delivery signals
+- Project-context sidebar
+- Operating system view from database
+- Management report from database
+- Audit trail from database
 
 ## Routes
 
-- `/auth`
+- `/login`
+- `/signup`
 - `/dashboard`
 - `/projects`
 - `/new-project`
@@ -30,27 +44,21 @@ This is a consolidated build from the clean architecture.
 - `/projects/[id]/lifecycle/[phase]`
 - `/projects/[id]/lifecycle/[phase]/[tool]`
 - `/projects/[id]/operating-system`
-- `/projects/[id]/reports`
 - `/projects/[id]/audit`
-- `/lifecycle/[phase]` redirects to `/projects`
+- `/management-report`
 
-## Test
+## Acceptance test
 
-1. Open `/projects` signed out.
-2. Confirm redirect to `/auth`.
-3. Sign in.
-4. Open `/projects`.
-5. Open a project.
-6. Confirm sidebar changes into project-context lifecycle tree.
-7. Open Planning → Product Backlog.
-8. Add a record.
-9. Mark it red.
-10. Open Operating System.
-11. Confirm signals and trace update.
-12. Open Reports and Audit Trail.
-
-## Supabase
-
-Optional for now. The app works in browser local storage. To prepare the database, run:
-
-`supabase/schema.sql`
+1. Sign up.
+2. Sign in.
+3. Open `/dashboard`.
+4. Default organisation is created.
+5. Create a project.
+6. Open Planning → Product Backlog.
+7. Add a record.
+8. Mark it red.
+9. Confirm:
+   - project health becomes red
+   - signal appears in Operating System
+   - audit event appears
+   - management report reflects live data

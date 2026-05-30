@@ -1,3 +1,29 @@
-"use client";
-import {useRouter} from "next/navigation";import {useState} from "react";import {Shell} from "@/components/Shell";import {Card} from "@/components/ui";import {createProject} from "@/lib/store";
-export default function Page(){const router=useRouter();const[form,setForm]=useState({name:"",programme:"Digital Transformation",methodology:"Hybrid",summary:""});function submit(){if(!form.name.trim())return;const p=createProject({...form,summary:form.summary||"Generated connected delivery workspace."});router.push(`/projects/${p.id}`)}return <Shell title="New Project" kicker="Create"><div className="grid gap-6 xl:grid-cols-[1fr_.8fr]"><Card className="p-8"><h2 className="text-3xl font-black tracking-[-0.04em] text-ink">Generate a connected project workspace.</h2><div className="mt-6 grid gap-4"><input value={form.name} onChange={e=>setForm({...form,name:e.target.value})} placeholder="Project name" className="rounded-2xl border border-border bg-surface p-4 text-sm font-bold outline-none"/><input value={form.programme} onChange={e=>setForm({...form,programme:e.target.value})} placeholder="Programme" className="rounded-2xl border border-border bg-surface p-4 text-sm font-bold outline-none"/><select value={form.methodology} onChange={e=>setForm({...form,methodology:e.target.value})} className="rounded-2xl border border-border bg-surface p-4 text-sm font-bold outline-none"><option>Hybrid</option><option>PMBOK</option><option>Agile / Scrum</option><option>SAFe</option></select><textarea value={form.summary} onChange={e=>setForm({...form,summary:e.target.value})} placeholder="Workflow, objective, users, governance needs..." className="min-h-[180px] rounded-2xl border border-border bg-surface p-4 text-sm font-bold outline-none"/><button onClick={submit} className="w-fit rounded-xl bg-accent px-5 py-3 text-sm font-black text-white">Generate Project</button></div></Card><Card className="p-8"><div className="text-xs font-black uppercase tracking-wider text-accent">Generated structure</div>{["8 lifecycle phases","Nested project sidebar","Tool workspaces","Starter records","Trace relationships","Signals","Operating System"].map(i=><div key={i} className="mt-3 rounded-2xl border border-border bg-surface p-3 text-sm font-black text-ink">✓ {i}</div>)}</Card></div></Shell>}
+import { Shell } from "@/components/Shell";
+import { Card } from "@/components/ui";
+import { createProject } from "@/lib/actions";
+
+export default function Page() {
+  return (
+    <Shell title="New Project" kicker="Create" pathname="/new-project">
+      <div className="grid gap-6 xl:grid-cols-[1fr_.8fr]">
+        <Card className="p-8">
+          <h2 className="text-3xl font-black tracking-[-0.04em] text-ink">Generate a connected project workspace.</h2>
+          <form action={createProject} className="mt-6 grid gap-4">
+            <input name="name" required placeholder="Project name" className="rounded-2xl border border-border bg-surface p-4 text-sm font-bold outline-none" />
+            <select name="methodology" className="rounded-2xl border border-border bg-surface p-4 text-sm font-bold outline-none">
+              <option>Hybrid</option><option>PMBOK</option><option>Agile / Scrum</option><option>SAFe</option>
+            </select>
+            <textarea name="summary" placeholder="Workflow, objective, users, governance needs..." className="min-h-[180px] rounded-2xl border border-border bg-surface p-4 text-sm font-bold outline-none" />
+            <button className="w-fit rounded-xl bg-accent px-5 py-3 text-sm font-black text-white">Generate Project</button>
+          </form>
+        </Card>
+        <Card className="p-8">
+          <div className="text-xs font-black uppercase tracking-wider text-accent">Generated in Supabase</div>
+          {["8 lifecycle phases", "Nested tools", "Starter records", "Relationships", "Audit events", "Signals", "RLS-protected membership"].map((item) => (
+            <div key={item} className="mt-3 rounded-2xl border border-border bg-surface p-3 text-sm font-black text-ink">✓ {item}</div>
+          ))}
+        </Card>
+      </div>
+    </Shell>
+  );
+}
