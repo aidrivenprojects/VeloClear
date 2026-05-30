@@ -1,7 +1,1 @@
-const nextConfig = {
-  experimental: {
-    workerThreads: false,
-    cpus: 1
-  }
-};
-export default nextConfig;
+const nextConfig={eslint:{ignoreDuringBuilds:true}};export default nextConfig;

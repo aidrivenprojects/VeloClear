@@ -1,0 +1,23 @@
+export type Phase={slug:string;number:number;title:string;purpose:string;tools:{slug:string;title:string;description:string}[]};
+export const phases:Phase[]=[
+{slug:"initiation",number:1,title:"Initiation",purpose:"Define the project before work begins.",tools:[
+{slug:"charter",title:"Charter",description:"Objectives, scope, constraints, authority and sign-off."},
+{slug:"business-case",title:"Business Case",description:"Why this project exists and what value it creates."},
+{slug:"stakeholders",title:"Stakeholders",description:"Initial sponsor, users, approvers and impacted groups."},
+{slug:"scope",title:"Scope",description:"In scope, out of scope, assumptions and boundaries."}]},
+{slug:"planning",number:2,title:"Planning",purpose:"Build the delivery plan before committing to execution.",tools:[
+{slug:"wbs",title:"WBS",description:"Work breakdown structure."},{slug:"schedule",title:"Schedule",description:"Timeline and dependencies."},{slug:"resource-plan",title:"Resource Plan",description:"People and capacity."},{slug:"product-backlog",title:"Product Backlog",description:"Epics, PBIs and user stories."},{slug:"sprint-backlog",title:"Sprint Backlog",description:"Selected sprint work."},{slug:"milestones",title:"Milestones",description:"Delivery checkpoints."}]},
+{slug:"mobilisation",number:3,title:"Mobilisation",purpose:"Prepare the team, access, kickoff and sprint zero readiness.",tools:[
+{slug:"kickoff-pack",title:"Kick-off Pack",description:"Kickoff agenda and responsibilities."},{slug:"sprint-zero",title:"Sprint 0 Checklist",description:"Environment and access readiness."},{slug:"team-onboarding",title:"Team Onboarding",description:"Role onboarding."}]},
+{slug:"raid",number:4,title:"RAID",purpose:"Manage risks, assumptions, issues and dependencies.",tools:[
+{slug:"raid-log",title:"RAID Log",description:"Risks, assumptions, issues, dependencies."},{slug:"risk-heat-map",title:"Risk Heat Map",description:"Probability versus impact."},{slug:"issue-log",title:"Issue Log",description:"Active issues."}]},
+{slug:"stakeholders",number:5,title:"Stakeholders",purpose:"Manage people, influence, engagement, RACI and communication.",tools:[
+{slug:"stakeholder-register",title:"Stakeholder Register",description:"People and influence."},{slug:"power-interest-grid",title:"Power-Interest Grid",description:"Engagement quadrant."},{slug:"engagement-matrix",title:"Engagement Matrix",description:"Current vs desired engagement."},{slug:"raci-matrix",title:"RACI Matrix",description:"Responsible, accountable, consulted, informed."},{slug:"communications-plan",title:"Communications Plan",description:"Audience, channel and cadence."}]},
+{slug:"governance",number:6,title:"Governance",purpose:"Run steering, decisions, approvals, change control and audit.",tools:[
+{slug:"rag-dashboard",title:"RAG Dashboard",description:"Project health."},{slug:"change-control",title:"Change Control",description:"Change requests."},{slug:"escalation-tracker",title:"Escalation Tracker",description:"Escalations and decisions."},{slug:"decision-rights",title:"Decision Rights",description:"Who decides what."},{slug:"audit-trail",title:"Audit Trail",description:"Evidence trail."},{slug:"auto-reports",title:"Auto Reports",description:"Role reports."},{slug:"import-export",title:"Import / Export",description:"Data movement."}]},
+{slug:"agile-delivery",number:7,title:"Agile Delivery",purpose:"Run backlog, sprints, velocity and retrospectives.",tools:[
+{slug:"product-backlog",title:"Product Backlog",description:"Epics, PBIs, stories."},{slug:"sprint-board",title:"Sprint Board",description:"Kanban execution."},{slug:"burndown",title:"Burndown",description:"Remaining work."},{slug:"velocity",title:"Velocity",description:"Completed points trend."},{slug:"retrospective",title:"Retrospective",description:"Learning actions."}]},
+{slug:"intelligence",number:8,title:"Intelligence",purpose:"Trace impact, surface signals and turn learning into prevention.",tools:[
+{slug:"impact-trace",title:"Impact Trace",description:"Blocker → risk → issue → escalation → decision → resolution → learning."},{slug:"sprint-intelligence",title:"Sprint Intelligence",description:"Sprint patterns."},{slug:"evm",title:"EVM",description:"Earned value."},{slug:"people-capacity",title:"People & Capacity",description:"Utilisation and ownership."},{slug:"delivery-graph",title:"Delivery Graph",description:"Graph-native relationships."}]}];
+export function findPhase(slug:string){return phases.find(p=>p.slug===slug)||phases[0]}
+export function findTool(phaseSlug:string,toolSlug:string){const p=findPhase(phaseSlug);return p.tools.find(t=>t.slug===toolSlug)||p.tools[0]}

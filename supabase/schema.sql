@@ -1,9 +1,45 @@
-create extension if not exists "uuid-ossp";
-create table public.projects(id uuid primary key default uuid_generate_v4(),name text not null,delivery_method text not null default 'hybrid',complexity text not null default 'multi_team',risk_focus text not null default 'vendor_dependency',health_status text not null default 'amber',narrative text,created_at timestamptz default now());
-create table public.raid_items(id uuid primary key default uuid_generate_v4(),project_id uuid references public.projects(id) on delete cascade,item_type text not null check (item_type in ('risk','assumption','issue','dependency')),title text not null,trigger text,mitigation text,owner text,status text not null default 'open',probability int,impact int,created_at timestamptz default now());
-create table public.impact_events(id uuid primary key default uuid_generate_v4(),project_id uuid references public.projects(id) on delete cascade,event_type text not null,title text not null,description text,created_at timestamptz default now());
-create table public.uploads(id uuid primary key default uuid_generate_v4(),project_id uuid references public.projects(id) on delete cascade,file_name text not null,file_type text,storage_path text,created_at timestamptz default now());
-alter table public.projects enable row level security;
-alter table public.raid_items enable row level security;
-alter table public.impact_events enable row level security;
-alter table public.uploads enable row level security;
+create extension if not exists pgcrypto;
+
+create table if not exists public.projects (
+  id uuid primary key default gen_random_uuid(),
+  slug text unique not null,
+  name text not null,
+  programme text,
+  methodology text default 'Hybrid',
+  summary text,
+  health text default 'amber',
+  created_at timestamptz default now()
+);
+
+create table if not exists public.delivery_records (
+  id uuid primary key default gen_random_uuid(),
+  project_id uuid references public.projects(id) on delete cascade,
+  phase_slug text not null,
+  tool_slug text not null,
+  type text not null,
+  title text not null,
+  description text,
+  status text default 'open',
+  severity text default 'amber',
+  owner text,
+  created_at timestamptz default now()
+);
+
+create table if not exists public.delivery_relationships (
+  id uuid primary key default gen_random_uuid(),
+  project_id uuid references public.projects(id) on delete cascade,
+  source_id uuid references public.delivery_records(id) on delete cascade,
+  target_id uuid references public.delivery_records(id) on delete cascade,
+  relationship_type text not null,
+  created_at timestamptz default now()
+);
+
+create table if not exists public.audit_events (
+  id uuid primary key default gen_random_uuid(),
+  project_id uuid references public.projects(id) on delete cascade,
+  action text not null,
+  entity text,
+  entity_title text,
+  actor text default 'Current User',
+  created_at timestamptz default now()
+);
