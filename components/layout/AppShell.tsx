@@ -1,3 +1,0 @@
-import {Sidebar} from "./Sidebar";
-import {RequireAuth} from "@/components/auth/RequireAuth";
-export function AppShell({children,title,kicker}:{children:React.ReactNode;title:string;kicker:string}){return <RequireAuth><div className="min-h-screen bg-page"><Sidebar/><main className="ml-[320px] min-h-screen"><header className="sticky top-0 z-20 flex h-14 items-center justify-between border-b border-border bg-white px-6"><div><div className="text-[10px] font-black uppercase tracking-wider text-muted">{kicker}</div><h1 className="text-base font-black text-ink">{title}</h1></div></header><div className="p-6">{children}</div></main></div></RequireAuth>}
