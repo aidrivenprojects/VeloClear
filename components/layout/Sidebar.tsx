@@ -9,26 +9,35 @@ const navGroups = [
     label: "Portfolio",
     items: [
       { label: "Dashboard", href: "/dashboard" },
-      { label: "Blueprint", href: "/blueprint" },
-      { label: "Delivery Graph", href: "/delivery-graph" },
-      { label: "Impact Trace", href: "/trace" }
+      { label: "Projects", href: "/projects" },
+      { label: "Final Structure", href: "/final-structure" }
     ]
   },
   {
     label: "Start",
     items: [
       { label: "Discovery", href: "/discover" },
-      { label: "Projects", href: "/projects" }
+      { label: "New Project", href: "/lifecycle/intelligence/new-project" }
     ]
   },
   {
-    label: "Project Lifecycle",
+    label: "Lifecycle",
     items: [
-      { label: "Initiation", href: "/lifecycle/initiation" },
-      { label: "Planning", href: "/lifecycle/planning" },
-      { label: "Execution", href: "/lifecycle/execution" },
-      { label: "Monitoring & Controlling", href: "/lifecycle/monitoring" },
-      { label: "Closure", href: "/lifecycle/closure" }
+      { label: "1. Initiation", href: "/lifecycle/initiation" },
+      { label: "2. Planning", href: "/lifecycle/planning" },
+      { label: "3. Mobilisation", href: "/lifecycle/mobilisation" },
+      { label: "4. Risk & RAID", href: "/lifecycle/raid" },
+      { label: "5. Stakeholders", href: "/lifecycle/stakeholders" },
+      { label: "6. Governance", href: "/lifecycle/governance" },
+      { label: "7. Agile Delivery", href: "/lifecycle/agile-delivery" },
+      { label: "8. Intelligence", href: "/lifecycle/intelligence" }
+    ]
+  },
+  {
+    label: "Trace",
+    items: [
+      { label: "Delivery Graph", href: "/delivery-graph" },
+      { label: "Impact Trace", href: "/trace" }
     ]
   },
   {
@@ -48,18 +57,18 @@ export function Sidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="fixed inset-y-0 left-0 z-20 hidden w-[280px] overflow-y-auto bg-sidebar px-4 py-5 text-white lg:block">
+    <aside className="fixed inset-y-0 left-0 z-20 hidden w-[300px] overflow-y-auto bg-sidebar px-4 py-5 text-white lg:block">
       <Brand dark />
 
       <div className="my-6 rounded-2xl border border-white/10 bg-white/[0.055] p-3">
         <div className="mb-3 flex items-center gap-2 text-xs font-black text-white/70">
           <span className="h-2 w-2 rounded-full bg-green shadow-[0_0_12px_#10B981]" />
-          Delivery OS model
+          Canonical delivery model
         </div>
         <div className="grid gap-2 text-[11px] font-bold text-white/45">
-          <div className="flex items-center justify-between"><span>Graph</span><strong className="text-green">Connected</strong></div>
-          <div className="flex items-center justify-between"><span>Lifecycle</span><strong className="text-amber">Active</strong></div>
-          <div className="flex items-center justify-between"><span>Intelligence</span><strong className="text-red">Next</strong></div>
+          <div className="flex items-center justify-between"><span>Lifecycle</span><strong className="text-green">8 phases</strong></div>
+          <div className="flex items-center justify-between"><span>Trace</span><strong className="text-amber">Graph</strong></div>
+          <div className="flex items-center justify-between"><span>Intelligence</span><strong className="text-red">Signals</strong></div>
         </div>
       </div>
 

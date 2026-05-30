@@ -32,3 +32,18 @@ See `/docs`:
 - `/projects/[id]/trace`
 
 Run `supabase/graph_engine_schema.sql` in Supabase before using persistent graph storage.
+
+
+## Final Structure Routes
+
+- `/final-structure`
+- `/lifecycle/initiation`
+- `/lifecycle/planning`
+- `/lifecycle/mobilisation`
+- `/lifecycle/raid`
+- `/lifecycle/stakeholders`
+- `/lifecycle/governance`
+- `/lifecycle/agile-delivery`
+- `/lifecycle/intelligence`
+- `/projects/[id]/lifecycle/[phase]`
+- `/projects/[id]/lifecycle/[phase]/[tool]`

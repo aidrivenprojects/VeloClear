@@ -1,5 +1,5 @@
 import { PhaseWorkspacePage } from "@/components/final/PhaseWorkspacePage";
 
 export default function Page() {
-  return <PhaseWorkspacePage phaseSlug="initiation" />;
+  return <PhaseWorkspacePage phaseSlug="governance" />;
 }
