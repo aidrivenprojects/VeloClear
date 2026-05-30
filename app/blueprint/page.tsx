@@ -1,2 +1,5 @@
-import { SystemBlueprintPage } from "@/components/blueprint/SystemBlueprintPage";
-export default function Page() { return <SystemBlueprintPage />; }
+import { CanonicalBlueprintPage } from "@/components/canonical/CanonicalBlueprintPage";
+
+export default function Page() {
+  return <CanonicalBlueprintPage />;
+}

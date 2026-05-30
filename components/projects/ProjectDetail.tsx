@@ -73,6 +73,18 @@ export function ProjectDetail({ projectId }: { projectId: string }) {
             <p className="mt-3 max-w-4xl text-sm leading-6 text-ink2">{lifecycle.narrative}</p>
           </Card>
 
+
+          <Card className="p-6">
+            <div className="flex flex-wrap items-center justify-between gap-4">
+              <div>
+                <div className="text-xs font-black uppercase tracking-wider text-accent">Connected delivery graph</div>
+                <h2 className="mt-2 text-2xl font-black tracking-[-0.04em] text-ink">Trace this project end-to-end.</h2>
+                <p className="mt-2 max-w-3xl text-sm leading-6 text-ink2">Follow business goal → PBI → sprint → blocker → risk → issue → escalation → decision → learning.</p>
+              </div>
+              <Link href={`/projects/${projectId}/trace`} className="rounded-xl bg-accent px-4 py-3 text-sm font-black text-white">Open trace</Link>
+            </div>
+          </Card>
+
           <Card>
             <div className="border-b border-border p-5">
               <h2 className="text-sm font-black">Persisted RAID Items</h2>

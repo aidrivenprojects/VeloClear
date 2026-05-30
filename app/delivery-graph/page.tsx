@@ -1,2 +1,5 @@
-import { DeliveryGraphPage } from "@/components/blueprint/DeliveryGraphPage";
-export default function Page() { return <DeliveryGraphPage />; }
+import { DeliveryGraphPage } from "@/components/canonical/DeliveryGraphPage";
+
+export default function Page() {
+  return <DeliveryGraphPage />;
+}

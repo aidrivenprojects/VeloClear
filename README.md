@@ -1,45 +1,34 @@
-# VeloClear Modular App
+# VeloClear
 
-A modular Next.js app containing:
+VeloClear is a Delivery Intelligence Operating System.
 
-- `/demo` polished demo showcase
-- `/projects/new` Guided Project Setup Intelligence
-- `/dashboard`
-- `/raid`
-- `/impact-trace`
-- `/integrations`
-- `/login`
+It connects discovery, lifecycle phases, delivery work, governance signals and organisational learning.
 
-## Run locally
+## Key Routes
 
-```bash
-npm install
-cp .env.example .env.local
-npm run dev
-```
+- `/blueprint` — canonical product architecture
+- `/delivery-graph` — connected delivery graph
+- `/discover` — discovery intake
+- `/projects` — saved projects
+- `/lifecycle/initiation`
+- `/lifecycle/planning`
+- `/lifecycle/execution`
+- `/lifecycle/monitoring`
+- `/lifecycle/closure`
 
-Open:
+## Documentation
 
-```txt
-http://localhost:3000/demo
-```
+See `/docs`:
+- `veloclear-canonical-architecture.md`
+- `product-vision.md`
+- `delivery-model.md`
+- `intelligence-engine.md`
+- `roadmap.md`
 
-## Deploy
 
-Upload this folder to GitHub and import it into Vercel.
+## Graph Engine Routes
 
-## Supabase
+- `/trace`
+- `/projects/[id]/trace`
 
-When ready, run `supabase/schema.sql` in Supabase SQL Editor.
-
-## Modular structure
-
-- `components/layout` — AppShell, Sidebar, Brand
-- `components/ui` — Card, Button, Badge, MetricCard
-- `components/demo` — demo-only entry and role flow
-- `components/setup` — Guided Setup Intelligence
-- `components/dashboard` — dashboard cards and narrative
-- `components/raid` — RAID table
-- `components/impact` — Impact Trace
-- `components/integrations` — upload/integration panels
-- `lib` — types, demo data, setup generation logic
+Run `supabase/graph_engine_schema.sql` in Supabase before using persistent graph storage.

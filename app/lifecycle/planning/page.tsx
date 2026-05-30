@@ -1,5 +1,5 @@
-import { PhaseWorkbenchPage } from "@/components/lifecycle/PhaseWorkbenchPage";
+import { LifecyclePhasePage } from "@/components/canonical/LifecyclePhasePage";
 
 export default function Page() {
-  return <PhaseWorkbenchPage slug="planning" />;
+  return <LifecyclePhasePage slug="planning" />;
 }
