@@ -1,16 +1,17 @@
 "use client";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { Brand } from "./Brand";
-import { RoleSwitcher } from "@/components/auth/RoleSwitcher";
-
-const groups=[
+import {usePathname} from "next/navigation";
+import {Brand} from "./Brand";
+import {RoleSwitcher} from "@/components/auth/RoleSwitcher";
+import {templates} from "@/lib/cdosCore";
+function projectSlug(path:string){return path.match(/^\/projects\/([^/]+)/)?.[1]||null}
+function active(path:string,href:string){return path===href||path.startsWith(href+"/")}
+const globalGroups=[
  {label:"Portfolio",items:[{label:"Dashboard",href:"/dashboard"},{label:"Programmes",href:"/programmes"},{label:"Projects",href:"/projects"}]},
  {label:"Create",items:[{label:"+ New Project",href:"/new-project"},{label:"Workflow Ingestion",href:"/ingest"}]},
- {label:"Configuration",items:[{label:"Methodology Packs",href:"/methodology"},{label:"Roles",href:"/roles"},{label:"Integrations",href:"/integrations"}]},
  {label:"Governance",items:[{label:"Reports",href:"/reports"},{label:"Audit Trail",href:"/audit"}]},
- {label:"Intelligence",items:[{label:"Operating System",href:"/operating-system"},{label:"Demo Graph",href:"/trace"}]},
  {label:"Access",items:[{label:"Sign in / RBAC",href:"/auth"}]}
 ];
-function active(p:string,h:string){return h==="/projects"?p==="/projects":p===h||p.startsWith(`${h}/`)}
-export function Sidebar(){const pathname=usePathname();return <aside className="fixed inset-y-0 left-0 z-20 hidden w-[280px] overflow-y-auto bg-sidebar px-4 py-5 text-white lg:block"><Brand dark/><div className="my-6"><RoleSwitcher/></div><nav className="space-y-6 pb-10">{groups.map(g=><section key={g.label} className="rounded-2xl bg-white/[0.025] p-2"><div className="mb-2 px-2 text-[9px] font-black uppercase tracking-[0.18em] text-white/30">{g.label}</div><div className="grid gap-1">{g.items.map(i=><Link key={i.href} href={i.href} className={active(pathname,i.href)?"rounded-xl bg-white/10 px-3 py-2 text-sm font-black text-white":"rounded-xl px-3 py-2 text-sm font-bold text-white/55 hover:bg-white/5 hover:text-white"}>{i.label}</Link>)}</div></section>)}</nav></aside>}
+export function Sidebar(){const pathname=usePathname(); const slug=projectSlug(pathname); return <aside className="fixed inset-y-0 left-0 z-20 hidden w-[320px] overflow-y-auto bg-sidebar px-4 py-5 text-white lg:block"><Brand dark/><div className="my-6"><RoleSwitcher/></div>{slug?<ProjectNav pathname={pathname} slug={slug}/>:<GlobalNav pathname={pathname}/>}</aside>}
+function GlobalNav({pathname}:{pathname:string}){return <nav className="space-y-6 pb-10">{globalGroups.map(g=><section key={g.label} className="rounded-2xl bg-white/[0.025] p-2"><div className="mb-2 px-2 text-[9px] font-black uppercase tracking-[0.18em] text-white/30">{g.label}</div><div className="grid gap-1">{g.items.map(i=><Link key={i.href} href={i.href} className={active(pathname,i.href)?"rounded-xl bg-white/10 px-3 py-2 text-sm font-black text-white":"rounded-xl px-3 py-2 text-sm font-bold text-white/55 hover:bg-white/5 hover:text-white"}>{i.label}</Link>)}</div></section>)}</nav>}
+function ProjectNav({pathname,slug}:{pathname:string;slug:string}){return <nav className="space-y-5 pb-10"><section className="rounded-2xl border border-white/10 bg-white/[0.055] p-3"><Link href="/projects" className="text-[10px] font-black uppercase tracking-[0.18em] text-white/35">← Projects</Link><div className="mt-2 text-sm font-black text-white">Project Workspace</div><div className="mt-1 text-[11px] font-bold capitalize text-white/45">{slug.replace(/-/g," ")}</div></section><section className="rounded-2xl bg-white/[0.025] p-2"><div className="mb-2 px-2 text-[9px] font-black uppercase tracking-[0.18em] text-white/30">Project Controls</div>{[{label:"Workspace Home",href:`/projects/${slug}`},{label:"Operating System",href:`/projects/${slug}/operating-system`},{label:"Reports",href:`/projects/${slug}/reports`},{label:"Audit Trail",href:`/projects/${slug}/audit`}].map(i=><Link key={i.href} href={i.href} className={active(pathname,i.href)?"block rounded-xl bg-white/10 px-3 py-2 text-sm font-black text-white":"block rounded-xl px-3 py-2 text-sm font-bold text-white/55 hover:bg-white/5 hover:text-white"}>{i.label}</Link>)}</section><section className="rounded-2xl bg-white/[0.025] p-2"><div className="mb-3 px-2 text-[9px] font-black uppercase tracking-[0.18em] text-white/30">Project Lifecycle</div><div className="space-y-2">{templates.map(ph=>{const phref=`/projects/${slug}/lifecycle/${ph.phase_slug}`; const on=active(pathname,phref); return <div key={ph.phase_slug} className={on?"rounded-2xl bg-white/10 p-2":"rounded-2xl p-2"}><Link href={phref} className={on?"block text-sm font-black text-white":"block text-sm font-black text-white/65 hover:text-white"}>{ph.phase_number}. {ph.title}</Link>{on&&<div className="mt-2 grid gap-1 border-l border-white/10 pl-3">{ph.tools.map(([tool,title])=>{const href=`/projects/${slug}/lifecycle/${ph.phase_slug}/${tool}`; return <Link key={tool} href={href} className={active(pathname,href)?"rounded-lg bg-white/10 px-2 py-1.5 text-xs font-black text-white":"rounded-lg px-2 py-1.5 text-xs font-bold text-white/45 hover:bg-white/5 hover:text-white"}>{title}</Link>})}</div>}</div>})}</div></section></nav>}

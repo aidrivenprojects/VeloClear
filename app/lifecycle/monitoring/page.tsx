@@ -1,5 +1,2 @@
-import { LifecyclePhasePage } from "@/components/canonical/LifecyclePhasePage";
-
-export default function Page() {
-  return <LifecyclePhasePage slug="monitoring" />;
-}
+import {redirect} from "next/navigation";
+export default function Page(){redirect("/projects")}

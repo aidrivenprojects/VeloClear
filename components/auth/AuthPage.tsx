@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { AppShell } from "@/components/layout/AppShell";
 import { Card } from "@/components/ui/Card";
 import { roleOptions, signIn, signUp, type RoleName } from "@/lib/authRBAC";
@@ -9,6 +9,7 @@ import { useAuth } from "@/components/auth/AuthProvider";
 
 export function AuthPage() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const { refresh } = useAuth();
   const [mode, setMode] = useState<"signin" | "signup">("signin");
   const [email, setEmail] = useState("");
@@ -30,7 +31,7 @@ export function AuthPage() {
 
     setMessage(mode === "signup" ? "Account created. Check email confirmation if enabled." : "Signed in.");
     await refresh();
-    router.push("/projects");
+    router.push(searchParams.get("next") || "/projects");
   }
 
   return (
